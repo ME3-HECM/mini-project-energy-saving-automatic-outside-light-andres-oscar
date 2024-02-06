@@ -7,5 +7,6 @@
 
 void Timer0_init(void);
 unsigned int get16bitTMR0val(void);
+unsigned int getHour(void);
 
 #endif

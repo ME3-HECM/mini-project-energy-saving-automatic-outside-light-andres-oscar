@@ -4,6 +4,8 @@
 /************************************
  * Function to set up timer 0
 ************************************/
+
+
 void Timer0_init(void)
 {
     T0CON1bits.T0CS=0b010; // Fosc/4
@@ -19,7 +21,7 @@ void Timer0_init(void)
     INTCONbits.GIE = 1; // global interrupt
             
 
-    TMR0H=00001011;            //write High reg first, update happens when low reg is written to
+    TMR0H=00001011;     //write High reg first, update happens when low reg is written to
     TMR0L=110011011;
     T0CON0bits.T0EN=1;	//start the timer
     
@@ -37,12 +39,4 @@ unsigned int get16bitTMR0val(void)
     combined_value = TMR0L | (TMR0H << 8);
     return combined_value;
 }
-void __interrupt(low_priority) LowISR()
-{   
-    if (PIR0bits.TMR0IF == 1) { // check interrupt flag
-        LATHbits.LATH3 = !LATHbits.LATH3; // toggle LED
-        TMR0H=00001011;            //write High reg first, update happens when low reg is written to
-        TMR0L=110011011;
-        PIR0bits.TMR0IF = 0; // clear interrupt flag
-    }
-}
+

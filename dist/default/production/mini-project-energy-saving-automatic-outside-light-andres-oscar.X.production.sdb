@@ -1,0 +1,538 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F67K40 ]
+[d frameptr 4065 ]
+"4 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"7 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\comparator.c
+[v _DAC_init DAC_init `(v  1 e 1 0 ]
+"11 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\interrupts.c
+[v _Interrupts_init Interrupts_init `(v  1 e 1 0 ]
+"25
+[v _HighISR HighISR `IIH(v  1 e 1 0 ]
+"36
+[v _LowISR LowISR `IIL(v  1 e 1 0 ]
+"8 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\LEDarray.c
+[v _LEDarray_init LEDarray_init `(v  1 e 1 0 ]
+"30
+[v _LEDarray_disp_bin LEDarray_disp_bin `(v  1 e 1 0 ]
+"123
+[v _highestBit highestBit `(ui  1 e 2 0 ]
+"17 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"9 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\timers.c
+[v _Timer0_init Timer0_init `(v  1 e 1 0 ]
+[s S378 . 1 `uc 1 INT0IP 1 0 :1:0 
+`uc 1 INT1IP 1 0 :1:1 
+`uc 1 INT2IP 1 0 :1:2 
+`uc 1 INT3IP 1 0 :1:3 
+`uc 1 IOCIP 1 0 :1:4 
+`uc 1 TMR0IP 1 0 :1:5 
+]
+"4009 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h
+[u S385 . 1 `S378 1 . 1 0 ]
+[v _IPR0bits IPR0bits `VES385  1 e 1 @3615 ]
+[s S782 . 1 `uc 1 C1IP 1 0 :1:0 
+`uc 1 C2IP 1 0 :1:1 
+`uc 1 C3IP 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 ZCDIP 1 0 :1:6 
+`uc 1 HLVDIP 1 0 :1:7 
+]
+"4111
+[s S789 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIP 1 0 :1:6 
+]
+[u S792 . 1 `S782 1 . 1 0 `S789 1 . 1 0 ]
+[v _IPR2bits IPR2bits `VES792  1 e 1 @3617 ]
+[s S344 . 1 `uc 1 INT0IE 1 0 :1:0 
+`uc 1 INT1IE 1 0 :1:1 
+`uc 1 INT2IE 1 0 :1:2 
+`uc 1 INT3IE 1 0 :1:3 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"4557
+[u S351 . 1 `S344 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES351  1 e 1 @3625 ]
+[s S758 . 1 `uc 1 C1IE 1 0 :1:0 
+`uc 1 C2IE 1 0 :1:1 
+`uc 1 C3IE 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 ZCDIE 1 0 :1:6 
+`uc 1 HLVDIE 1 0 :1:7 
+]
+"4659
+[s S765 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIE 1 0 :1:6 
+]
+[u S768 . 1 `S758 1 . 1 0 `S765 1 . 1 0 ]
+[v _PIE2bits PIE2bits `VES768  1 e 1 @3627 ]
+[s S361 . 1 `uc 1 INT0IF 1 0 :1:0 
+`uc 1 INT1IF 1 0 :1:1 
+`uc 1 INT2IF 1 0 :1:2 
+`uc 1 INT3IF 1 0 :1:3 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"5102
+[u S368 . 1 `S361 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES368  1 e 1 @3635 ]
+[s S828 . 1 `uc 1 C1IF 1 0 :1:0 
+`uc 1 C2IF 1 0 :1:1 
+`uc 1 C3IF 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 ZCDIF 1 0 :1:6 
+`uc 1 HLVDIF 1 0 :1:7 
+]
+"5204
+[s S835 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIF 1 0 :1:6 
+]
+[u S838 . 1 `S828 1 . 1 0 `S835 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES838  1 e 1 @3637 ]
+[s S543 . 1 `uc 1 ANSELF0 1 0 :1:0 
+`uc 1 ANSELF1 1 0 :1:1 
+`uc 1 ANSELF2 1 0 :1:2 
+`uc 1 ANSELF3 1 0 :1:3 
+`uc 1 ANSELF4 1 0 :1:4 
+`uc 1 ANSELF5 1 0 :1:5 
+`uc 1 ANSELF6 1 0 :1:6 
+`uc 1 ANSELF7 1 0 :1:7 
+]
+"12319
+[u S552 . 1 `S543 1 . 1 0 ]
+[v _ANSELFbits ANSELFbits `VES552  1 e 1 @3764 ]
+[s S958 . 1 `uc 1 NSS 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 PSS 1 0 :2:2 
+`uc 1 OE2 1 0 :1:4 
+`uc 1 OE1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 EN 1 0 :1:7 
+]
+"13226
+[s S966 . 1 `uc 1 DAC1NSS 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 DAC1PSS0 1 0 :1:2 
+`uc 1 DAC1PSS1 1 0 :1:3 
+`uc 1 DAC1OE2 1 0 :1:4 
+`uc 1 DAC1OE1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 DAC1EN 1 0 :1:7 
+]
+[s S975 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PSS0 1 0 :1:2 
+`uc 1 PSS1 1 0 :1:3 
+]
+[u S979 . 1 `S958 1 . 1 0 `S966 1 . 1 0 `S975 1 . 1 0 ]
+[v _DAC1CON0bits DAC1CON0bits `VES979  1 e 1 @3782 ]
+[s S1005 . 1 `uc 1 DAC1R 1 0 :5:0 
+]
+"13313
+[s S1007 . 1 `uc 1 DAC1R0 1 0 :1:0 
+`uc 1 DAC1R1 1 0 :1:1 
+`uc 1 DAC1R2 1 0 :1:2 
+`uc 1 DAC1R3 1 0 :1:3 
+`uc 1 DAC1R4 1 0 :1:4 
+]
+[u S1013 . 1 `S1005 1 . 1 0 `S1007 1 . 1 0 ]
+[v _DAC1CON1bits DAC1CON1bits `VES1013  1 e 1 @3783 ]
+[s S1087 . 1 `uc 1 SYNC 1 0 :1:0 
+`uc 1 HYS 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 POL 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 OUT 1 0 :1:6 
+`uc 1 EN 1 0 :1:7 
+]
+"13853
+[s S1095 . 1 `uc 1 C1SYNC 1 0 :1:0 
+`uc 1 C1HYS 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 C1POL 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 C1OUT 1 0 :1:6 
+`uc 1 C1EN 1 0 :1:7 
+]
+[u S1103 . 1 `S1087 1 . 1 0 `S1095 1 . 1 0 ]
+[v _CM1CON0bits CM1CON0bits `VES1103  1 e 1 @3792 ]
+[s S1123 . 1 `uc 1 INTN 1 0 :1:0 
+`uc 1 INTP 1 0 :1:1 
+]
+"13923
+[s S1126 . 1 `uc 1 C1INTN 1 0 :1:0 
+`uc 1 C1INTP 1 0 :1:1 
+]
+[u S1129 . 1 `S1123 1 . 1 0 `S1126 1 . 1 0 ]
+[v _CM1CON1bits CM1CON1bits `VES1129  1 e 1 @3793 ]
+[s S1037 . 1 `uc 1 NCH 1 0 :3:0 
+]
+"13968
+[s S1039 . 1 `uc 1 NCH0 1 0 :1:0 
+`uc 1 NCH1 1 0 :1:1 
+`uc 1 NCH2 1 0 :1:2 
+]
+[s S1043 . 1 `uc 1 C1NCH0 1 0 :1:0 
+`uc 1 C1NCH1 1 0 :1:1 
+`uc 1 C1NCH2 1 0 :1:2 
+]
+[u S1047 . 1 `S1037 1 . 1 0 `S1039 1 . 1 0 `S1043 1 . 1 0 ]
+[v _CM1NCHbits CM1NCHbits `VES1047  1 e 1 @3794 ]
+[s S1062 . 1 `uc 1 PCH 1 0 :3:0 
+]
+"14028
+[s S1064 . 1 `uc 1 PCH0 1 0 :1:0 
+`uc 1 PCH1 1 0 :1:1 
+`uc 1 PCH2 1 0 :1:2 
+]
+[s S1068 . 1 `uc 1 C1PCH0 1 0 :1:0 
+`uc 1 C1PCH1 1 0 :1:1 
+`uc 1 C1PCH2 1 0 :1:2 
+]
+[u S1072 . 1 `S1062 1 . 1 0 `S1064 1 . 1 0 `S1068 1 . 1 0 ]
+[v _CM1PCHbits CM1PCHbits `VES1072  1 e 1 @3795 ]
+"28145
+[v _LATA LATA `VEuc  1 e 1 @3961 ]
+[s S598 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"28172
+[s S607 . 1 `uc 1 LA0 1 0 :1:0 
+`uc 1 LA1 1 0 :1:1 
+`uc 1 LA2 1 0 :1:2 
+`uc 1 LA3 1 0 :1:3 
+`uc 1 LA4 1 0 :1:4 
+`uc 1 LA5 1 0 :1:5 
+`uc 1 LA6 1 0 :1:6 
+`uc 1 LA7 1 0 :1:7 
+]
+[u S616 . 1 `S598 1 . 1 0 `S607 1 . 1 0 ]
+[v _LATAbits LATAbits `VES616  1 e 1 @3961 ]
+"28257
+[v _LATB LATB `VEuc  1 e 1 @3962 ]
+[s S638 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"28284
+[s S647 . 1 `uc 1 LB0 1 0 :1:0 
+`uc 1 LB1 1 0 :1:1 
+`uc 1 LB2 1 0 :1:2 
+`uc 1 LB3 1 0 :1:3 
+`uc 1 LB4 1 0 :1:4 
+`uc 1 LB5 1 0 :1:5 
+`uc 1 LB6 1 0 :1:6 
+`uc 1 LB7 1 0 :1:7 
+]
+[u S656 . 1 `S638 1 . 1 0 `S647 1 . 1 0 ]
+[v _LATBbits LATBbits `VES656  1 e 1 @3962 ]
+[s S45 . 1 `uc 1 LATE0 1 0 :1:0 
+`uc 1 LATE1 1 0 :1:1 
+`uc 1 LATE2 1 0 :1:2 
+`uc 1 LATE3 1 0 :1:3 
+`uc 1 LATE4 1 0 :1:4 
+`uc 1 LATE5 1 0 :1:5 
+`uc 1 LATE6 1 0 :1:6 
+`uc 1 LATE7 1 0 :1:7 
+]
+"28620
+[s S54 . 1 `uc 1 LE0 1 0 :1:0 
+`uc 1 LE1 1 0 :1:1 
+`uc 1 LE2 1 0 :1:2 
+`uc 1 LE3 1 0 :1:3 
+`uc 1 LE4 1 0 :1:4 
+`uc 1 LE5 1 0 :1:5 
+`uc 1 LE6 1 0 :1:6 
+`uc 1 LE7 1 0 :1:7 
+]
+[u S63 . 1 `S45 1 . 1 0 `S54 1 . 1 0 ]
+[v _LATEbits LATEbits `VES63  1 e 1 @3965 ]
+[s S478 . 1 `uc 1 LATF0 1 0 :1:0 
+`uc 1 LATF1 1 0 :1:1 
+`uc 1 LATF2 1 0 :1:2 
+`uc 1 LATF3 1 0 :1:3 
+`uc 1 LATF4 1 0 :1:4 
+`uc 1 LATF5 1 0 :1:5 
+`uc 1 LATF6 1 0 :1:6 
+`uc 1 LATF7 1 0 :1:7 
+]
+"28732
+[s S487 . 1 `uc 1 LF0 1 0 :1:0 
+`uc 1 LF1 1 0 :1:1 
+`uc 1 LF2 1 0 :1:2 
+`uc 1 LF3 1 0 :1:3 
+`uc 1 LF4 1 0 :1:4 
+`uc 1 LF5 1 0 :1:5 
+`uc 1 LF6 1 0 :1:6 
+`uc 1 LF7 1 0 :1:7 
+]
+[u S496 . 1 `S478 1 . 1 0 `S487 1 . 1 0 ]
+[v _LATFbits LATFbits `VES496  1 e 1 @3966 ]
+"28817
+[v _LATG LATG `VEuc  1 e 1 @3967 ]
+[s S564 . 1 `uc 1 LATG0 1 0 :1:0 
+`uc 1 LATG1 1 0 :1:1 
+`uc 1 LATG2 1 0 :1:2 
+`uc 1 LATG3 1 0 :1:3 
+`uc 1 LATG4 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 LATG6 1 0 :1:6 
+`uc 1 LATG7 1 0 :1:7 
+]
+"28841
+[s S573 . 1 `uc 1 LG0 1 0 :1:0 
+`uc 1 LG1 1 0 :1:1 
+`uc 1 LG2 1 0 :1:2 
+`uc 1 LG3 1 0 :1:3 
+`uc 1 LG4 1 0 :1:4 
+]
+[u S579 . 1 `S564 1 . 1 0 `S573 1 . 1 0 ]
+[v _LATGbits LATGbits `VES579  1 e 1 @3967 ]
+[s S98 . 1 `uc 1 LATH0 1 0 :1:0 
+`uc 1 LATH1 1 0 :1:1 
+`uc 1 LATH2 1 0 :1:2 
+`uc 1 LATH3 1 0 :1:3 
+]
+"28941
+[s S103 . 1 `uc 1 LH0 1 0 :1:0 
+`uc 1 LH1 1 0 :1:1 
+`uc 1 LH2 1 0 :1:2 
+`uc 1 LH3 1 0 :1:3 
+]
+[s S108 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 LH4 1 0 :1:4 
+]
+[s S111 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 LH5 1 0 :1:5 
+]
+[s S114 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 LH6 1 0 :1:6 
+]
+[s S117 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 LH7 1 0 :1:7 
+]
+[u S120 . 1 `S98 1 . 1 0 `S103 1 . 1 0 `S108 1 . 1 0 `S111 1 . 1 0 `S114 1 . 1 0 `S117 1 . 1 0 ]
+[v _LATHbits LATHbits `VES120  1 e 1 @3968 ]
+"29006
+[v _TRISA TRISA `VEuc  1 e 1 @3969 ]
+"29128
+[v _TRISB TRISB `VEuc  1 e 1 @3970 ]
+[s S24 . 1 `uc 1 TRISE0 1 0 :1:0 
+`uc 1 TRISE1 1 0 :1:1 
+`uc 1 TRISE2 1 0 :1:2 
+`uc 1 TRISE3 1 0 :1:3 
+`uc 1 TRISE4 1 0 :1:4 
+`uc 1 TRISE5 1 0 :1:5 
+`uc 1 TRISE6 1 0 :1:6 
+`uc 1 TRISE7 1 0 :1:7 
+]
+"29516
+[u S33 . 1 `S24 1 . 1 0 ]
+[v _TRISEbits TRISEbits `VES33  1 e 1 @3973 ]
+[s S521 . 1 `uc 1 TRISF0 1 0 :1:0 
+`uc 1 TRISF1 1 0 :1:1 
+`uc 1 TRISF2 1 0 :1:2 
+`uc 1 TRISF3 1 0 :1:3 
+`uc 1 TRISF4 1 0 :1:4 
+`uc 1 TRISF5 1 0 :1:5 
+`uc 1 TRISF6 1 0 :1:6 
+`uc 1 TRISF7 1 0 :1:7 
+]
+"29633
+[u S530 . 1 `S521 1 . 1 0 ]
+[v _TRISFbits TRISFbits `VES530  1 e 1 @3974 ]
+"29678
+[v _TRISG TRISG `VEuc  1 e 1 @3975 ]
+[s S85 . 1 `uc 1 TRISH0 1 0 :1:0 
+`uc 1 TRISH1 1 0 :1:1 
+`uc 1 TRISH2 1 0 :1:2 
+`uc 1 TRISH3 1 0 :1:3 
+]
+"29748
+[u S90 . 1 `S85 1 . 1 0 ]
+[v _TRISHbits TRISHbits `VES90  1 e 1 @3976 ]
+[s S162 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+`uc 1 RE4 1 0 :1:4 
+`uc 1 RE5 1 0 :1:5 
+`uc 1 RE6 1 0 :1:6 
+`uc 1 RE7 1 0 :1:7 
+]
+"30126
+[s S171 . 1 `uc 1 PD2 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+`uc 1 CCP10 1 0 :1:2 
+`uc 1 CCP9E 1 0 :1:3 
+`uc 1 CCP8E 1 0 :1:4 
+`uc 1 CCP7E 1 0 :1:5 
+`uc 1 CCP6E 1 0 :1:6 
+`uc 1 CCP2E 1 0 :1:7 
+]
+[s S180 . 1 `uc 1 RDE 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 PC3E 1 0 :1:3 
+`uc 1 PB3E 1 0 :1:4 
+`uc 1 PC1E 1 0 :1:5 
+`uc 1 PB1E 1 0 :1:6 
+`uc 1 PA2E 1 0 :1:7 
+]
+[s S189 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PB2 1 0 :1:2 
+]
+[u S192 . 1 `S162 1 . 1 0 `S171 1 . 1 0 `S180 1 . 1 0 `S189 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES192  1 e 1 @3981 ]
+"38865
+[v _TMR0L TMR0L `VEuc  1 e 1 @4051 ]
+"39003
+[v _TMR0H TMR0H `VEuc  1 e 1 @4052 ]
+[s S318 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"39277
+[s S324 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+"39277
+[u S329 . 1 `S318 1 . 1 0 `S324 1 . 1 0 ]
+"39277
+"39277
+[v _T0CON0bits T0CON0bits `VES329  1 e 1 @4053 ]
+[s S272 . 1 `uc 1 T0CKPS 1 0 :4:0 
+`uc 1 T0ASYNC 1 0 :1:4 
+`uc 1 T0CS 1 0 :3:5 
+]
+"39353
+[s S276 . 1 `uc 1 T0CKPS0 1 0 :1:0 
+`uc 1 T0CKPS1 1 0 :1:1 
+`uc 1 T0CKPS2 1 0 :1:2 
+`uc 1 T0CKPS3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 T0CS0 1 0 :1:5 
+`uc 1 T0CS1 1 0 :1:6 
+`uc 1 T0CS2 1 0 :1:7 
+]
+"39353
+[s S285 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+`uc 1 T0PS3 1 0 :1:3 
+]
+"39353
+[s S290 . 1 `uc 1 T0PS 1 0 :4:0 
+]
+"39353
+[u S292 . 1 `S272 1 . 1 0 `S276 1 . 1 0 `S285 1 . 1 0 `S290 1 . 1 0 ]
+"39353
+"39353
+[v _T0CON1bits T0CON1bits `VES292  1 e 1 @4054 ]
+[s S395 . 1 `uc 1 INT0EDG 1 0 :1:0 
+`uc 1 INT1EDG 1 0 :1:1 
+`uc 1 INT2EDG 1 0 :1:2 
+`uc 1 INT3EDG 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 IPEN 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"40176
+[s S404 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"40176
+[s S408 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+"40176
+[u S412 . 1 `S395 1 . 1 0 `S404 1 . 1 0 `S408 1 . 1 0 ]
+"40176
+"40176
+[v _INTCONbits INTCONbits `VES412  1 e 1 @4082 ]
+"17 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"31
+[v main@hour hour `ui  1 a 2 9 ]
+"19
+[v main@light_state light_state `ui  1 a 2 7 ]
+"53
+} 0
+"9 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\timers.c
+[v _Timer0_init Timer0_init `(v  1 e 1 0 ]
+{
+"30
+} 0
+"8 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\LEDarray.c
+[v _LEDarray_init LEDarray_init `(v  1 e 1 0 ]
+{
+"24
+} 0
+"30
+[v _LEDarray_disp_bin LEDarray_disp_bin `(v  1 e 1 0 ]
+{
+[v LEDarray_disp_bin@number number `ui  1 p 2 4 ]
+"42
+} 0
+"11 C:\Users\ablan\OneDrive - Imperial College London\Documents\GitHub\mini-project-energy-saving-automatic-outside-light-andres-oscar.X\interrupts.c
+[v _Interrupts_init Interrupts_init `(v  1 e 1 0 ]
+{
+"19
+} 0
+"36
+[v _LowISR LowISR `IIL(v  1 e 1 0 ]
+{
+"49
+} 0
+"25
+[v _HighISR HighISR `IIH(v  1 e 1 0 ]
+{
+"32
+} 0
