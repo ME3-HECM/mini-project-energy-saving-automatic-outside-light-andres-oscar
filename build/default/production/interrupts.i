@@ -8,6 +8,7 @@
 # 2 "<built-in>" 2
 # 1 "interrupts.c" 2
 
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24087,7 +24088,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 33 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\xc.h" 2 3
-# 2 "interrupts.c" 2
+# 3 "interrupts.c" 2
 
 # 1 "./interrupts.h" 1
 
@@ -24099,7 +24100,7 @@ unsigned char __t3rd16on(void);
 
 void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 3 "interrupts.c" 2
+# 4 "interrupts.c" 2
 
 
 
@@ -24135,15 +24136,23 @@ unsigned int hour = 0;
 
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
-    TRISEbits.TRISE7 = 1;
 
     if (PIR0bits.TMR0IF == 1) {
 
-        LATEbits.LATE7 != LATEbits.LATE7;
+
+        hour++;
+
+
+       if (hour == 24) {hour = 0;}
 
         TMR0H=00001011;
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0;
-
     }
+}
+
+
+unsigned int getHour(void)
+{
+    return hour;
 }

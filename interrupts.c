@@ -1,3 +1,4 @@
+#define mode 1          //defining operating mode (0=normal, 1=testing)
 
 #include <xc.h>
 #include "interrupts.h"
@@ -35,15 +36,23 @@ unsigned int hour = 0;
 //low priority interrupt setup for timer overflow
 void __interrupt(low_priority) LowISR()
 {   
-    TRISEbits.TRISE7 = 1;
-  
+    
     if (PIR0bits.TMR0IF == 1) { // check interrupt flag
 
-        LATEbits.LATE7 != LATEbits.LATE7;                    
+
+        hour++;           
+                              
+        
+       if (hour == 24) {hour = 0;}//resets hours once it reaches 24hours
         
         TMR0H=00001011;            //write High reg first, update happens when low reg is written to
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0; // clear interrupt flag
-    
     }
+}
+
+//function to call global hour variable
+unsigned int getHour(void)
+{
+    return hour;
 }

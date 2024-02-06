@@ -24156,38 +24156,35 @@ unsigned int getHour(void);
 
 void main(void) {
 
-    unsigned int light_state;
-    TRISEbits.TRISE7 = 1;
-    LATEbits.LATE7 = 0;
-    TRISHbits.TRISH3= 0;
+    unsigned int light_state = 0;
+
+
+    TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
 
     Interrupts_init();
     Timer0_init();
     LEDarray_init();
 
-
     while (1) {
         unsigned int hour;
-        if (PORTEbits.RE7 != PORTEbits.RE7) {
-            hour++;
-        }
-
-
-
-        if (hour == 24) {hour = 0;}
+        hour = getHour();
 
         LEDarray_disp_bin(hour);
 
-
-        if (hour < 5 && hour > 1) {
+        if (hour >= 1 && hour <= 5){
+            light_state = 1;
+        } else {
             light_state = 0;
         }
-        else {light_state = 1;}
 
         if (light_state == 1){
             LATHbits.LATH3 = 1;
+        } else {
+            LATHbits.LATH3 = 0;
         }
-        else {LATHbits.LATH3 = 0;}
+
+
+
     }
 }
