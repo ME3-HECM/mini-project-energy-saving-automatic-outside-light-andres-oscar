@@ -12,13 +12,16 @@ void LEDarray_init(void)
     LATFbits.LATF0 = 0;
     LATFbits.LATF6 = 0;
     LATG = 0;
-	
-    TRISA = 0; //set up TRIS registers for pins connected to LED array
+	LATHbits.LATH3 = 0;
+    
+    //set up TRIS registers for pins connected to LED array
+    TRISA = 0; 
 	TRISB = 0;
     TRISFbits.TRISF0 = 0;
     TRISFbits.TRISF6 = 0;
     TRISG = 0;
-    
+    TRISHbits.TRISH3 = 0;
+
     TRISFbits.TRISF2=1; //set TRIS value for pin (input)
     ANSELFbits.ANSELF2=0; //turn off analogue input on pin    
 }

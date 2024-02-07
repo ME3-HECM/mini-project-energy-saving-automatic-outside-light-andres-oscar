@@ -24117,12 +24117,15 @@ void LEDarray_init(void)
     LATFbits.LATF0 = 0;
     LATFbits.LATF6 = 0;
     LATG = 0;
+ LATHbits.LATH3 = 0;
+
 
     TRISA = 0;
  TRISB = 0;
     TRISFbits.TRISF0 = 0;
     TRISFbits.TRISF6 = 0;
     TRISG = 0;
+    TRISHbits.TRISH3 = 0;
 
     TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;

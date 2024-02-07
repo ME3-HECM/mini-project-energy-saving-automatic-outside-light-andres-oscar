@@ -24136,7 +24136,8 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 void DAC_init(void);
-void Comp1_init(void);
+void Comp_LDR_init(void);
+void Comp_time_init(void);
 # 13 "main.c" 2
 
 # 1 "./timers.h" 1
@@ -24152,25 +24153,71 @@ unsigned int get16bitTMR0val(void);
 unsigned int getHour(void);
 # 14 "main.c" 2
 
+# 1 "./date_finders.h" 1
+
+
+
+
+
+
+
+
+unsigned int isLeapYear(unsigned int year);
+unsigned int calculateDayOfDSTStart(unsigned int year);
+unsigned int calculateDayOfDSTEnd(unsigned int year);
+# 15 "main.c" 2
 
 
 void main(void) {
 
     unsigned int light_state = 0;
+    unsigned int daylight_savings = 0;
+    unsigned int light_start = 1;
+    unsigned int light_end = 5;
+    unsigned int hour = 0;
+    unsigned int day = 0;
+    unsigned int year = 2024;
+    unsigned int leap;
+    unsigned int fwd_daylight_savings_day;
+    unsigned int bkwd_daylight_savings_day;
+    unsigned int backward_zone = 0;
 
-
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
 
     Interrupts_init();
     Timer0_init();
     LEDarray_init();
 
     while (1) {
-        unsigned int hour;
-        hour = getHour();
 
+        if (LATEbits.LATE2 == 1){
+            hour++;
+            LATEbits.LATE2 = 0;
+        }
         LEDarray_disp_bin(hour);
+
+
+
+
+
+
+        if (day==0 && hour == 0){
+            fwd_daylight_savings_day = calculateDayOfDSTStart(year);
+            bkwd_daylight_savings_day = calculateDayOfDSTEnd(year);
+        }
+
+        if (day==fwd_daylight_savings_day && hour==2){
+            hour++;
+            backward_zone = 0;
+
+        }
+
+        if (day==bkwd_daylight_savings_day && hour==2 && backward_zone == 0){
+            hour--;
+            backward_zone = 1;
+        }
+
+
+
 
         if (hour >= 1 && hour <= 5){
             light_state = 1;
@@ -24186,5 +24233,22 @@ void main(void) {
 
 
 
+
+        if (hour == 24) {
+           hour = 0;
+           day++;
+              }
+        if (day == 365){
+            leap = isLeapYear(year);
+            if (leap == 0){
+                day=0;
+                year++;
+            }
+
+        }
+        if (day == 366){
+            day = 0;
+            year++;
+        }
     }
 }

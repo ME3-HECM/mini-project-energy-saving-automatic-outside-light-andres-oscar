@@ -24108,7 +24108,6 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-
 void Interrupts_init(void)
 {
 
@@ -24117,6 +24116,9 @@ void Interrupts_init(void)
     IPR2bits.C1IP = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
+
+    LATEbits.LATE2 = 0;
+    TRISEbits.TRISE2= 1;
 }
 
 
@@ -24127,12 +24129,15 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
 
     if (PIR2bits.C1IF == 1) {
-    LATHbits.LATH3 = !LATHbits.LATH3;
+        LATHbits.LATH3 = !LATHbits.LATH3;
         PIR2bits.C1IF = 0;
     }
 }
 
-unsigned int hour = 0;
+
+
+
+
 
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
@@ -24140,19 +24145,9 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
     if (PIR0bits.TMR0IF == 1) {
 
 
-        hour++;
-
-
-       if (hour == 24) {hour = 0;}
-
+        LATEbits.LATE2 = 1;
         TMR0H=00001011;
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0;
     }
-}
-
-
-unsigned int getHour(void)
-{
-    return hour;
 }

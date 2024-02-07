@@ -48,6 +48,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40176
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 40176: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS1984 ~T0 @X0 0 e@4082 ]
+"28599
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28599:     struct {
+[s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1352 . LATE0 LATE1 LATE2 LATE3 LATE4 LATE5 LATE6 LATE7 ]
+"28609
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28609:     struct {
+[s S1353 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1353 . LE0 LE1 LE2 LE3 LE4 LE5 LE6 LE7 ]
+"28598
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28598: typedef union {
+[u S1351 `S1352 1 `S1353 1 ]
+[n S1351 . . . ]
+"28620
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28620: extern volatile LATEbits_t LATEbits __attribute__((address(0xF7D)));
+[v _LATEbits `VS1351 ~T0 @X0 0 e@3965 ]
+"29505
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 29505:     struct {
+[s S1384 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1384 . TRISE0 TRISE1 TRISE2 TRISE3 TRISE4 TRISE5 TRISE6 TRISE7 ]
+"29504
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 29504: typedef union {
+[u S1383 `S1384 1 ]
+[n S1383 . . ]
+"29516
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 29516: extern volatile TRISEbits_t TRISEbits __attribute__((address(0xF85)));
+[v _TRISEbits `VS1383 ~T0 @X0 0 e@3973 ]
 [t ~ __interrupt . k ]
 [t T2 __interrupt high_priority ]
 "5191
@@ -2088,116 +2114,93 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40592
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 40592: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"12 interrupts.c
-[; ;interrupts.c: 12: void Interrupts_init(void)
+"11 interrupts.c
+[; ;interrupts.c: 11: void Interrupts_init(void)
 [v _Interrupts_init `(v ~T0 @X0 1 ef ]
-"13
-[; ;interrupts.c: 13: {
+"12
+[; ;interrupts.c: 12: {
 {
 [e :U _Interrupts_init ]
 [f ]
-"16
-[; ;interrupts.c: 16:     PIE2bits.C1IE = 1;
+"15
+[; ;interrupts.c: 15:     PIE2bits.C1IE = 1;
 [e = . . _PIE2bits 0 0 -> -> 1 `i `uc ]
-"17
-[; ;interrupts.c: 17:     IPR2bits.C1IP = 1;
+"16
+[; ;interrupts.c: 16:     IPR2bits.C1IP = 1;
 [e = . . _IPR2bits 0 0 -> -> 1 `i `uc ]
-"18
-[; ;interrupts.c: 18:     INTCONbits.PEIE = 1;
+"17
+[; ;interrupts.c: 17:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
-"19
-[; ;interrupts.c: 19:     INTCONbits.GIE = 1;
+"18
+[; ;interrupts.c: 18:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
 "20
-[; ;interrupts.c: 20: }
+[; ;interrupts.c: 20:     LATEbits.LATE2 = 0;
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+"21
+[; ;interrupts.c: 21:     TRISEbits.TRISE2= 1;
+[e = . . _TRISEbits 0 2 -> -> 1 `i `uc ]
+"22
+[; ;interrupts.c: 22: }
 [e :UE 2015 ]
 }
 [v $root$_HighISR `(v ~T0 @X0 0 e ]
-"26
-[; ;interrupts.c: 26: void __attribute__((picinterrupt(("high_priority")))) HighISR()
+"28
+[; ;interrupts.c: 28: void __attribute__((picinterrupt(("high_priority")))) HighISR()
 [v _HighISR `(v ~T2 @X0 1 ef ]
-"27
-[; ;interrupts.c: 27: {
+"29
+[; ;interrupts.c: 29: {
 {
 [e :U _HighISR ]
 [f ]
-"29
-[; ;interrupts.c: 29:     if (PIR2bits.C1IF == 1) {
+"31
+[; ;interrupts.c: 31:     if (PIR2bits.C1IF == 1) {
 [e $ ! == -> . . _PIR2bits 0 0 `i -> 1 `i 2017  ]
 {
-"30
-[; ;interrupts.c: 30:     LATHbits.LATH3 = !LATHbits.LATH3;
-[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
-"31
-[; ;interrupts.c: 31:         PIR2bits.C1IF = 0;
-[e = . . _PIR2bits 0 0 -> -> 0 `i `uc ]
 "32
-[; ;interrupts.c: 32:     }
+[; ;interrupts.c: 32:         LATHbits.LATH3 = !LATHbits.LATH3;
+[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
+"33
+[; ;interrupts.c: 33:         PIR2bits.C1IF = 0;
+[e = . . _PIR2bits 0 0 -> -> 0 `i `uc ]
+"34
+[; ;interrupts.c: 34:     }
 }
 [e :U 2017 ]
-"33
-[; ;interrupts.c: 33: }
+"35
+[; ;interrupts.c: 35: }
 [e :UE 2016 ]
 }
-"35
-[; ;interrupts.c: 35: unsigned int hour = 0;
-[v _hour `ui ~T0 @X0 1 e ]
-[i _hour
--> -> 0 `i `ui
-]
 [v $root$_LowISR `(v ~T0 @X0 0 e ]
-"37
-[; ;interrupts.c: 37: void __attribute__((picinterrupt(("low_priority")))) LowISR()
+"42
+[; ;interrupts.c: 42: void __attribute__((picinterrupt(("low_priority")))) LowISR()
 [v _LowISR `(v ~T3 @X0 1 ef ]
-"38
-[; ;interrupts.c: 38: {
+"43
+[; ;interrupts.c: 43: {
 {
 [e :U _LowISR ]
 [f ]
-"40
-[; ;interrupts.c: 40:     if (PIR0bits.TMR0IF == 1) {
+"45
+[; ;interrupts.c: 45:     if (PIR0bits.TMR0IF == 1) {
 [e $ ! == -> . . _PIR0bits 0 5 `i -> 1 `i 2019  ]
 {
-"43
-[; ;interrupts.c: 43:         hour++;
-[e ++ _hour -> -> 1 `i `ui ]
-"46
-[; ;interrupts.c: 46:        if (hour == 24) {hour = 0;}
-[e $ ! == _hour -> -> 24 `i `ui 2020  ]
-{
-[e = _hour -> -> 0 `i `ui ]
-}
-[e :U 2020 ]
 "48
-[; ;interrupts.c: 48:         TMR0H=00001011;
-[e = _TMR0H -> -> 521 `i `uc ]
+[; ;interrupts.c: 48:         LATEbits.LATE2 = 1;
+[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
 "49
-[; ;interrupts.c: 49:         TMR0L=110011011;
-[e = _TMR0L -> -> 110011011 `l `uc ]
+[; ;interrupts.c: 49:         TMR0H=00001011;
+[e = _TMR0H -> -> 521 `i `uc ]
 "50
-[; ;interrupts.c: 50:         PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+[; ;interrupts.c: 50:         TMR0L=110011011;
+[e = _TMR0L -> -> 110011011 `l `uc ]
 "51
-[; ;interrupts.c: 51:     }
+[; ;interrupts.c: 51:         PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+"52
+[; ;interrupts.c: 52:     }
 }
 [e :U 2019 ]
-"52
-[; ;interrupts.c: 52: }
+"53
+[; ;interrupts.c: 53: }
 [e :UE 2018 ]
-}
-"55
-[; ;interrupts.c: 55: unsigned int getHour(void)
-[v _getHour `(ui ~T0 @X0 1 ef ]
-"56
-[; ;interrupts.c: 56: {
-{
-[e :U _getHour ]
-[f ]
-"57
-[; ;interrupts.c: 57:     return hour;
-[e ) _hour ]
-[e $UE 2021  ]
-"58
-[; ;interrupts.c: 58: }
-[e :UE 2021 ]
 }

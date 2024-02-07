@@ -4,7 +4,6 @@
 #include "interrupts.h"
 
 
-
 /************************************
  * Function to turn on interrupts and set if priority is used
  * Note you also need to enable peripheral interrupts in the INTCON register to use CM1IE.
@@ -17,6 +16,9 @@ void Interrupts_init(void)
     IPR2bits.C1IP = 1; // high priority
     INTCONbits.PEIE = 1; // peripheral interrupts
     INTCONbits.GIE = 1; // global interrupts
+    //Interrupts
+    LATEbits.LATE2 = 0;
+    TRISEbits.TRISE2= 1;
 }
 
 /************************************
@@ -27,32 +29,27 @@ void __interrupt(high_priority) HighISR()
 {
 	//add your ISR code here i.e. check the flag, do something (i.e. toggle an LED), clear the flag...
     if (PIR2bits.C1IF == 1) {
-    LATHbits.LATH3 = !LATHbits.LATH3;//change value for the H3 LED 
+        LATHbits.LATH3 = !LATHbits.LATH3;//change value for the H3 LED 
         PIR2bits.C1IF = 0;
     }
 }
-// Global variable to keep track of hours
-unsigned int hour = 0;
+    
+
+
+
+
 //low priority interrupt setup for timer overflow
 void __interrupt(low_priority) LowISR()
 {   
     
     if (PIR0bits.TMR0IF == 1) { // check interrupt flag
 
-
-        hour++;           
-                              
         
-       if (hour == 24) {hour = 0;}//resets hours once it reaches 24hours
-        
+        LATEbits.LATE2 = 1;
         TMR0H=00001011;            //write High reg first, update happens when low reg is written to
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0; // clear interrupt flag
     }
 }
 
-//function to call global hour variable
-unsigned int getHour(void)
-{
-    return hour;
-}
+
