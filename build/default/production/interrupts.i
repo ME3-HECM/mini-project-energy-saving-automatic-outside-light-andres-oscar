@@ -24102,7 +24102,31 @@ void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 4 "interrupts.c" 2
 
+# 1 "./global_variables.h" 1
 
+
+
+
+
+
+
+
+unsigned int hour;
+# 5 "interrupts.c" 2
+
+# 1 "./LCD.h" 1
+# 17 "./LCD.h"
+void LCD_E_TOG(void);
+void LCD_sendnibble(unsigned char number);
+void LCD_sendbyte(unsigned char Byte, char type);
+void LCD_init(void);
+void LCD_setline (char line);
+void LCD_sendstring(char *string);
+void LCD_scroll(void);
+void LCD_clear(void);
+void ADC2String(char *buf, unsigned int number);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+# 6 "interrupts.c" 2
 
 
 
@@ -24112,14 +24136,16 @@ void Interrupts_init(void)
 {
 
 
-    PIE2bits.C1IE = 1;
+    PIE2bits.C1IE=1;
+    PIE0bits.TMR0IE=1;
     IPR2bits.C1IP = 1;
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
+    IPR0bits.TMR0IP = 0;
+    INTCONbits.IPEN=1;
+    INTCONbits.PEIE=1;
+    INTCONbits.GIE=1;
 
-    LATEbits.LATE2 = 0;
-    TRISEbits.TRISE2= 1;
 }
+
 
 
 
@@ -24145,9 +24171,10 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
     if (PIR0bits.TMR0IF == 1) {
 
 
-        LATEbits.LATE2 = 1;
+        hour++;
         TMR0H=00001011;
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0;
+
     }
 }

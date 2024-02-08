@@ -2086,37 +2086,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40592
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 40592: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"7 comparator.c
-[; ;comparator.c: 7: void DAC_init(void)
+"6 comparator.c
+[; ;comparator.c: 6: void DAC_init(void)
 [v _DAC_init `(v ~T0 @X0 1 ef ]
-"8
-[; ;comparator.c: 8: {
+"7
+[; ;comparator.c: 7: {
 {
 [e :U _DAC_init ]
 [f ]
-"9
-[; ;comparator.c: 9:     DAC1CON0bits.PSS=0b00;
+"8
+[; ;comparator.c: 8:     DAC1CON0bits.PSS=0b00;
 [e = . . _DAC1CON0bits 0 2 -> -> 0 `i `uc ]
-"10
-[; ;comparator.c: 10:     DAC1CON0bits.NSS=0b0;
+"9
+[; ;comparator.c: 9:     DAC1CON0bits.NSS=0b0;
 [e = . . _DAC1CON0bits 0 0 -> -> 0 `i `uc ]
+"13
+[; ;comparator.c: 13:     DAC1CON1bits.DAC1R=20;
+[e = . . _DAC1CON1bits 0 0 -> -> 20 `i `uc ]
 "14
-[; ;comparator.c: 14:     DAC1CON1bits.DAC1R=0b11011;
-[e = . . _DAC1CON1bits 0 0 -> -> 27 `i `uc ]
-"15
-[; ;comparator.c: 15:     DAC1CON0bits.DAC1EN=1;
+[; ;comparator.c: 14:     DAC1CON0bits.DAC1EN=1;
 [e = . . _DAC1CON0bits 1 7 -> -> 1 `i `uc ]
-"16
-[; ;comparator.c: 16: }
+"15
+[; ;comparator.c: 15: }
 [e :UE 2015 ]
 }
 "23
-[; ;comparator.c: 23: void Comp_LDR_init(void)
-[v _Comp_LDR_init `(v ~T0 @X0 1 ef ]
+[; ;comparator.c: 23: void Comp1_init_re(void)
+[v _Comp1_init_re `(v ~T0 @X0 1 ef ]
 "24
 [; ;comparator.c: 24: {
 {
-[e :U _Comp_LDR_init ]
+[e :U _Comp1_init_re ]
 [f ]
 "25
 [; ;comparator.c: 25:     TRISFbits.TRISF7=1;
@@ -2137,25 +2137,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;comparator.c: 30:     CM1CON1bits.INTP=1;
 [e = . . _CM1CON1bits 0 1 -> -> 1 `i `uc ]
 "31
-[; ;comparator.c: 31:     CM1CON1bits.INTN=1;
-[e = . . _CM1CON1bits 0 0 -> -> 1 `i `uc ]
-"32
-[; ;comparator.c: 32:     DAC_init();
+[; ;comparator.c: 31:     DAC_init();
 [e ( _DAC_init ..  ]
-"33
-[; ;comparator.c: 33:     CM1CON0bits.EN=1;
+"32
+[; ;comparator.c: 32:     CM1CON0bits.EN=1;
 [e = . . _CM1CON0bits 0 6 -> -> 1 `i `uc ]
 "34
 [; ;comparator.c: 34: }
 [e :UE 2016 ]
 }
 "36
-[; ;comparator.c: 36: void Comp_time_init(void)
-[v _Comp_time_init `(v ~T0 @X0 1 ef ]
+[; ;comparator.c: 36: void Comp1_init_fe(void)
+[v _Comp1_init_fe `(v ~T0 @X0 1 ef ]
 "37
 [; ;comparator.c: 37: {
 {
-[e :U _Comp_time_init ]
+[e :U _Comp1_init_fe ]
 [f ]
 "38
 [; ;comparator.c: 38:     TRISFbits.TRISF7=1;
@@ -2173,18 +2170,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;comparator.c: 42:     CM1CON0bits.POL=1;
 [e = . . _CM1CON0bits 0 3 -> -> 1 `i `uc ]
 "43
-[; ;comparator.c: 43:     CM1CON1bits.INTP=1;
-[e = . . _CM1CON1bits 0 1 -> -> 1 `i `uc ]
-"44
-[; ;comparator.c: 44:     CM1CON1bits.INTN=1;
+[; ;comparator.c: 43:     CM1CON1bits.INTN=1;
 [e = . . _CM1CON1bits 0 0 -> -> 1 `i `uc ]
-"45
-[; ;comparator.c: 45:     DAC_init();
+"44
+[; ;comparator.c: 44:     DAC_init();
 [e ( _DAC_init ..  ]
-"46
-[; ;comparator.c: 46:     CM1CON0bits.EN=1;
+"45
+[; ;comparator.c: 45:     CM1CON0bits.EN=1;
 [e = . . _CM1CON0bits 0 6 -> -> 1 `i `uc ]
-"47
-[; ;comparator.c: 47: }
+"46
+[; ;comparator.c: 46: }
 [e :UE 2017 ]
 }

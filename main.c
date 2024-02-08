@@ -12,70 +12,54 @@
 #include "interrupts.h"
 #include "comparator.h"
 #include "timers.h"
-#include "date_finders.h"
+#include "functions.h"
+#include "LCD.h"
+#include "global_variables.h"
+
 
 void main(void) {
     //call the variables
-    unsigned int light_state = 0;
     unsigned int daylight_savings = 0;
-    unsigned int light_start = 1;
-    unsigned int light_end = 5;
-    unsigned int hour = 0;
-    unsigned int day = 0;
+    unsigned int day = 9;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
     unsigned int bkwd_daylight_savings_day;
     unsigned int backward_zone = 0; //Variable to ensure hour moves back once a year. (avoids infinite loop in October)
+    char buf[32];
 
     //initialising necessary components
     Interrupts_init();
+    Comp1_init_re();
+    Comp1_init_fe();
     Timer0_init();
     LEDarray_init();
-    
+    LCD_init();
+
     while (1) {
         
-        if (LATEbits.LATE2 == 1){
-            hour++;
-            LATEbits.LATE2 = 0;
-        }
-        LEDarray_disp_bin(hour);//displaying hour of the day on LED display
-        
 
+
+        LEDarray_disp_bin(hour);//displaying hour of the day on LED display
+        LCD_setline(1);
+        time2String(buf,hour,day,year);
         
             
                               
         //Calculate the dates for the daylight savings changes
-        if (day==0 && hour == 0){
-            fwd_daylight_savings_day = calculateDayOfDSTStart(year);
-            bkwd_daylight_savings_day = calculateDayOfDSTEnd(year);
+        if (day==1 && hour == 0){
+            fwd_daylight_savings_day = lastSunday(year, 3);
+            bkwd_daylight_savings_day = lastSunday(year, 10);
         }
-        //If its daylight savings, move hour forward at 2 am
-        if (day==fwd_daylight_savings_day && hour==2){
-            hour++;
-            backward_zone = 0;
 
-        }
-        //If its daylight savings in October, move hour backwards at 2am
-        if (day==bkwd_daylight_savings_day && hour==2 && backward_zone == 0){
-            hour--;
-            backward_zone = 1;
-        }
         
                 
 
         
         if (hour >= 1 && hour <= 5){
-            light_state = 1;
-        } else {
-            light_state = 0;
+            LATHbits.LATH3 = 1;
         }
         
-        if (light_state == 1){
-            LATHbits.LATH3 = 1;
-        } else {
-            LATHbits.LATH3 = 0;
-        }
      
         
 
@@ -87,13 +71,13 @@ void main(void) {
         if (day == 365){
             leap = isLeapYear(year);
             if (leap == 0){
-                day=0;
+                day=1;
                 year++;
             }
             
         }
         if (day == 366){
-            day = 0;
+            day = 1;
             year++;
         }        
     }

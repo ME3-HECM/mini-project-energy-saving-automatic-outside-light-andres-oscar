@@ -24136,8 +24136,8 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 void DAC_init(void);
-void Comp_LDR_init(void);
-void Comp_time_init(void);
+void Comp1_init_re(void);
+void Comp1_init_fe(void);
 # 13 "main.c" 2
 
 # 1 "./timers.h" 1
@@ -24153,7 +24153,7 @@ unsigned int get16bitTMR0val(void);
 unsigned int getHour(void);
 # 14 "main.c" 2
 
-# 1 "./date_finders.h" 1
+# 1 "./functions.h" 1
 
 
 
@@ -24163,73 +24163,80 @@ unsigned int getHour(void);
 
 
 unsigned int isLeapYear(unsigned int year);
-unsigned int calculateDayOfDSTStart(unsigned int year);
-unsigned int calculateDayOfDSTEnd(unsigned int year);
+unsigned int lastSunday(unsigned int year, unsigned int month);
 # 15 "main.c" 2
+
+# 1 "./LCD.h" 1
+# 17 "./LCD.h"
+void LCD_E_TOG(void);
+void LCD_sendnibble(unsigned char number);
+void LCD_sendbyte(unsigned char Byte, char type);
+void LCD_init(void);
+void LCD_setline (char line);
+void LCD_sendstring(char *string);
+void LCD_scroll(void);
+void LCD_clear(void);
+void ADC2String(char *buf, unsigned int number);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+# 16 "main.c" 2
+
+# 1 "./global_variables.h" 1
+
+
+
+
+
+
+
+
+unsigned int hour;
+# 17 "main.c" 2
+
 
 
 void main(void) {
 
-    unsigned int light_state = 0;
     unsigned int daylight_savings = 0;
-    unsigned int light_start = 1;
-    unsigned int light_end = 5;
-    unsigned int hour = 0;
-    unsigned int day = 0;
+    unsigned int day = 9;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
     unsigned int bkwd_daylight_savings_day;
     unsigned int backward_zone = 0;
+    char buf[32];
 
 
     Interrupts_init();
+    Comp1_init_re();
+    Comp1_init_fe();
     Timer0_init();
     LEDarray_init();
+    LCD_init();
 
     while (1) {
 
-        if (LATEbits.LATE2 == 1){
-            hour++;
-            LATEbits.LATE2 = 0;
-        }
+
+
         LEDarray_disp_bin(hour);
+        LCD_setline(1);
+        time2String(buf,hour,day,year);
 
 
 
 
-
-
-        if (day==0 && hour == 0){
-            fwd_daylight_savings_day = calculateDayOfDSTStart(year);
-            bkwd_daylight_savings_day = calculateDayOfDSTEnd(year);
+        if (day==1 && hour == 0){
+            fwd_daylight_savings_day = lastSunday(year, 3);
+            bkwd_daylight_savings_day = lastSunday(year, 10);
         }
 
-        if (day==fwd_daylight_savings_day && hour==2){
-            hour++;
-            backward_zone = 0;
-
-        }
-
-        if (day==bkwd_daylight_savings_day && hour==2 && backward_zone == 0){
-            hour--;
-            backward_zone = 1;
-        }
 
 
 
 
         if (hour >= 1 && hour <= 5){
-            light_state = 1;
-        } else {
-            light_state = 0;
+            LATHbits.LATH3 = 1;
         }
 
-        if (light_state == 1){
-            LATHbits.LATH3 = 1;
-        } else {
-            LATHbits.LATH3 = 0;
-        }
 
 
 
@@ -24241,13 +24248,13 @@ void main(void) {
         if (day == 365){
             leap = isLeapYear(year);
             if (leap == 0){
-                day=0;
+                day=1;
                 year++;
             }
 
         }
         if (day == 366){
-            day = 0;
+            day = 1;
             year++;
         }
     }

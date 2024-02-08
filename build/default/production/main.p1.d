@@ -4,4 +4,6 @@ LEDarray.h  \
 interrupts.h  \
 comparator.h  \
 timers.h  \
-date_finders.h 
+functions.h  \
+LCD.h  \
+global_variables.h 

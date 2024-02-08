@@ -6,7 +6,7 @@
 #define _XTAL_FREQ 64000000
 
 void DAC_init(void);
-void Comp_LDR_init(void);
-void Comp_time_init(void);
+void Comp1_init_re(void);
+void Comp1_init_fe(void);
 
 #endif

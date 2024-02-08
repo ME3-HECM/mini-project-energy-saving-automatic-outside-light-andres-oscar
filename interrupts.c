@@ -2,8 +2,8 @@
 
 #include <xc.h>
 #include "interrupts.h"
-
-
+#include "global_variables.h"
+#include "LCD.h"
 /************************************
  * Function to turn on interrupts and set if priority is used
  * Note you also need to enable peripheral interrupts in the INTCON register to use CM1IE.
@@ -12,14 +12,16 @@ void Interrupts_init(void)
 {
 	// turn on global interrupts, peripheral interrupts and the interrupt source 
 	// It's a good idea to turn on global interrupts last, once all other interrupt configuration is done.
-    PIE2bits.C1IE = 1; // comparator 1
-    IPR2bits.C1IP = 1; // high priority
-    INTCONbits.PEIE = 1; // peripheral interrupts
-    INTCONbits.GIE = 1; // global interrupts
-    //Interrupts
-    LATEbits.LATE2 = 0;
-    TRISEbits.TRISE2= 1;
+    PIE2bits.C1IE=1; 	//enable interrupt source INT0
+    PIE0bits.TMR0IE=1;  //Enable timer interrupt
+    IPR2bits.C1IP = 1;
+    IPR0bits.TMR0IP = 0;
+    INTCONbits.IPEN=1;  //Enable Priority in interrupts
+    INTCONbits.PEIE=1;  //Enable Peripherial interrupts
+    INTCONbits.GIE=1; 	//turn on interrupts globally (when this is off, all interrupts are deactivated)
+    
 }
+
 
 /************************************
  * High priority interrupt service routine
@@ -45,10 +47,11 @@ void __interrupt(low_priority) LowISR()
     if (PIR0bits.TMR0IF == 1) { // check interrupt flag
 
         
-        LATEbits.LATE2 = 1;
+        hour++;
         TMR0H=00001011;            //write High reg first, update happens when low reg is written to
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0; // clear interrupt flag
+
     }
 }
 

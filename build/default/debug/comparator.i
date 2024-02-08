@@ -24097,10 +24097,9 @@ unsigned char __t3rd16on(void);
 
 
 void DAC_init(void);
-void Comp_LDR_init(void);
-void Comp_time_init(void);
+void Comp1_init_re(void);
+void Comp1_init_fe(void);
 # 2 "comparator.c" 2
-
 
 
 
@@ -24112,7 +24111,7 @@ void DAC_init(void)
 
 
 
-    DAC1CON1bits.DAC1R=0b11011;
+    DAC1CON1bits.DAC1R=20;
     DAC1CON0bits.DAC1EN=1;
 }
 
@@ -24121,7 +24120,8 @@ void DAC_init(void)
 
 
 
-void Comp_LDR_init(void)
+
+void Comp1_init_re(void)
 {
     TRISFbits.TRISF7=1;
     CM1NCHbits.NCH=0b011;
@@ -24129,19 +24129,18 @@ void Comp_LDR_init(void)
     CM1CON0bits.HYS=1;
     CM1CON0bits.POL=1;
     CM1CON1bits.INTP=1;
-    CM1CON1bits.INTN=1;
     DAC_init();
     CM1CON0bits.EN=1;
+
 }
 
-void Comp_time_init(void)
+void Comp1_init_fe(void)
 {
     TRISFbits.TRISF7=1;
     CM1NCHbits.NCH=0b011;
     CM1PCHbits.PCH=0b101;
     CM1CON0bits.HYS=1;
     CM1CON0bits.POL=1;
-    CM1CON1bits.INTP=1;
     CM1CON1bits.INTN=1;
     DAC_init();
     CM1CON0bits.EN=1;
