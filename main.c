@@ -20,7 +20,7 @@
 void main(void) {
     //call the variables
     unsigned int daylight_savings = 0;
-    unsigned int day = 9;
+    unsigned int day = 364;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
@@ -28,57 +28,22 @@ void main(void) {
     unsigned int backward_zone = 0; //Variable to ensure hour moves back once a year. (avoids infinite loop in October)
     char buf[32];
 
-    //initialising necessary components
-    Interrupts_init();
-    Comp1_init_re();
-    Comp1_init_fe();
-    Timer0_init();
-    LEDarray_init();
-    LCD_init();
+    initialise();
 
     while (1) {
-        
-
-
+       
         LEDarray_disp_bin(hour);//displaying hour of the day on LED display
+       
         LCD_setline(1);
+        
         time2String(buf,hour,day,year);
-        
-            
-                              
-        //Calculate the dates for the daylight savings changes
-        if (day==1 && hour == 0){
-            fwd_daylight_savings_day = lastSunday(year, 3);
-            bkwd_daylight_savings_day = lastSunday(year, 10);
-        }
+       
+        findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
 
+        increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);                   
         
-                
-
+        changeHourDayYear(&hour, &day, &year);       
         
-        if (hour >= 1 && hour <= 5){
-            LATHbits.LATH3 = 1;
-        }
-        
-     
-        
-
-        
-        if (hour == 24) {
-           hour = 0;
-           day++;
-              }//resets hours once it reaches 24hours
-        if (day == 365){
-            leap = isLeapYear(year);
-            if (leap == 0){
-                day=1;
-                year++;
-            }
-            
-        }
-        if (day == 366){
-            day = 1;
-            year++;
-        }        
+        // if the tikme is between 1 and 5 am, keep LED as off
     }
 }

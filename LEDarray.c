@@ -12,7 +12,7 @@ void LEDarray_init(void)
     LATFbits.LATF0 = 0;
     LATFbits.LATF6 = 0;
     LATG = 0;
-	LATHbits.LATH3 = 0;
+	LATHbits.LATH3 = 1;
     
     //set up TRIS registers for pins connected to LED array
     TRISA = 0; 

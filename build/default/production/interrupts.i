@@ -24132,19 +24132,29 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year)
 
 
 
-void Interrupts_init(void)
-{
+void Interrupts_init(void) {
+
+    PIE2bits.C1IE = 1;
+    IPR2bits.C1IP = 0;
 
 
-    PIE2bits.C1IE=1;
-    PIE0bits.TMR0IE=1;
-    IPR2bits.C1IP = 1;
+    PIE2bits.C2IE = 1;
+    IPR2bits.C2IP = 0;
+
+
+    PIE0bits.TMR0IE = 1;
     IPR0bits.TMR0IP = 0;
-    INTCONbits.IPEN=1;
-    INTCONbits.PEIE=1;
-    INTCONbits.GIE=1;
 
+
+    INTCONbits.IPEN = 1;
+
+
+    INTCONbits.PEIE = 1;
+
+
+    INTCONbits.GIE = 1;
 }
+
 
 
 
@@ -24153,14 +24163,11 @@ void Interrupts_init(void)
 
 void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
-
-    if (PIR2bits.C1IF == 1) {
-        LATHbits.LATH3 = !LATHbits.LATH3;
-        PIR2bits.C1IF = 0;
+    if (PIR2bits.C3IF == 1) {
+        LATHbits.LATH3 = 0;
+        PIR2bits.C3IF = 0;
     }
 }
-
-
 
 
 
@@ -24177,4 +24184,15 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
         PIR0bits.TMR0IF = 0;
 
     }
+
+
+    if (PIR2bits.C1IF == 1) {
+        LATHbits.LATH3 = 1;
+        PIR2bits.C1IF = 0;
+    }
+
+    if (PIR2bits.C2IF == 1) {
+            LATHbits.LATH3 = 0;
+            PIR2bits.C2IF = 0;
+        }
 }

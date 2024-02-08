@@ -1,6 +1,14 @@
 #include <xc.h>
 #include "functions.h"
+#include "LCD.h"
+#include "LEDarray.h"
+#include "comparator.h"
+#include "functions.h"
+#include "global_variables.h"
+#include "interrupts.h"
+#include "timers.h"
 #include <stdio.h>
+
 
 // Function to check if a year is a leap year
 unsigned int isLeapYear(unsigned int year) {
@@ -12,7 +20,7 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     
     // Calculate day of the week for March 1st using Zeller's Congruence
     // Adjusting formula for March 1st and our day convention (0=Sunday, ..., 6=Saturday)
-    unsigned int h = (1 + ((13 * (3 + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
+    unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
     unsigned int dayOfWeekMonth1st = (h + 6) % 7; // Adjusting result to match 0=Sunday, ..., 6=Saturday
     
     // Calculate day of the week for March 31st
@@ -40,7 +48,7 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     
 }
 
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, int *hour, char *backward_zone) {
+void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
     // If it's daylight savings, move hour forward at 2 am
     if (day == fwd_daylight_savings_day && *hour == 2) {
         (*hour)++;
@@ -52,4 +60,43 @@ void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsig
         *backward_zone = 1;
     }
 }
+
+void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
+        //Calculate the dates for the daylight savings changes
+    if (day==1 && hour == 0){
+        *fwd_daylight_savings_day = lastSunday(year, 3);
+        *bkwd_daylight_savings_day = lastSunday(year, 10);
+    }
+
+}
+
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year){
+        if (*hour == 24) {
+           *hour = 0;
+           (*day)++;
+              }//resets hours once it reaches 24hours
+        if (*day == 365){
+            unsigned int leap = isLeapYear(year);
+            if (leap == 0){
+                *day=1;
+                (*year)++;
+            }
+            
+        }
+        if (*day == 366){
+            *day = 1;
+            (*year)++;
+        }      
+}
+
+void initialise(void){
+    //initialising necessary components
+    Interrupts_init();
+    Comp1_init_re();
+    Comp1_init_fe();
+    Timer0_init();
+    LEDarray_init();
+    LCD_init();
+}
+
 

@@ -24099,7 +24099,93 @@ unsigned char __t3rd16on(void);
 
 unsigned int isLeapYear(unsigned int year);
 unsigned int lastSunday(unsigned int year, unsigned int month);
+void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year);
+void initialise(void);
 # 2 "functions.c" 2
+
+# 1 "./LCD.h" 1
+# 17 "./LCD.h"
+void LCD_E_TOG(void);
+void LCD_sendnibble(unsigned char number);
+void LCD_sendbyte(unsigned char Byte, char type);
+void LCD_init(void);
+void LCD_setline (char line);
+void LCD_sendstring(char *string);
+void LCD_scroll(void);
+void LCD_clear(void);
+void ADC2String(char *buf, unsigned int number);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+# 3 "functions.c" 2
+
+# 1 "./LEDarray.h" 1
+
+
+
+
+
+
+
+
+void LEDarray_init(void);
+void LEDarray_disp_bin(unsigned int number);
+void LEDarray_disp_PPM(unsigned int number, unsigned int max);
+unsigned int calc_max_PPM(unsigned int cur_val, unsigned int max_ppm);
+unsigned int LED_Light_Meter(unsigned int max_light, unsigned int min_light, unsigned int light_value);
+unsigned int highestBit(unsigned int value);
+# 4 "functions.c" 2
+
+# 1 "./comparator.h" 1
+
+
+
+
+
+
+
+void DAC_init(void);
+void Comp1_init_re(void);
+void Comp1_init_fe(void);
+# 5 "functions.c" 2
+
+
+# 1 "./global_variables.h" 1
+
+
+
+
+
+
+
+
+unsigned int hour;
+# 7 "functions.c" 2
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+
+
+void Interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 8 "functions.c" 2
+
+# 1 "./timers.h" 1
+
+
+
+
+
+
+
+void Timer0_init(void);
+unsigned int get16bitTMR0val(void);
+unsigned int getHour(void);
+# 9 "functions.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\c99\\stdio.h" 3
@@ -24253,7 +24339,8 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 3 "functions.c" 2
+# 10 "functions.c" 2
+
 
 
 
@@ -24266,7 +24353,7 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
 
 
 
-    unsigned int h = (1 + ((13 * (3 + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
+    unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
     unsigned int dayOfWeekMonth1st = (h + 6) % 7;
 
 
@@ -24294,7 +24381,7 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
 
 }
 
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, int *hour, char *backward_zone) {
+void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
 
     if (day == fwd_daylight_savings_day && *hour == 2) {
         (*hour)++;
@@ -24305,4 +24392,42 @@ void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsig
         (*hour)--;
         *backward_zone = 1;
     }
+}
+
+void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
+
+    if (day==1 && hour == 0){
+        *fwd_daylight_savings_day = lastSunday(year, 3);
+        *bkwd_daylight_savings_day = lastSunday(year, 10);
+    }
+
+}
+
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year){
+        if (*hour == 24) {
+           *hour = 0;
+           (*day)++;
+              }
+        if (*day == 365){
+            unsigned int leap = isLeapYear(year);
+            if (leap == 0){
+                *day=1;
+                (*year)++;
+            }
+
+        }
+        if (*day == 366){
+            *day = 1;
+            (*year)++;
+        }
+}
+
+void initialise(void){
+
+    Interrupts_init();
+    Comp1_init_re();
+    Comp1_init_fe();
+    Timer0_init();
+    LEDarray_init();
+    LCD_init();
 }

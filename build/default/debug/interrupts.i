@@ -24145,26 +24145,7 @@ void Interrupts_init(void)
     INTCONbits.GIE=1;
 
 }
-
-
-
-
-
-
-void __attribute__((picinterrupt(("high_priority")))) HighISR()
-{
-
-    if (PIR2bits.C1IF == 1) {
-        LATHbits.LATH3 = !LATHbits.LATH3;
-        PIR2bits.C1IF = 0;
-    }
-}
-
-
-
-
-
-
+# 36 "interrupts.c"
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
 
@@ -24176,5 +24157,11 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
         TMR0L=110011011;
         PIR0bits.TMR0IF = 0;
 
+    }
+
+
+    if (PIR2bits.C1IF == 1) {
+        LATHbits.LATH3 = !LATHbits.LATH3;
+        PIR2bits.C1IF = 0;
     }
 }

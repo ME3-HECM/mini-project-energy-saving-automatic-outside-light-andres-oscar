@@ -20,7 +20,7 @@ void DAC_init(void)
  * Function to set up comparator to compare RF7 to the DAC output voltage
  * Note the CM1 interrupt is not enabled by this function 
 ************************************/
-void Comp1_init_re(void)
+void Comp1_init_re(void) //detects rising edge
 {
     TRISFbits.TRISF7=1;		// set pin RF7 as input
     CM1NCHbits.NCH=0b011; 	// pin RF7 as input for comparator
@@ -33,14 +33,14 @@ void Comp1_init_re(void)
     
 }
 
-void Comp1_init_fe(void)
+void Comp1_init_fe(void) //detects falling edge
 {
     TRISFbits.TRISF7=1;		// set pin RF7 as input
-    CM1NCHbits.NCH=0b011; 	// pin RF7 as input for comparator
-    CM1PCHbits.PCH=0b101;   //use DAC output for positive input
-    CM1CON0bits.HYS=1;      //a little bit of hysteresis to stop multiple triggers
-    CM1CON0bits.POL=1;      //needed for interrupt to work
-    CM1CON1bits.INTN=1; 	//set interrupt flag on negative going edge
+    CM2NCHbits.NCH=0b011; 	// pin RF7 as input for comparator
+    CM2PCHbits.PCH=0b101;   //use DAC output for positive input
+    CM2CON0bits.HYS=1;      //a little bit of hysteresis to stop multiple triggers
+    CM2CON0bits.POL=1;      //needed for interrupt to work
+    CM2CON1bits.INTN=1; 	//set interrupt flag on negative going edge
     DAC_init();				//initialise the DAC
-    CM1CON0bits.EN=1;   	//enable comparator 1
+    CM2CON0bits.EN=1;   	//enable comparator 1
 }

@@ -1,23 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"8 ./interrupts.h
-[; ;./interrupts.h: 8: void Interrupts_init(void);
-[v _Interrupts_init `(v ~T0 @X0 0 ef ]
-"9 ./comparator.h
-[; ;./comparator.h: 9: void Comp1_init_re(void);
-[v _Comp1_init_re `(v ~T0 @X0 0 ef ]
-"10
-[; ;./comparator.h: 10: void Comp1_init_fe(void);
-[v _Comp1_init_fe `(v ~T0 @X0 0 ef ]
-"8 ./timers.h
-[; ;./timers.h: 8: void Timer0_init(void);
-[v _Timer0_init `(v ~T0 @X0 0 ef ]
-"9 ./LEDarray.h
-[; ;./LEDarray.h: 9: void LEDarray_init(void);
-[v _LEDarray_init `(v ~T0 @X0 0 ef ]
-"20 ./LCD.h
-[; ;./LCD.h: 20: void LCD_init(void);
-[v _LCD_init `(v ~T0 @X0 0 ef ]
+"14 ./functions.h
+[; ;./functions.h: 14: void initialise(void);
+[v _initialise `(v ~T0 @X0 0 ef ]
 "10 ./LEDarray.h
 [; ;./LEDarray.h: 10: void LEDarray_disp_bin(unsigned int number);
 [v _LEDarray_disp_bin `(v ~T0 @X0 0 ef1`ui ]
@@ -27,43 +12,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26
 [; ;./LCD.h: 26: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
 [v _time2String `(v ~T0 @X0 0 ef4`*uc`ui`ui`ui ]
-"10 ./functions.h
-[; ;./functions.h: 10: unsigned int lastSunday(unsigned int year, unsigned int month);
-[v _lastSunday `(ui ~T0 @X0 0 ef2`ui`ui ]
-"28912 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28912:     struct {
-[s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1361 . LATH0 LATH1 LATH2 LATH3 ]
-"28918
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28918:     struct {
-[s S1362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1362 . LH0 LH1 LH2 LH3 ]
-"28924
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28924:     struct {
-[s S1363 :4 `uc 1 :1 `uc 1 ]
-[n S1363 . . LH4 ]
-"28928
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28928:     struct {
-[s S1364 :5 `uc 1 :1 `uc 1 ]
-[n S1364 . . LH5 ]
-"28932
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28932:     struct {
-[s S1365 :6 `uc 1 :1 `uc 1 ]
-[n S1365 . . LH6 ]
-"28936
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28936:     struct {
-[s S1366 :7 `uc 1 :1 `uc 1 ]
-[n S1366 . . LH7 ]
-"28911
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28911: typedef union {
-[u S1360 `S1361 1 `S1362 1 `S1363 1 `S1364 1 `S1365 1 `S1366 1 ]
-[n S1360 . . . . . . . ]
-"28941
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28941: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
-[v _LATHbits `VS1360 ~T0 @X0 0 e@3968 ]
-"9 ./functions.h
-[; ;./functions.h: 9: unsigned int isLeapYear(unsigned int year);
-[v _isLeapYear `(ui ~T0 @X0 0 ef1`ui ]
+"12 ./functions.h
+[; ;./functions.h: 12: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
+[v _findDSTdates `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
+"11
+[; ;./functions.h: 11: void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+[v _increaseHour `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
+"13
+[; ;./functions.h: 13: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year);
+[v _changeHourDayYear `(v ~T0 @X0 0 ef3`*ui`*ui`*ui ]
 "2 main.c
 [; ;main.c: 2: 
 [p x FEXTOSC  =  HS      ]
@@ -2060,9 +2017,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _daylight_savings `ui ~T0 @X0 1 a ]
 [e = _daylight_savings -> -> 0 `i `ui ]
 "23
-[; ;main.c: 23:     unsigned int day = 9;
+[; ;main.c: 23:     unsigned int day = 364;
 [v _day `ui ~T0 @X0 1 a ]
-[e = _day -> -> 9 `i `ui ]
+[e = _day -> -> 364 `i `ui ]
 "24
 [; ;main.c: 24:     unsigned int year = 2024;
 [v _year `ui ~T0 @X0 1 a ]
@@ -2083,122 +2040,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29
 [; ;main.c: 29:     char buf[32];
 [v _buf `uc ~T0 @X0 -> 32 `i a ]
-"32
-[; ;main.c: 32:     Interrupts_init();
-[e ( _Interrupts_init ..  ]
+"31
+[; ;main.c: 31:     initialise();
+[e ( _initialise ..  ]
 "33
-[; ;main.c: 33:     Comp1_init_re();
-[e ( _Comp1_init_re ..  ]
-"34
-[; ;main.c: 34:     Comp1_init_fe();
-[e ( _Comp1_init_fe ..  ]
-"35
-[; ;main.c: 35:     Timer0_init();
-[e ( _Timer0_init ..  ]
-"36
-[; ;main.c: 36:     LEDarray_init();
-[e ( _LEDarray_init ..  ]
-"37
-[; ;main.c: 37:     LCD_init();
-[e ( _LCD_init ..  ]
-"39
-[; ;main.c: 39:     while (1) {
+[; ;main.c: 33:     while (1) {
 [e :U 2017 ]
 {
-"43
-[; ;main.c: 43:         LEDarray_disp_bin(hour);
+"35
+[; ;main.c: 35:         LEDarray_disp_bin(hour);
 [e ( _LEDarray_disp_bin (1 _hour ]
-"44
-[; ;main.c: 44:         LCD_setline(1);
+"37
+[; ;main.c: 37:         LCD_setline(1);
 [e ( _LCD_setline (1 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:         time2String(buf,hour,day,year);
+"39
+[; ;main.c: 39:         time2String(buf,hour,day,year);
 [e ( _time2String (4 , , , &U _buf _hour _day _year ]
-"50
-[; ;main.c: 50:         if (day==1 && hour == 0){
-[e $ ! && == _day -> -> 1 `i `ui == _hour -> -> 0 `i `ui 2019  ]
-{
-"51
-[; ;main.c: 51:             fwd_daylight_savings_day = lastSunday(year, 3);
-[e = _fwd_daylight_savings_day ( _lastSunday (2 , _year -> -> 3 `i `ui ]
-"52
-[; ;main.c: 52:             bkwd_daylight_savings_day = lastSunday(year, 10);
-[e = _bkwd_daylight_savings_day ( _lastSunday (2 , _year -> -> 10 `i `ui ]
-"53
-[; ;main.c: 53:         }
-}
-[e :U 2019 ]
-"59
-[; ;main.c: 59:         if (hour >= 1 && hour <= 5){
-[e $ ! && >= _hour -> -> 1 `i `ui <= _hour -> -> 5 `i `ui 2020  ]
-{
-"60
-[; ;main.c: 60:             LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"61
-[; ;main.c: 61:         }
-}
-[e :U 2020 ]
-"67
-[; ;main.c: 67:         if (hour == 24) {
-[e $ ! == _hour -> -> 24 `i `ui 2021  ]
-{
-"68
-[; ;main.c: 68:            hour = 0;
-[e = _hour -> -> 0 `i `ui ]
-"69
-[; ;main.c: 69:            day++;
-[e ++ _day -> -> 1 `i `ui ]
-"70
-[; ;main.c: 70:               }
-}
-[e :U 2021 ]
-"71
-[; ;main.c: 71:         if (day == 365){
-[e $ ! == _day -> -> 365 `i `ui 2022  ]
-{
-"72
-[; ;main.c: 72:             leap = isLeapYear(year);
-[e = _leap ( _isLeapYear (1 _year ]
-"73
-[; ;main.c: 73:             if (leap == 0){
-[e $ ! == _leap -> -> 0 `i `ui 2023  ]
-{
-"74
-[; ;main.c: 74:                 day=1;
-[e = _day -> -> 1 `i `ui ]
-"75
-[; ;main.c: 75:                 year++;
-[e ++ _year -> -> 1 `i `ui ]
-"76
-[; ;main.c: 76:             }
-}
-[e :U 2023 ]
-"78
-[; ;main.c: 78:         }
-}
-[e :U 2022 ]
-"79
-[; ;main.c: 79:         if (day == 366){
-[e $ ! == _day -> -> 366 `i `ui 2024  ]
-{
-"80
-[; ;main.c: 80:             day = 1;
-[e = _day -> -> 1 `i `ui ]
-"81
-[; ;main.c: 81:             year++;
-[e ++ _year -> -> 1 `i `ui ]
-"82
-[; ;main.c: 82:         }
-}
-[e :U 2024 ]
-"83
-[; ;main.c: 83:     }
+"41
+[; ;main.c: 41:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
+[e ( _findDSTdates (4 , , , , _hour _day _year &U _fwd_daylight_savings_day &U _bkwd_daylight_savings_day ]
+"43
+[; ;main.c: 43:         increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+[e ( _increaseHour (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
+"45
+[; ;main.c: 45:         changeHourDayYear(&hour, &day, &year);
+[e ( _changeHourDayYear (3 , , &U _hour &U _day &U _year ]
+"48
+[; ;main.c: 48:     }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"84
-[; ;main.c: 84: }
+"49
+[; ;main.c: 49: }
 [e :UE 2015 ]
 }

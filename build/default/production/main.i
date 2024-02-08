@@ -24164,6 +24164,10 @@ unsigned int getHour(void);
 
 unsigned int isLeapYear(unsigned int year);
 unsigned int lastSunday(unsigned int year, unsigned int month);
+void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year);
+void initialise(void);
 # 15 "main.c" 2
 
 # 1 "./LCD.h" 1
@@ -24197,7 +24201,7 @@ unsigned int hour;
 void main(void) {
 
     unsigned int daylight_savings = 0;
-    unsigned int day = 9;
+    unsigned int day = 364;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
@@ -24205,57 +24209,22 @@ void main(void) {
     unsigned int backward_zone = 0;
     char buf[32];
 
-
-    Interrupts_init();
-    Comp1_init_re();
-    Comp1_init_fe();
-    Timer0_init();
-    LEDarray_init();
-    LCD_init();
+    initialise();
 
     while (1) {
 
-
-
         LEDarray_disp_bin(hour);
+
         LCD_setline(1);
+
         time2String(buf,hour,day,year);
 
+        findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
+
+        increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+
+        changeHourDayYear(&hour, &day, &year);
 
 
-
-        if (day==1 && hour == 0){
-            fwd_daylight_savings_day = lastSunday(year, 3);
-            bkwd_daylight_savings_day = lastSunday(year, 10);
-        }
-
-
-
-
-
-        if (hour >= 1 && hour <= 5){
-            LATHbits.LATH3 = 1;
-        }
-
-
-
-
-
-        if (hour == 24) {
-           hour = 0;
-           day++;
-              }
-        if (day == 365){
-            leap = isLeapYear(year);
-            if (leap == 0){
-                day=1;
-                year++;
-            }
-
-        }
-        if (day == 366){
-            day = 1;
-            year++;
-        }
     }
 }

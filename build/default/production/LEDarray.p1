@@ -2146,8 +2146,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LEDarray.c: 14:     LATG = 0;
 [e = _LATG -> -> 0 `i `uc ]
 "15
-[; ;LEDarray.c: 15:  LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+[; ;LEDarray.c: 15:  LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
 "18
 [; ;LEDarray.c: 18:     TRISA = 0;
 [e = _TRISA -> -> 0 `i `uc ]

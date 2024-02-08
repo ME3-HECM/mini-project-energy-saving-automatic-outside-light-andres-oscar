@@ -8,18 +8,27 @@
  * Function to turn on interrupts and set if priority is used
  * Note you also need to enable peripheral interrupts in the INTCON register to use CM1IE.
 ************************************/
-void Interrupts_init(void)
-{
-	// turn on global interrupts, peripheral interrupts and the interrupt source 
-	// It's a good idea to turn on global interrupts last, once all other interrupt configuration is done.
-    PIE2bits.C1IE=1; 	//enable interrupt source INT0
-    PIE0bits.TMR0IE=1;  //Enable timer interrupt
-    IPR2bits.C1IP = 1;
-    IPR0bits.TMR0IP = 0;
-    INTCONbits.IPEN=1;  //Enable Priority in interrupts
-    INTCONbits.PEIE=1;  //Enable Peripherial interrupts
-    INTCONbits.GIE=1; 	//turn on interrupts globally (when this is off, all interrupts are deactivated)
+void Interrupts_init(void) {
+    // Enable comparator 1 interrupt source
+    PIE2bits.C1IE = 1;    // Enable interrupt for Comparator 1
+    IPR2bits.C1IP = 0;    // Set Comparator 1 interrupt priority (1 = high priority)
     
+    // Enable comparator 2 interrupt source
+    PIE2bits.C2IE = 1;    // Enable interrupt for Comparator 2
+    IPR2bits.C2IP = 0;    // Set Comparator 2 interrupt priority (1 = high priority, adjust as needed)
+
+    // Enable timer interrupt (if used in your application)
+    PIE0bits.TMR0IE = 1;  // Enable timer interrupt
+    IPR0bits.TMR0IP = 0;  // Set timer interrupt priority (0 = low priority)
+
+    // Enable Priority in interrupts
+    INTCONbits.IPEN = 1;  // Enable interrupt priority
+
+    // Enable Peripheral interrupts
+    INTCONbits.PEIE = 1;  // Enable peripheral interrupts
+
+    // Turn on interrupts globally
+    INTCONbits.GIE = 1;   // Enable global interrupts
 }
 
 
@@ -27,16 +36,14 @@ void Interrupts_init(void)
  * High priority interrupt service routine
  * Make sure all enabled interrupts are checked and flags cleared
 ************************************/
+
 void __interrupt(high_priority) HighISR()
 {
-	//add your ISR code here i.e. check the flag, do something (i.e. toggle an LED), clear the flag...
-    if (PIR2bits.C1IF == 1) {
-        LATHbits.LATH3 = !LATHbits.LATH3;//change value for the H3 LED 
-        PIR2bits.C1IF = 0;
+    if (PIR2bits.C3IF == 1) {
+        LATHbits.LATH3 = 0;//change value for the H3 LED 
+        PIR2bits.C3IF = 0;
     }
 }
-    
-
 
 
 
@@ -53,6 +60,17 @@ void __interrupt(low_priority) LowISR()
         PIR0bits.TMR0IF = 0; // clear interrupt flag
 
     }
+    
+    	//add your ISR code here i.e. check the flag, do something (i.e. toggle an LED), clear the flag...
+    if (PIR2bits.C1IF == 1) {
+        LATHbits.LATH3 = 1;//change value for the H3 LED 
+        PIR2bits.C1IF = 0;
+    }
+    
+    if (PIR2bits.C2IF == 1) {
+            LATHbits.LATH3 = 0;//change value for the H3 LED 
+            PIR2bits.C2IF = 0;
+        }
 }
 
 
