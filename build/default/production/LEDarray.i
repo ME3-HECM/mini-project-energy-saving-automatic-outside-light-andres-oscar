@@ -24099,10 +24099,6 @@ unsigned char __t3rd16on(void);
 
 void LEDarray_init(void);
 void LEDarray_disp_bin(unsigned int number);
-void LEDarray_disp_PPM(unsigned int number, unsigned int max);
-unsigned int calc_max_PPM(unsigned int cur_val, unsigned int max_ppm);
-unsigned int LED_Light_Meter(unsigned int max_light, unsigned int min_light, unsigned int light_value);
-unsigned int highestBit(unsigned int value);
 # 2 "LEDarray.c" 2
 
 
@@ -24130,6 +24126,7 @@ void LEDarray_init(void)
     TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;
 }
+
 
 
 

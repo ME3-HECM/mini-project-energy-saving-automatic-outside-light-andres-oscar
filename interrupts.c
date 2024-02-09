@@ -64,16 +64,19 @@ void __interrupt(low_priority) LowISR()
      PIR0bits.TMR0IF = 0; // clear interrupt flag
     }
     
-    
+    //if positive edge is flagged, turn on LED
     if (PIR2bits.C1IF == 1) {
 
-        LATHbits.LATH3 = 1;//change value for the H3 LED 
+            LATHbits.LATH3 = 1;//Turn on H3 LED 
 
         PIR2bits.C1IF = 0;
     }
     
+    //If negative edge flagged, turn off LED
     if (PIR2bits.C2IF == 1) {
-            LATHbits.LATH3 = 0;//change value for the H3 LED 
+   
+            LATHbits.LATH3 = 0;//Turn on H3 LED 
+       
             PIR2bits.C2IF = 0;
         }
     

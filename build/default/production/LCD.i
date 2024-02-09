@@ -24096,9 +24096,7 @@ void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_init(void);
 void LCD_setline (char line);
 void LCD_sendstring(char *string);
-void LCD_scroll(void);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 2 "LCD.c" 2
 
@@ -24301,7 +24299,6 @@ void LCD_sendbyte(unsigned char Byte, char type)
     if (type==1) {LATCbits.LATC6=1;} else {LATCbits.LATC6=0;}
 
 
-
     unsigned char highNibble = (Byte >> 4) ;
     LCD_sendnibble(highNibble);
 
@@ -24363,8 +24360,10 @@ void LCD_setline (char line)
 
     if (line == 1) {LCD_sendbyte(0x80,0);}
 
+
     if (line == 2) {LCD_sendbyte(0xC0,0);}
 }
+
 
 
 
@@ -24391,10 +24390,12 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year,
 
     LCD_setline(2);
 
+
     if (leap == 1){
         sprintf(buf,"Y:%d Leap",year);
         LCD_sendstring(buf);
     }
+
 
     else {
         sprintf(buf,"Y:%d Normal",year);

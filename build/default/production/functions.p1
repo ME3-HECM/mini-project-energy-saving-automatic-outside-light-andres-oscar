@@ -2040,80 +2040,80 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;functions.c: 19: }
 [e :UE 2017 ]
 }
-"25
-[; ;functions.c: 25: unsigned int lastSunday(unsigned int year, unsigned int month){
+"27
+[; ;functions.c: 27: unsigned int lastSunday(unsigned int year, unsigned int month){
 [v _lastSunday `(ui ~T0 @X0 1 ef2`ui`ui ]
 {
 [e :U _lastSunday ]
 [v _year `ui ~T0 @X0 1 r1 ]
 [v _month `ui ~T0 @X0 1 r2 ]
 [f ]
-"26
-[; ;functions.c: 26:     unsigned int leapYear = isLeapYear(year);
+"28
+[; ;functions.c: 28:     unsigned int leapYear = isLeapYear(year);
 [v _leapYear `ui ~T0 @X0 1 a ]
 [e = _leapYear ( _isLeapYear (1 _year ]
-"30
-[; ;functions.c: 30:     unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
+"32
+[; ;functions.c: 32:     unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
 [v _h `ui ~T0 @X0 1 a ]
 [e = _h % - + + + + -> -> 1 `i `ui / * -> -> 13 `i `ui + _month -> -> 1 `i `ui -> -> 5 `i `ui % _year -> -> 100 `i `ui / % _year -> -> 100 `i `ui -> -> 4 `i `ui / / _year -> -> 100 `i `ui -> -> 4 `i `ui * -> -> 2 `i `ui / _year -> -> 100 `i `ui -> -> 7 `i `ui ]
-"31
-[; ;functions.c: 31:     unsigned int dayOfWeekMonth1st = (h + 6) % 7;
+"34
+[; ;functions.c: 34:     unsigned int dayOfWeekMonth1st = (h + 6) % 7;
 [v _dayOfWeekMonth1st `ui ~T0 @X0 1 a ]
 [e = _dayOfWeekMonth1st % + _h -> -> 6 `i `ui -> -> 7 `i `ui ]
-"34
-[; ;functions.c: 34:     unsigned int dayOfWeekMonth31st = (dayOfWeekMonth1st + 30) % 7;
+"37
+[; ;functions.c: 37:     unsigned int dayOfWeekMonth31st = (dayOfWeekMonth1st + 30) % 7;
 [v _dayOfWeekMonth31st `ui ~T0 @X0 1 a ]
 [e = _dayOfWeekMonth31st % + _dayOfWeekMonth1st -> -> 30 `i `ui -> -> 7 `i `ui ]
-"37
-[; ;functions.c: 37:     unsigned int lastSundayDateMonth = 31 - dayOfWeekMonth31st;
+"40
+[; ;functions.c: 40:     unsigned int lastSundayDateMonth = 31 - dayOfWeekMonth31st;
 [v _lastSundayDateMonth `ui ~T0 @X0 1 a ]
 [e = _lastSundayDateMonth - -> -> 31 `i `ui _dayOfWeekMonth31st ]
-"40
-[; ;functions.c: 40:     if (month == 3){
+"43
+[; ;functions.c: 43:     if (month == 3){
 [e $ ! == _month -> -> 3 `i `ui 2019  ]
 {
-"41
-[; ;functions.c: 41:     unsigned int daysBeforeMarch = 31 + (leapYear ? 29 : 28);
+"44
+[; ;functions.c: 44:     unsigned int daysBeforeMarch = 31 + (leapYear ? 29 : 28);
 [v _daysBeforeMarch `ui ~T0 @X0 1 a ]
 [e = _daysBeforeMarch -> + -> 31 `i ? != _leapYear -> -> 0 `i `ui : -> 29 `i -> 28 `i `ui ]
-"42
-[; ;functions.c: 42:     unsigned int dayOfYearForDSTStart = daysBeforeMarch + lastSundayDateMonth;
+"46
+[; ;functions.c: 46:     unsigned int dayOfYearForDSTStart = daysBeforeMarch + lastSundayDateMonth;
 [v _dayOfYearForDSTStart `ui ~T0 @X0 1 a ]
 [e = _dayOfYearForDSTStart + _daysBeforeMarch _lastSundayDateMonth ]
-"43
-[; ;functions.c: 43:     return dayOfYearForDSTStart;
+"48
+[; ;functions.c: 48:     return dayOfYearForDSTStart;
 [e ) _dayOfYearForDSTStart ]
 [e $UE 2018  ]
-"47
-[; ;functions.c: 47:     }
+"52
+[; ;functions.c: 52:     }
 }
 [e :U 2019 ]
-"48
-[; ;functions.c: 48:     if (month == 10){
+"53
+[; ;functions.c: 53:     if (month == 10){
 [e $ ! == _month -> -> 10 `i `ui 2020  ]
 {
-"49
-[; ;functions.c: 49:     unsigned int daysBeforeOctober = 31 + (leapYear ? 29 : 28) + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+"54
+[; ;functions.c: 54:     unsigned int daysBeforeOctober = 31 + (leapYear ? 29 : 28) + 31 + 30 + 31 + 30 + 31 + 31 + 30;
 [v _daysBeforeOctober `ui ~T0 @X0 1 a ]
 [e = _daysBeforeOctober -> + + + + + + + + -> 31 `i ? != _leapYear -> -> 0 `i `ui : -> 29 `i -> 28 `i -> 31 `i -> 30 `i -> 31 `i -> 30 `i -> 31 `i -> 31 `i -> 30 `i `ui ]
-"51
-[; ;functions.c: 51:     unsigned int dayOfYearForDSTEnd = daysBeforeOctober + lastSundayDateMonth;
+"56
+[; ;functions.c: 56:     unsigned int dayOfYearForDSTEnd = daysBeforeOctober + lastSundayDateMonth;
 [v _dayOfYearForDSTEnd `ui ~T0 @X0 1 a ]
 [e = _dayOfYearForDSTEnd + _daysBeforeOctober _lastSundayDateMonth ]
-"53
-[; ;functions.c: 53:     return dayOfYearForDSTEnd;
+"58
+[; ;functions.c: 58:     return dayOfYearForDSTEnd;
 [e ) _dayOfYearForDSTEnd ]
 [e $UE 2018  ]
-"54
-[; ;functions.c: 54:     }
+"59
+[; ;functions.c: 59:     }
 }
 [e :U 2020 ]
-"56
-[; ;functions.c: 56: }
+"61
+[; ;functions.c: 61: }
 [e :UE 2018 ]
 }
-"61
-[; ;functions.c: 61: void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
+"68
+[; ;functions.c: 68: void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
 [v _hourChangeDST `(v ~T0 @X0 1 ef5`ui`ui`ui`*ui`*ui ]
 {
 [e :U _hourChangeDST ]
@@ -2123,40 +2123,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _hour `*ui ~T0 @X0 1 r4 ]
 [v _backward_zone `*ui ~T0 @X0 1 r5 ]
 [f ]
-"63
-[; ;functions.c: 63:     if (day == fwd_daylight_savings_day && *hour == 2) {
+"70
+[; ;functions.c: 70:     if (day == fwd_daylight_savings_day && *hour == 2) {
 [e $ ! && == _day _fwd_daylight_savings_day == *U _hour -> -> 2 `i `ui 2022  ]
 {
-"64
-[; ;functions.c: 64:         (*hour)++;
+"71
+[; ;functions.c: 71:         (*hour)++;
 [e ++ *U _hour -> -> 1 `i `ui ]
-"65
-[; ;functions.c: 65:         *backward_zone = 0;
+"72
+[; ;functions.c: 72:         *backward_zone = 0;
 [e = *U _backward_zone -> -> 0 `i `ui ]
-"66
-[; ;functions.c: 66:     }
+"73
+[; ;functions.c: 73:     }
 }
 [e :U 2022 ]
-"68
-[; ;functions.c: 68:     if (day == bkwd_daylight_savings_day && *hour == 2 && *backward_zone == 0) {
+"75
+[; ;functions.c: 75:     if (day == bkwd_daylight_savings_day && *hour == 2 && *backward_zone == 0) {
 [e $ ! && && == _day _bkwd_daylight_savings_day == *U _hour -> -> 2 `i `ui == *U _backward_zone -> -> 0 `i `ui 2023  ]
 {
-"69
-[; ;functions.c: 69:         (*hour)--;
+"76
+[; ;functions.c: 76:         (*hour)--;
 [e -- *U _hour -> -> 1 `i `ui ]
-"70
-[; ;functions.c: 70:         *backward_zone = 1;
+"77
+[; ;functions.c: 77:         *backward_zone = 1;
 [e = *U _backward_zone -> -> 1 `i `ui ]
-"71
-[; ;functions.c: 71:     }
+"78
+[; ;functions.c: 78:     }
 }
 [e :U 2023 ]
-"72
-[; ;functions.c: 72: }
+"79
+[; ;functions.c: 79: }
 [e :UE 2021 ]
 }
-"77
-[; ;functions.c: 77: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
+"86
+[; ;functions.c: 86: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
 [v _findDSTdates `(v ~T0 @X0 1 ef5`ui`ui`ui`*ui`*ui ]
 {
 [e :U _findDSTdates ]
@@ -2166,26 +2166,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _fwd_daylight_savings_day `*ui ~T0 @X0 1 r4 ]
 [v _bkwd_daylight_savings_day `*ui ~T0 @X0 1 r5 ]
 [f ]
-"79
-[; ;functions.c: 79:     if (day==1 && hour == 0){
+"88
+[; ;functions.c: 88:     if (day==1 && hour == 0){
 [e $ ! && == _day -> -> 1 `i `ui == _hour -> -> 0 `i `ui 2025  ]
 {
-"80
-[; ;functions.c: 80:         *fwd_daylight_savings_day = lastSunday(year, 3);
+"89
+[; ;functions.c: 89:         *fwd_daylight_savings_day = lastSunday(year, 3);
 [e = *U _fwd_daylight_savings_day ( _lastSunday (2 , _year -> -> 3 `i `ui ]
-"81
-[; ;functions.c: 81:         *bkwd_daylight_savings_day = lastSunday(year, 10);
+"90
+[; ;functions.c: 90:         *bkwd_daylight_savings_day = lastSunday(year, 10);
 [e = *U _bkwd_daylight_savings_day ( _lastSunday (2 , _year -> -> 10 `i `ui ]
-"82
-[; ;functions.c: 82:     }
+"91
+[; ;functions.c: 91:     }
 }
 [e :U 2025 ]
-"84
-[; ;functions.c: 84: }
+"93
+[; ;functions.c: 93: }
 [e :UE 2024 ]
 }
-"90
-[; ;functions.c: 90: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
+"101
+[; ;functions.c: 101: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
 [v _changeHourDayYear `(v ~T0 @X0 1 ef5`*ui`*ui`*ui`ui`*ui ]
 {
 [e :U _changeHourDayYear ]
@@ -2195,57 +2195,57 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _leap `ui ~T0 @X0 1 r4 ]
 [v _synced `*ui ~T0 @X0 1 r5 ]
 [f ]
-"92
-[; ;functions.c: 92:     if (*hour == 24) {
+"103
+[; ;functions.c: 103:     if (*hour == 24) {
 [e $ ! == *U _hour -> -> 24 `i `ui 2027  ]
 {
-"93
-[; ;functions.c: 93:        *hour = 0;
+"104
+[; ;functions.c: 104:        *hour = 0;
 [e = *U _hour -> -> 0 `i `ui ]
-"94
-[; ;functions.c: 94:        (*day)++;
+"105
+[; ;functions.c: 105:        (*day)++;
 [e ++ *U _day -> -> 1 `i `ui ]
-"95
-[; ;functions.c: 95:     }
+"106
+[; ;functions.c: 106:     }
 }
 [e :U 2027 ]
-"98
-[; ;functions.c: 98:     if (leap == 0 && *day > 365) {
+"109
+[; ;functions.c: 109:     if (leap == 0 && *day > 365) {
 [e $ ! && == _leap -> -> 0 `i `ui > *U _day -> -> 365 `i `ui 2028  ]
 {
-"99
-[; ;functions.c: 99:         *day = 1;
+"110
+[; ;functions.c: 110:         *day = 1;
 [e = *U _day -> -> 1 `i `ui ]
-"100
-[; ;functions.c: 100:         (*year)++;
+"111
+[; ;functions.c: 111:         (*year)++;
 [e ++ *U _year -> -> 1 `i `ui ]
-"101
-[; ;functions.c: 101:         *synced = 0;
+"112
+[; ;functions.c: 112:         *synced = 0;
 [e = *U _synced -> -> 0 `i `ui ]
-"102
-[; ;functions.c: 102:     }
+"113
+[; ;functions.c: 113:     }
 }
 [e :U 2028 ]
-"105
-[; ;functions.c: 105:     if (leap == 1 && *day > 366) {
+"116
+[; ;functions.c: 116:     if (leap == 1 && *day > 366) {
 [e $ ! && == _leap -> -> 1 `i `ui > *U _day -> -> 366 `i `ui 2029  ]
 {
-"106
-[; ;functions.c: 106:         *day = 1;
+"117
+[; ;functions.c: 117:         *day = 1;
 [e = *U _day -> -> 1 `i `ui ]
-"107
-[; ;functions.c: 107:         (*year)++;
+"118
+[; ;functions.c: 118:         (*year)++;
 [e ++ *U _year -> -> 1 `i `ui ]
-"108
-[; ;functions.c: 108:     }
+"119
+[; ;functions.c: 119:     }
 }
 [e :U 2029 ]
-"109
-[; ;functions.c: 109: }
+"120
+[; ;functions.c: 120: }
 [e :UE 2026 ]
 }
-"114
-[; ;functions.c: 114: void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
+"127
+[; ;functions.c: 127: void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
 [v _sunSync `(v ~T0 @X0 1 ef3`*ui`ui`*ui ]
 {
 [e :U _sunSync ]
@@ -2253,49 +2253,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _day `ui ~T0 @X0 1 r2 ]
 [v _synced `*ui ~T0 @X0 1 r3 ]
 [f ]
-"115
-[; ;functions.c: 115:     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
+"128
+[; ;functions.c: 128:     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
 [e $ ! && && && == -> . . _LATHbits 0 3 `i -> 0 `i == _day -> -> 11 `i `ui >= *U _hour -> -> 6 `i `ui == *U _synced -> -> 0 `i `ui 2031  ]
 {
-"116
-[; ;functions.c: 116:         *hour = 8;
+"129
+[; ;functions.c: 129:         *hour = 8;
 [e = *U _hour -> -> 8 `i `ui ]
-"117
-[; ;functions.c: 117:         *synced = 1;
+"130
+[; ;functions.c: 130:         *synced = 1;
 [e = *U _synced -> -> 1 `i `ui ]
-"118
-[; ;functions.c: 118:     }
+"131
+[; ;functions.c: 131:     }
 }
 [e :U 2031 ]
-"119
-[; ;functions.c: 119: }
+"132
+[; ;functions.c: 132: }
 [e :UE 2030 ]
 }
-"124
-[; ;functions.c: 124: void initialise(void){
+"138
+[; ;functions.c: 138: void initialise(void){
 [v _initialise `(v ~T0 @X0 1 ef ]
 {
 [e :U _initialise ]
 [f ]
-"126
-[; ;functions.c: 126:     Interrupts_init();
+"140
+[; ;functions.c: 140:     Interrupts_init();
 [e ( _Interrupts_init ..  ]
-"127
-[; ;functions.c: 127:     Comp1_init_re();
+"141
+[; ;functions.c: 141:     Comp1_init_re();
 [e ( _Comp1_init_re ..  ]
-"128
-[; ;functions.c: 128:     Comp1_init_fe();
+"142
+[; ;functions.c: 142:     Comp1_init_fe();
 [e ( _Comp1_init_fe ..  ]
-"129
-[; ;functions.c: 129:     Timer0_init();
+"143
+[; ;functions.c: 143:     Timer0_init();
 [e ( _Timer0_init ..  ]
-"130
-[; ;functions.c: 130:     LEDarray_init();
+"144
+[; ;functions.c: 144:     LEDarray_init();
 [e ( _LEDarray_init ..  ]
-"131
-[; ;functions.c: 131:     LCD_init();
+"145
+[; ;functions.c: 145:     LCD_init();
 [e ( _LCD_init ..  ]
-"133
-[; ;functions.c: 133: }
+"147
+[; ;functions.c: 147: }
 [e :UE 2032 ]
 }

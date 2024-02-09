@@ -2211,7 +2211,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> . . _PIR2bits 0 0 `i -> 1 `i 2020  ]
 {
 "70
-[; ;interrupts.c: 70:         LATHbits.LATH3 = 1;
+[; ;interrupts.c: 70:             LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
 "72
 [; ;interrupts.c: 72:         PIR2bits.C1IF = 0;
@@ -2220,21 +2220,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 73:     }
 }
 [e :U 2020 ]
-"75
-[; ;interrupts.c: 75:     if (PIR2bits.C2IF == 1) {
+"76
+[; ;interrupts.c: 76:     if (PIR2bits.C2IF == 1) {
 [e $ ! == -> . . _PIR2bits 0 1 `i -> 1 `i 2021  ]
 {
-"76
-[; ;interrupts.c: 76:             LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"77
-[; ;interrupts.c: 77:             PIR2bits.C2IF = 0;
-[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
 "78
-[; ;interrupts.c: 78:         }
+[; ;interrupts.c: 78:             LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"80
+[; ;interrupts.c: 80:             PIR2bits.C2IF = 0;
+[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
+"81
+[; ;interrupts.c: 81:         }
 }
 [e :U 2021 ]
-"80
-[; ;interrupts.c: 80: }
+"83
+[; ;interrupts.c: 83: }
 [e :UE 2016 ]
 }

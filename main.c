@@ -19,8 +19,7 @@
 
 void main(void) {
     //call the variables
-    unsigned int synced = 0;
-    unsigned int daylight_savings = 0;
+    unsigned int synced = 0; //Variable ensure hour moves back once when syncing with the sun
     unsigned int day = 1;
     unsigned int year = 2024;
     unsigned int leap;
@@ -29,8 +28,8 @@ void main(void) {
     unsigned int backward_zone = 0; //Variable to ensure hour moves back once a year. (avoids infinite loop in October)
     char buf[32];
 
-    initialise();
-          
+    initialise(); //initialise everything relevant
+    hour = 0;
     while (1) {
         leap = isLeapYear(year);
                 
@@ -41,9 +40,6 @@ void main(void) {
         time2String(buf,hour,day,year,leap);
        
         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
-        
-        //day = 301; //change to check that daylight savings changed
-        //hour = 2;
         
         hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);                   
         

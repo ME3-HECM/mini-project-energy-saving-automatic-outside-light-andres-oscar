@@ -43,8 +43,7 @@ void LCD_sendnibble(unsigned char number)
 void LCD_sendbyte(unsigned char Byte, char type)
 {
     // set RS pin whether it is a Command (0) or Data/Char (1) using type argument
-    if (type==1) {LATCbits.LATC6=1;} else {LATCbits.LATC6=0;}
-    
+    if (type==1) {LATCbits.LATC6=1;} else {LATCbits.LATC6=0;}   
     
     // Send high bits of Byte using LCD_sendnibble function
     unsigned char highNibble = (Byte >> 4) ; // Shift the Byte 4 bits to the right to get the high nibble
@@ -107,9 +106,11 @@ void LCD_setline (char line)
 {
     //Send 0x80 to set line to 1 (0x00 ddram address)
     if (line == 1) {LCD_sendbyte(0x80,0);}
+    
     //Send 0xC0 to set line to 2 (0x40 ddram address)
     if (line == 2) {LCD_sendbyte(0xC0,0);}
 }
+
 
 /************************************
  * Function to send string to LCD screen
@@ -135,11 +136,13 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year,
     
     //printing Year and whether its Leap or normal on the second line
     LCD_setline(2);
+    
     //If Leap is true it prints the year with Leap next to it
     if (leap == 1){
         sprintf(buf,"Y:%d Leap",year);
         LCD_sendstring(buf);
     }
+    
     //If leap is false it prints the year with normal next to it
     else {
         sprintf(buf,"Y:%d Normal",year);

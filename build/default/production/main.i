@@ -24109,10 +24109,6 @@ unsigned char __t3rd16on(void);
 
 void LEDarray_init(void);
 void LEDarray_disp_bin(unsigned int number);
-void LEDarray_disp_PPM(unsigned int number, unsigned int max);
-unsigned int calc_max_PPM(unsigned int cur_val, unsigned int max_ppm);
-unsigned int LED_Light_Meter(unsigned int max_light, unsigned int min_light, unsigned int light_value);
-unsigned int highestBit(unsigned int value);
 # 11 "main.c" 2
 
 # 1 "./interrupts.h" 1
@@ -24179,9 +24175,7 @@ void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_init(void);
 void LCD_setline (char line);
 void LCD_sendstring(char *string);
-void LCD_scroll(void);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 16 "main.c" 2
 
@@ -24202,7 +24196,6 @@ unsigned int hour;
 void main(void) {
 
     unsigned int synced = 0;
-    unsigned int daylight_savings = 0;
     unsigned int day = 1;
     unsigned int year = 2024;
     unsigned int leap;
@@ -24212,7 +24205,7 @@ void main(void) {
     char buf[32];
 
     initialise();
-
+    hour = 0;
     while (1) {
         leap = isLeapYear(year);
 
@@ -24223,9 +24216,6 @@ void main(void) {
         time2String(buf,hour,day,year,leap);
 
         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
-
-
-
 
         hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
 

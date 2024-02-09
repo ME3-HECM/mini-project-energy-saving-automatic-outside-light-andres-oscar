@@ -25,9 +25,18 @@ void Timer0_init(void)
     TMR0L=110011011;
     T0CON0bits.T0EN=1;	//start the timer
     
-    
-    
 }
 
 
+
+/************************************
+ * Function to return the full 16bit timer value
+ * Note TMR0L and TMR0H must be read in the correct order, or TMR0H will not contain the correct value
+************************************/
+unsigned int get16bitTMR0val(void)
+{
+    unsigned int combined_value;
+    combined_value = TMR0L | (TMR0H << 8);
+    return combined_value;
+}
 

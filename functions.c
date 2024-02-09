@@ -17,6 +17,8 @@
 unsigned int isLeapYear(unsigned int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
+
 /************************************
  * Function to check when the last Sunday for any month
  * Uses Zellers Congruence to get the day of the week at the first of the month
@@ -28,6 +30,7 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     // Calculate day of the week for March 1st using Zeller's Congruence
     // Adjusting formula for March 1st and our day convention (0=Sunday, ..., 6=Saturday)
     unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
+    
     unsigned int dayOfWeekMonth1st = (h + 6) % 7; // Adjusting result to match 0=Sunday, ..., 6=Saturday
     
     // Calculate day of the week for March 31st
@@ -39,7 +42,9 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     // Calculate the last Sunday's date in March
     if (month == 3){
     unsigned int daysBeforeMarch = 31 + (leapYear ? 29 : 28);
+    
     unsigned int dayOfYearForDSTStart = daysBeforeMarch + lastSundayDateMonth;
+    
     return dayOfYearForDSTStart;
 
     // Calculate the last Sunday's date in October
@@ -54,6 +59,8 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     }
     
 }
+
+
 /************************************
  * Function to change the hour when DST arrives
  * includes a backwards zone variable to avoid being in an endless loop when moving time back
@@ -70,6 +77,8 @@ void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsi
         *backward_zone = 1;
     }
 }
+
+
 /************************************
  * Function to find the daylight savings day
  * Uses the last sunday for the month, with inputs of march for the forward DST, and october for the backwards DST
@@ -82,6 +91,8 @@ void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsign
     }
 
 }
+
+
 /************************************
  * Function to change the hour, day and year 
  * When hour is 24, latter turns to 0 and the day increases
@@ -107,6 +118,8 @@ void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year
         (*year)++;
     }
 }
+
+
 /************************************
  * Function to sync timer with the sun
  * Every 11th of January, when light turns off after 6, the hour will sync back to exactly 8
@@ -117,6 +130,7 @@ void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
         *synced = 1;
     }
 }
+
 
 /************************************
  * Function to initialise everything relevant

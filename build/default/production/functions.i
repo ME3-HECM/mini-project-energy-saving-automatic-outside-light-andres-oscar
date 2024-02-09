@@ -24114,9 +24114,7 @@ void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_init(void);
 void LCD_setline (char line);
 void LCD_sendstring(char *string);
-void LCD_scroll(void);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 3 "functions.c" 2
 
@@ -24131,10 +24129,6 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year,
 
 void LEDarray_init(void);
 void LEDarray_disp_bin(unsigned int number);
-void LEDarray_disp_PPM(unsigned int number, unsigned int max);
-unsigned int calc_max_PPM(unsigned int cur_val, unsigned int max_ppm);
-unsigned int LED_Light_Meter(unsigned int max_light, unsigned int min_light, unsigned int light_value);
-unsigned int highestBit(unsigned int value);
 # 4 "functions.c" 2
 
 # 1 "./comparator.h" 1
@@ -24356,12 +24350,15 @@ unsigned int isLeapYear(unsigned int year) {
 
 
 
+
+
 unsigned int lastSunday(unsigned int year, unsigned int month){
     unsigned int leapYear = isLeapYear(year);
 
 
 
     unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
+
     unsigned int dayOfWeekMonth1st = (h + 6) % 7;
 
 
@@ -24373,7 +24370,9 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
 
     if (month == 3){
     unsigned int daysBeforeMarch = 31 + (leapYear ? 29 : 28);
+
     unsigned int dayOfYearForDSTStart = daysBeforeMarch + lastSundayDateMonth;
+
     return dayOfYearForDSTStart;
 
 
@@ -24388,6 +24387,8 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     }
 
 }
+
+
 
 
 
@@ -24408,6 +24409,8 @@ void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsi
 
 
 
+
+
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
 
     if (day==1 && hour == 0){
@@ -24416,6 +24419,8 @@ void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsign
     }
 
 }
+
+
 
 
 
@@ -24445,12 +24450,15 @@ void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year
 
 
 
+
+
 void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
         *hour = 8;
         *synced = 1;
     }
 }
+
 
 
 

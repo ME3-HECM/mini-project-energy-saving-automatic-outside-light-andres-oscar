@@ -12,8 +12,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21 ./LCD.h
 [; ;./LCD.h: 21: void LCD_setline (char line);
 [v _LCD_setline `(v ~T0 @X0 0 ef1`uc ]
-"26
-[; ;./LCD.h: 26: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
+"24
+[; ;./LCD.h: 24: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 [v _time2String `(v ~T0 @X0 0 ef5`*uc`ui`ui`ui`ui ]
 "12 ./functions.h
 [; ;./functions.h: 12: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
@@ -2023,71 +2023,70 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _synced `ui ~T0 @X0 1 a ]
 [e = _synced -> -> 0 `i `ui ]
 "23
-[; ;main.c: 23:     unsigned int daylight_savings = 0;
-[v _daylight_savings `ui ~T0 @X0 1 a ]
-[e = _daylight_savings -> -> 0 `i `ui ]
-"24
-[; ;main.c: 24:     unsigned int day = 1;
+[; ;main.c: 23:     unsigned int day = 1;
 [v _day `ui ~T0 @X0 1 a ]
 [e = _day -> -> 1 `i `ui ]
-"25
-[; ;main.c: 25:     unsigned int year = 2024;
+"24
+[; ;main.c: 24:     unsigned int year = 2024;
 [v _year `ui ~T0 @X0 1 a ]
 [e = _year -> -> 2024 `i `ui ]
-"26
-[; ;main.c: 26:     unsigned int leap;
+"25
+[; ;main.c: 25:     unsigned int leap;
 [v _leap `ui ~T0 @X0 1 a ]
-"27
-[; ;main.c: 27:     unsigned int fwd_daylight_savings_day;
+"26
+[; ;main.c: 26:     unsigned int fwd_daylight_savings_day;
 [v _fwd_daylight_savings_day `ui ~T0 @X0 1 a ]
-"28
-[; ;main.c: 28:     unsigned int bkwd_daylight_savings_day;
+"27
+[; ;main.c: 27:     unsigned int bkwd_daylight_savings_day;
 [v _bkwd_daylight_savings_day `ui ~T0 @X0 1 a ]
-"29
-[; ;main.c: 29:     unsigned int backward_zone = 0;
+"28
+[; ;main.c: 28:     unsigned int backward_zone = 0;
 [v _backward_zone `ui ~T0 @X0 1 a ]
 [e = _backward_zone -> -> 0 `i `ui ]
-"30
-[; ;main.c: 30:     char buf[32];
+"29
+[; ;main.c: 29:     char buf[32];
 [v _buf `uc ~T0 @X0 -> 32 `i a ]
-"32
-[; ;main.c: 32:     initialise();
+"31
+[; ;main.c: 31:     initialise();
 [e ( _initialise ..  ]
-"34
-[; ;main.c: 34:     while (1) {
+"32
+[; ;main.c: 32:     hour = 0;
+[e = _hour -> -> 0 `i `ui ]
+"33
+[; ;main.c: 33:     while (1) {
 [e :U 2017 ]
 {
-"35
-[; ;main.c: 35:         leap = isLeapYear(year);
+"34
+[; ;main.c: 34:         leap = isLeapYear(year);
 [e = _leap ( _isLeapYear (1 _year ]
-"37
-[; ;main.c: 37:         LEDarray_disp_bin(hour);
+"36
+[; ;main.c: 36:         LEDarray_disp_bin(hour);
 [e ( _LEDarray_disp_bin (1 _hour ]
-"39
-[; ;main.c: 39:         LCD_setline(1);
+"38
+[; ;main.c: 38:         LCD_setline(1);
 [e ( _LCD_setline (1 -> -> 1 `i `uc ]
-"41
-[; ;main.c: 41:         time2String(buf,hour,day,year,leap);
+"40
+[; ;main.c: 40:         time2String(buf,hour,day,year,leap);
 [e ( _time2String (4 , , , , &U _buf _hour _day _year _leap ]
-"43
-[; ;main.c: 43:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
+"42
+[; ;main.c: 42:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
 [e ( _findDSTdates (4 , , , , _hour _day _year &U _fwd_daylight_savings_day &U _bkwd_daylight_savings_day ]
-"48
-[; ;main.c: 48:         hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+"44
+[; ;main.c: 44:         hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
 [e ( _hourChangeDST (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
-"50
-[; ;main.c: 50:         changeHourDayYear(&hour, &day, &year, leap, &synced);
+"46
+[; ;main.c: 46:         changeHourDayYear(&hour, &day, &year, leap, &synced);
 [e ( _changeHourDayYear (4 , , , , &U _hour &U _day &U _year _leap &U _synced ]
-"52
-[; ;main.c: 52:         sunSync(&hour, day, &synced);
+"48
+[; ;main.c: 48:         sunSync(&hour, day, &synced);
 [e ( _sunSync (3 , , &U _hour _day &U _synced ]
-"53
-[; ;main.c: 53:    }
+"49
+[; ;main.c: 49:    }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"54
-[; ;main.c: 54: }
+"50
+[; ;main.c: 50: }
 [e :UE 2015 ]
 }

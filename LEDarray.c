@@ -26,6 +26,7 @@ void LEDarray_init(void)
     ANSELFbits.ANSELF2=0; //turn off analogue input on pin    
 }
 
+
 /************************************
 / LEDarray_disp_bin
 / Function used to display a number on the LED array in binary
