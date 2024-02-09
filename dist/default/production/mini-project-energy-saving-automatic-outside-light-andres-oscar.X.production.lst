@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.45 build 20230818022343 
-                                                                                               Fri Feb 09 11:34:41 2024
+                                                                                               Fri Feb 09 11:39:41 2024
 
 Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1 
      1                           	processor	18F67K40
@@ -495,7 +495,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    481                           
    482                           ; 2 bytes @ 0x18
    483   000019                     	ds	1
-   484   00001A                     _isLeapYear$1179:
+   484   00001A                     _isLeapYear$1177:
    485                           	callstack 0
    486                           
    487                           ; 1 bytes @ 0x19
@@ -504,7 +504,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    490                           	callstack 0
    491   00001B                     lastSunday@year:
    492                           	callstack 0
-   493   00001B                     _dtoa$1982:
+   493   00001B                     _dtoa$1980:
    494                           	callstack 0
    495                           
    496                           ; 2 bytes @ 0x1A
@@ -626,7 +626,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    612                           
    613                           ; 2 bytes @ 0x34
    614   000035                     	ds	2
-   615   000037                     _lastSunday$2259:
+   615   000037                     _lastSunday$2254:
    616                           	callstack 0
    617                           
    618                           ; 2 bytes @ 0x36
@@ -636,14 +636,14 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    622                           
    623                           ; 1 bytes @ 0x37
    624   000038                     	ds	1
-   625   000039                     _lastSunday$1189:
+   625   000039                     _lastSunday$1187:
    626                           	callstack 0
    627   000039                     sprintf@f:
    628                           	callstack 0
    629                           
    630                           ; 12 bytes @ 0x38
    631   000039                     	ds	2
-   632   00003B                     _lastSunday$1192:
+   632   00003B                     _lastSunday$1190:
    633                           	callstack 0
    634                           
    635                           ; 2 bytes @ 0x3A
@@ -800,7 +800,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    779                           ; BSR set to: 0
    780                           ;main.c: 30:     char buf[32];;main.c: 32:     initialise();
    781   00134A  ECED  F00F         	call	_initialise	;wreg free
-   782   00134E                     l2413:
+   782   00134E                     l2406:
    783                           
    784                           ;main.c: 35:         leap = isLeapYear(year);
    785   00134E  C08A  F016         	movff	main@year,isLeapYear@year
@@ -880,14 +880,14 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    857   00140C  0E88               	movlw	low main@synced
    858   00140E  6E07               	movwf	sunSync@synced^0,c
    859   001410  ECA4  F00D         	call	_sunSync	;wreg free
-   860   001414  EFA7  F009         	goto	l2413
+   860   001414  EFA7  F009         	goto	l2406
    861   001418  EF5E  F000         	goto	start
    862   00141C                     __end_of_main:
    863                           	callstack 0
    864                           
    865 ;; *************** function _time2String *****************
    866 ;; Defined at:
-   867 ;;		line 127 in file "LCD.c"
+   867 ;;		line 129 in file "LCD.c"
    868 ;; Parameters:    Size  Location     Type
    869 ;;  buf             1   68[COMRAM] PTR unsigned char 
    870 ;;		 -> main@buf(32), 
@@ -933,11 +933,11 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    905   00192A                     _time2String:
    906                           	callstack 21
    907   00192A                     
-   908                           ;LCD.c: 129:     LCD_setline(1);
+   908                           ;LCD.c: 132:     LCD_setline(1);
    909   00192A  0E01               	movlw	1
    910   00192C  EC11  F00F         	call	_LCD_setline
    911   001930                     
-   912                           ;LCD.c: 130:     sprintf(buf,"H:%02d D:%03d",h,day);
+   912                           ;LCD.c: 133:     sprintf(buf,"H:%02d D:%03d",h,day);
    913   001930  C045  F032         	movff	time2String@buf,sprintf@s
    914   001934  0E01               	movlw	low STR_1
    915   001936  6E33               	movwf	sprintf@fmt^0,c
@@ -947,52 +947,52 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    919   001944  C049  F037         	movff	time2String@day+1,?_sprintf+5
    920   001948  EC2E  F00F         	call	_sprintf	;wreg free
    921   00194C                     
-   922                           ;LCD.c: 131:     LCD_sendstring(buf);
+   922                           ;LCD.c: 134:     LCD_sendstring(buf);
    923   00194C  C045  F009         	movff	time2String@buf,LCD_sendstring@string
    924   001950  EC62  F00F         	call	_LCD_sendstring	;wreg free
    925   001954                     
-   926                           ;LCD.c: 133:     LCD_setline(2);
+   926                           ;LCD.c: 137:     LCD_setline(2);
    927   001954  0E02               	movlw	2
    928   001956  EC11  F00F         	call	_LCD_setline
    929   00195A                     
-   930                           ;LCD.c: 134:     if (leap == 1){
+   930                           ;LCD.c: 139:     if (leap == 1){
    931   00195A  044C               	decf	time2String@leap^0,w,c
    932   00195C  104D               	iorwf	(time2String@leap+1)^0,w,c
    933   00195E  A4D8               	btfss	status,2,c
    934   001960  EFB4  F00C         	goto	u1641
    935   001964  EFB6  F00C         	goto	u1640
    936   001968                     u1641:
-   937   001968  EFC6  F00C         	goto	l2345
+   937   001968  EFC6  F00C         	goto	l2338
    938   00196C                     u1640:
    939   00196C                     
-   940                           ;LCD.c: 135:         sprintf(buf,"Y:%d Leap",year);
+   940                           ;LCD.c: 140:         sprintf(buf,"Y:%d Leap",year);
    941   00196C  C045  F032         	movff	time2String@buf,sprintf@s
    942   001970  0E1B               	movlw	low STR_2
    943   001972  6E33               	movwf	sprintf@fmt^0,c
    944   001974  C04A  F034         	movff	time2String@year,?_sprintf+2
    945   001978  C04B  F035         	movff	time2String@year+1,?_sprintf+3
    946   00197C  EC2E  F00F         	call	_sprintf	;wreg free
-   947   001980                     l2343:
+   947   001980                     l2336:
    948                           
-   949                           ;LCD.c: 136:         LCD_sendstring(buf);
+   949                           ;LCD.c: 141:         LCD_sendstring(buf);
    950   001980  C045  F009         	movff	time2String@buf,LCD_sendstring@string
    951   001984  EC62  F00F         	call	_LCD_sendstring	;wreg free
    952                           
-   953                           ;LCD.c: 137:     }
-   954   001988  EFD2  F00C         	goto	l2349
-   955   00198C                     l2345:
+   953                           ;LCD.c: 142:     }
+   954   001988  EFD2  F00C         	goto	l2342
+   955   00198C                     l2338:
    956                           
-   957                           ;LCD.c: 139:         sprintf(buf,"Y:%d Normal",year);
+   957                           ;LCD.c: 145:         sprintf(buf,"Y:%d Normal",year);
    958   00198C  C045  F032         	movff	time2String@buf,sprintf@s
    959   001990  0E0F               	movlw	low STR_3
    960   001992  6E33               	movwf	sprintf@fmt^0,c
    961   001994  C04A  F034         	movff	time2String@year,?_sprintf+2
    962   001998  C04B  F035         	movff	time2String@year+1,?_sprintf+3
    963   00199C  EC2E  F00F         	call	_sprintf	;wreg free
-   964   0019A0  EFC0  F00C         	goto	l2343
-   965   0019A4                     l2349:
+   964   0019A0  EFC0  F00C         	goto	l2336
+   965   0019A4                     l2342:
    966                           
-   967                           ;LCD.c: 143:     _delay((unsigned long)((200)*(64000000/4000.0)));
+   967                           ;LCD.c: 150:     _delay((unsigned long)((200)*(64000000/4000.0)));
    968   0019A4  0E11               	movlw	17
    969   0019A6  6E4F               	movwf	(??_time2String+1)^0,c
    970   0019A8  0E3C               	movlw	60
@@ -1138,8 +1138,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1096                           
   1097                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1826:     while (
       +                          *cfmt) {
-  1098   001D6C  EFC0  F00E         	goto	l2127
-  1099   001D70                     l2125:
+  1098   001D6C  EFC0  F00E         	goto	l2120
+  1099   001D70                     l2118:
   1100                           
   1101                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1830:    vfpfcnvr
       +                          t(fp, &cfmt, ap);
@@ -1148,7 +1148,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1104   001D76  6E24               	movwf	vfpfcnvrt@fmt^0,c
   1105   001D78  C030  F025         	movff	vfprintf@ap,vfpfcnvrt@ap
   1106   001D7C  EC1F  F008         	call	_vfpfcnvrt	;wreg free
-  1107   001D80                     l2127:
+  1107   001D80                     l2120:
   1108                           
   1109                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1826:     while (
       +                          *cfmt) {
@@ -1170,7 +1170,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1125   001D94  EFCE  F00E         	goto	u1471
   1126   001D98  EFD0  F00E         	goto	u1470
   1127   001D9C                     u1471:
-  1128   001D9C  EFB8  F00E         	goto	l2125
+  1128   001D9C  EFB8  F00E         	goto	l2118
   1129   001DA0                     u1470:
   1130   001DA0                     
   1131                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1835:  return 0;
@@ -1262,7 +1262,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1206   001058  EF30  F008         	goto	u1351
   1207   00105C  EF32  F008         	goto	u1350
   1208   001060                     u1351:
-  1209   001060  EFCC  F008         	goto	l2059
+  1209   001060  EFCC  F008         	goto	l2052
   1210   001064                     u1350:
   1211   001064                     
   1212                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1202:         ++*
@@ -1292,8 +1292,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1232                           
   1233                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1210:         whi
       +                          le (!done) {
-  1234   001080  EF68  F008         	goto	l2033
-  1235   001084                     l2023:
+  1234   001080  EF68  F008         	goto	l2026
+  1235   001084                     l2016:
   1236                           
   1237                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1220:            
       +                                   flags |= (1 << 1);
@@ -1308,8 +1308,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1245                           
   1246                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1222:            
       +                                   break;
-  1247   00108E  EF68  F008         	goto	l2033
-  1248   001092                     l2027:
+  1247   00108E  EF68  F008         	goto	l2026
+  1248   001092                     l2020:
   1249                           
   1250                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1243:            
       +                                   done = 1;
@@ -1318,8 +1318,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1253                           
   1254                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1244:            
       +                                   break;
-  1255   001096  EF68  F008         	goto	l2033
-  1256   00109A                     l2031:
+  1255   001096  EF68  F008         	goto	l2026
+  1256   00109A                     l2024:
   1257   00109A  5024               	movf	vfpfcnvrt@fmt^0,w,c
   1258   00109C  6ED9               	movwf	fsr2l,c
   1259   00109E  6ADA               	clrf	fsr2h,c
@@ -1350,9 +1350,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1283   0010B4  5027               	movf	(??_vfpfcnvrt+1)^0,w,c
   1284   0010B6  0A00               	xorlw	0	; case 0
   1285   0010B8  B4D8               	btfsc	status,2,c
-  1286   0010BA  EF61  F008         	goto	l2471
-  1287   0010BE  EF49  F008         	goto	l2027
-  1288   0010C2                     l2471:
+  1286   0010BA  EF61  F008         	goto	l2464
+  1287   0010BE  EF49  F008         	goto	l2020
+  1288   0010C2                     l2464:
   1289                           
   1290                           ; Switch size 1, requested type "simple"
   1291                           ; Number of cases is 1, Range of values is 48 to 48
@@ -1363,9 +1363,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1296   0010C2  5026               	movf	??_vfpfcnvrt^0,w,c
   1297   0010C4  0A30               	xorlw	48	; case 48
   1298   0010C6  B4D8               	btfsc	status,2,c
-  1299   0010C8  EF42  F008         	goto	l2023
-  1300   0010CC  EF49  F008         	goto	l2027
-  1301   0010D0                     l2033:
+  1299   0010C8  EF42  F008         	goto	l2016
+  1300   0010CC  EF49  F008         	goto	l2020
+  1301   0010D0                     l2026:
   1302                           
   1303                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1210:         whi
       +                          le (!done) {
@@ -1374,7 +1374,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1306   0010D4  EF6E  F008         	goto	u1361
   1307   0010D8  EF70  F008         	goto	u1360
   1308   0010DC                     u1361:
-  1309   0010DC  EF4D  F008         	goto	l2031
+  1309   0010DC  EF4D  F008         	goto	l2024
   1310   0010E0                     u1360:
   1311   0010E0                     
   1312                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1256:   width = r
@@ -1391,7 +1391,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1321   0010F6  EF81  F008         	goto	u1370
   1322   0010FA  EF7F  F008         	goto	u1371
   1323   0010FE                     u1371:
-  1324   0010FE  EF86  F008         	goto	l2041
+  1324   0010FE  EF86  F008         	goto	l2034
   1325   001102                     u1370:
   1326   001102                     
   1327                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1258:    flags |=
@@ -1404,7 +1404,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1332   001106  1E51               	comf	(_width+1)^0,f,c
   1333   001108  B0D8               	btfsc	status,0,c
   1334   00110A  2A51               	incf	(_width+1)^0,f,c
-  1335   00110C                     l2041:
+  1335   00110C                     l2034:
   1336                           
   1337                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1291:   cp = *fmt
       +                          ;
@@ -1434,7 +1434,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1360   00112A  EF99  F008         	goto	u1381
   1361   00112E  EF9B  F008         	goto	u1380
   1362   001132                     u1381:
-  1363   001132  EFAB  F008         	goto	l2047
+  1363   001132  EFAB  F008         	goto	l2040
   1364   001136                     u1380:
   1365   001136  C02D  FFF6         	movff	vfpfcnvrt@cp,tblptrl
   1366   00113A                     	if	1	;There is more than 1 active tblptr byte
@@ -1454,9 +1454,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1380   00114A  EFA9  F008         	goto	u1391
   1381   00114E  EFAB  F008         	goto	u1390
   1382   001152                     u1391:
-  1383   001152  EFC6  F008         	goto	l2055
+  1383   001152  EFC6  F008         	goto	l2048
   1384   001156                     u1390:
-  1385   001156                     l2047:
+  1385   001156                     l2040:
   1386                           
   1387                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1404:    convarg.
       +                          sint = (vfpf_sint_t)(int)(*(int *)__va_arg(*(int **)ap, (int)0));
@@ -1485,8 +1485,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1408   00117C  C028  F019         	movff	vfpfcnvrt@convarg,dtoa@d
   1409   001180  C029  F01A         	movff	vfpfcnvrt@convarg+1,dtoa@d+1
   1410   001184  ECE0  F008         	call	_dtoa	;wreg free
-  1411   001188  EFDF  F008         	goto	l1023
-  1412   00118C                     l2055:
+  1411   001188  EFDF  F008         	goto	l1020
+  1412   00118C                     l2048:
   1413                           
   1414                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1806:         ++*
       +                          fmt;
@@ -1494,8 +1494,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1416   00118E  6ED9               	movwf	fsr2l,c
   1417   001190  6ADA               	clrf	fsr2h,c
   1418   001192  2ADF               	incf	indf2,f,c
-  1419   001194  EFDF  F008         	goto	l1023
-  1420   001198                     l2059:
+  1419   001194  EFDF  F008         	goto	l1020
+  1420   001198                     l2052:
   1421                           
   1422                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1811:     fputc((
       +                          int)(*fmt)[0], fp);
@@ -1519,8 +1519,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1440   0011B0  6A05               	clrf	(fputc@c+1)^0,c
   1441   0011B2  C023  F006         	movff	vfpfcnvrt@fp,fputc@fp
   1442   0011B6  EC40  F00C         	call	_fputc	;wreg free
-  1443   0011BA  EFC6  F008         	goto	l2055
-  1444   0011BE                     l1023:
+  1443   0011BA  EFC6  F008         	goto	l2048
+  1444   0011BE                     l1020:
   1445   0011BE  0012               	return		;funcret
   1446   0011C0                     __end_of_vfpfcnvrt:
   1447                           	callstack 0
@@ -1600,7 +1600,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1514   001746  EFA7  F00B         	goto	u1261
   1515   00174A  EFA9  F00B         	goto	u1260
   1516   00174E                     u1261:
-  1517   00174E  EFCF  F00B         	goto	l1975
+  1517   00174E  EFCF  F00B         	goto	l1968
   1518   001752                     u1260:
   1519   001752                     
   1520                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1161:         ++*
@@ -1625,8 +1625,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1537                           
   1538                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1163:     } else 
       +                          {
-  1539   001772  EFE4  F00B         	goto	l1004
-  1540   001776                     l1971:
+  1539   001772  EFE4  F00B         	goto	l1001
+  1540   001776                     l1964:
   1541                           
   1542                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1166:            
       +                           n = n * 10 + c;
@@ -1650,7 +1650,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1559   001798  6ED9               	movwf	fsr2l,c
   1560   00179A  6ADA               	clrf	fsr2h,c
   1561   00179C  2ADF               	incf	indf2,f,c
-  1562   00179E                     l1975:
+  1562   00179E                     l1968:
   1563                           
   1564                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1165:         whi
       +                          le ((c = ((unsigned)(*fmt)[0]) - '0') < 10) {
@@ -1677,9 +1677,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1585   0017BC  EFE2  F00B         	goto	u1271
   1586   0017C0  EFE4  F00B         	goto	u1270
   1587   0017C4                     u1271:
-  1588   0017C4  EFBB  F00B         	goto	l1971
+  1588   0017C4  EFBB  F00B         	goto	l1964
   1589   0017C8                     u1270:
-  1590   0017C8                     l1004:
+  1590   0017C8                     l1001:
   1591                           
   1592                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 1170:     return 
       +                          n;
@@ -1771,7 +1771,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1666   0011E4  EFF6  F008         	goto	u1181
   1667   0011E8  EFF8  F008         	goto	u1180
   1668   0011EC                     u1181:
-  1669   0011EC  EF0F  F009         	goto	l987
+  1669   0011EC  EF0F  F009         	goto	l984
   1670   0011F0                     u1180:
   1671   0011F0                     
   1672                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 540:     ) {;C:\P
@@ -1787,21 +1787,21 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1680   0011FA  EF01  F009         	goto	u1191
   1681   0011FE  EF03  F009         	goto	u1190
   1682   001202                     u1191:
-  1683   001202  EF09  F009         	goto	l1927
+  1683   001202  EF09  F009         	goto	l1920
   1684   001206                     u1190:
   1685   001206  0E00               	movlw	0
-  1686   001208  6E1C               	movwf	(_dtoa$1982+1)^0,c
+  1686   001208  6E1C               	movwf	(_dtoa$1980+1)^0,c
   1687   00120A  0E2B               	movlw	43
-  1688   00120C  6E1B               	movwf	_dtoa$1982^0,c
-  1689   00120E  EF0D  F009         	goto	l1929
-  1690   001212                     l1927:
+  1688   00120C  6E1B               	movwf	_dtoa$1980^0,c
+  1689   00120E  EF0D  F009         	goto	l1922
+  1690   001212                     l1920:
   1691   001212  0E00               	movlw	0
-  1692   001214  6E1C               	movwf	(_dtoa$1982+1)^0,c
+  1692   001214  6E1C               	movwf	(_dtoa$1980+1)^0,c
   1693   001216  0E2D               	movlw	45
-  1694   001218  6E1B               	movwf	_dtoa$1982^0,c
-  1695   00121A                     l1929:
-  1696   00121A  C01B  F020         	movff	_dtoa$1982,dtoa@s
-  1697   00121E                     l987:
+  1694   001218  6E1B               	movwf	_dtoa$1980^0,c
+  1695   00121A                     l1922:
+  1696   00121A  C01B  F020         	movff	_dtoa$1980,dtoa@s
+  1697   00121E                     l984:
   1698                           
   1699                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 552:     i = size
       +                          of(dbuf) - 1;
@@ -1818,8 +1818,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1709                           
   1710                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 554:     while (!
       +                          (i < 1) && (d != 0
-  1711   00122C  EF45  F009         	goto	l1943
-  1712   001230                     l1933:
+  1711   00122C  EF45  F009         	goto	l1936
+  1712   001230                     l1926:
   1713                           
   1714                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 563:     )) {;C:\
       +                          Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 564:         --i;
@@ -1867,7 +1867,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1754   00127E  ECD8  F00A         	call	___awdiv	;wreg free
   1755   001282  C004  F019         	movff	?___awdiv,dtoa@d
   1756   001286  C005  F01A         	movff	?___awdiv+1,dtoa@d+1
-  1757   00128A                     l1943:
+  1757   00128A                     l1936:
   1758                           
   1759                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 554:     while (!
       +                          (i < 1) && (d != 0
@@ -1880,7 +1880,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1766   001298  EF50  F009         	goto	u1201
   1767   00129C  EF52  F009         	goto	u1200
   1768   0012A0                     u1201:
-  1769   0012A0  EF77  F009         	goto	l1953
+  1769   0012A0  EF77  F009         	goto	l1946
   1770   0012A4                     u1200:
   1771   0012A4  5019               	movf	dtoa@d^0,w,c
   1772   0012A6  101A               	iorwf	(dtoa@d+1)^0,w,c
@@ -1888,14 +1888,14 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1774   0012AA  EF59  F009         	goto	u1211
   1775   0012AE  EF5B  F009         	goto	u1210
   1776   0012B2                     u1211:
-  1777   0012B2  EF18  F009         	goto	l1933
+  1777   0012B2  EF18  F009         	goto	l1926
   1778   0012B6                     u1210:
   1779   0012B6  501D               	movf	dtoa@p^0,w,c
   1780   0012B8  A4D8               	btfss	status,2,c
   1781   0012BA  EF61  F009         	goto	u1221
   1782   0012BE  EF63  F009         	goto	u1220
   1783   0012C2                     u1221:
-  1784   0012C2  EF18  F009         	goto	l1933
+  1784   0012C2  EF18  F009         	goto	l1926
   1785   0012C6                     u1220:
   1786   0012C6  BE1F               	btfsc	(dtoa@w+1)^0,7,c
   1787   0012C8  EF6E  F009         	goto	u1231
@@ -1906,15 +1906,15 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1792   0012D4  EF6E  F009         	goto	u1231
   1793   0012D8  EF70  F009         	goto	u1230
   1794   0012DC                     u1231:
-  1795   0012DC  EF77  F009         	goto	l1953
+  1795   0012DC  EF77  F009         	goto	l1946
   1796   0012E0                     u1230:
   1797   0012E0  B254               	btfsc	_flags^0,1,c
   1798   0012E2  EF75  F009         	goto	u1241
   1799   0012E6  EF77  F009         	goto	u1240
   1800   0012EA                     u1241:
-  1801   0012EA  EF18  F009         	goto	l1933
+  1801   0012EA  EF18  F009         	goto	l1926
   1802   0012EE                     u1240:
-  1803   0012EE                     l1953:
+  1803   0012EE                     l1946:
   1804                           
   1805                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 576:     if (s !=
       +                           0) {
@@ -1923,7 +1923,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1808   0012F2  EF7D  F009         	goto	u1251
   1809   0012F6  EF7F  F009         	goto	u1250
   1810   0012FA                     u1251:
-  1811   0012FA  EF88  F009         	goto	l1959
+  1811   0012FA  EF88  F009         	goto	l1952
   1812   0012FE                     u1250:
   1813   0012FE                     
   1814                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 577:         --i;
@@ -1938,7 +1938,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1822   001308  6ED9               	movwf	fsr2l,c
   1823   00130A  6ADA               	clrf	fsr2h,c
   1824   00130C  C020  FFDF         	movff	dtoa@s,indf2
-  1825   001310                     l1959:
+  1825   001310                     l1952:
   1826                           
   1827                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 582:     return (
       +                          void) pad(fp, &dbuf[i], w);
@@ -2008,7 +2008,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1882   0019C0  EFE4  F00C         	goto	u1111
   1883   0019C4  EFE6  F00C         	goto	u1110
   1884   0019C8                     u1111:
-  1885   0019C8  EFEC  F00C         	goto	l1891
+  1885   0019C8  EFEC  F00C         	goto	l1884
   1886   0019CC                     u1110:
   1887   0019CC                     
   1888                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 200:         fput
@@ -2016,7 +2016,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1889   0019CC  C012  F00C         	movff	pad@buf,fputs@s
   1890   0019D0  C011  F00D         	movff	pad@fp,fputs@fp
   1891   0019D4  ECD5  F00E         	call	_fputs	;wreg free
-  1892   0019D8                     l1891:
+  1892   0019D8                     l1884:
   1893                           
   1894                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 205:  if (p < 0) 
       +                          {
@@ -2024,7 +2024,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1896   0019DA  EFF3  F00C         	goto	u1120
   1897   0019DE  EFF1  F00C         	goto	u1121
   1898   0019E2                     u1121:
-  1899   0019E2  EFF7  F00C         	goto	l979
+  1899   0019E2  EFF7  F00C         	goto	l976
   1900   0019E6                     u1120:
   1901   0019E6                     
   1902                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 206:   p = 0;
@@ -2032,7 +2032,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1904   0019E8  6E14               	movwf	(pad@p+1)^0,c
   1905   0019EA  0E00               	movlw	0
   1906   0019EC  6E13               	movwf	pad@p^0,c
-  1907   0019EE                     l979:
+  1907   0019EE                     l976:
   1908                           
   1909                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 208:     i = 0;
   1910   0019EE  0E00               	movlw	0
@@ -2042,8 +2042,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1914                           
   1915                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 209:     while (i
       +                           < p) {
-  1916   0019F6  EF07  F00D         	goto	l1899
-  1917   0019FA                     l1895:
+  1916   0019F6  EF07  F00D         	goto	l1892
+  1917   0019FA                     l1888:
   1918                           
   1919                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 210:         fput
       +                          c(' ', fp);
@@ -2057,7 +2057,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1927                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 211:         ++i;
   1928   001A0A  4A16               	infsnz	pad@i^0,f,c
   1929   001A0C  2A17               	incf	(pad@i+1)^0,f,c
-  1930   001A0E                     l1899:
+  1930   001A0E                     l1892:
   1931                           
   1932                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 209:     while (i
       +                           < p) {
@@ -2073,7 +2073,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1942   001A20  EF14  F00D         	goto	u1131
   1943   001A24  EF16  F00D         	goto	u1130
   1944   001A28                     u1131:
-  1945   001A28  EFFD  F00C         	goto	l1895
+  1945   001A28  EFFD  F00C         	goto	l1888
   1946   001A2C                     u1130:
   1947   001A2C                     
   1948                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 216:     if (!(fl
@@ -2082,7 +2082,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1950   001A2E  EF1B  F00D         	goto	u1141
   1951   001A32  EF1D  F00D         	goto	u1140
   1952   001A36                     u1141:
-  1953   001A36  EF23  F00D         	goto	l984
+  1953   001A36  EF23  F00D         	goto	l981
   1954   001A3A                     u1140:
   1955   001A3A                     
   1956                           ;C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\doprnt.c: 218:         fput
@@ -2090,7 +2090,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1957   001A3A  C012  F00C         	movff	pad@buf,fputs@s
   1958   001A3E  C011  F00D         	movff	pad@fp,fputs@fp
   1959   001A42  ECD5  F00E         	call	_fputs	;wreg free
-  1960   001A46                     l984:
+  1960   001A46                     l981:
   1961   001A46  0012               	return		;funcret
   1962   001A48                     __end_of_pad:
   1963                           	callstack 0
@@ -2143,15 +2143,15 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2005   001DAC  6E10               	movwf	(fputs@i+1)^0,c
   2006   001DAE  0E00               	movlw	0
   2007   001DB0  6E0F               	movwf	fputs@i^0,c
-  2008   001DB2  EFE4  F00E         	goto	l1799
-  2009   001DB6                     l1795:
+  2008   001DB2  EFE4  F00E         	goto	l1792
+  2009   001DB6                     l1788:
   2010   001DB6  C00E  F004         	movff	fputs@c,fputc@c
   2011   001DBA  6A05               	clrf	(fputc@c+1)^0,c
   2012   001DBC  C00D  F006         	movff	fputs@fp,fputc@fp
   2013   001DC0  EC40  F00C         	call	_fputc	;wreg free
   2014   001DC4  4A0F               	infsnz	fputs@i^0,f,c
   2015   001DC6  2A10               	incf	(fputs@i+1)^0,f,c
-  2016   001DC8                     l1799:
+  2016   001DC8                     l1792:
   2017   001DC8  500C               	movf	fputs@s^0,w,c
   2018   001DCA  240F               	addwf	fputs@i^0,w,c
   2019   001DCC  6ED9               	movwf	fsr2l,c
@@ -2163,7 +2163,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2025   001DD8  EFF0  F00E         	goto	u981
   2026   001DDC  EFF2  F00E         	goto	u980
   2027   001DE0                     u981:
-  2028   001DE0  EFDB  F00E         	goto	l1795
+  2028   001DE0  EFDB  F00E         	goto	l1788
   2029   001DE4                     u980:
   2030   001DE4  0012               	return		;funcret
   2031   001DE6                     __end_of_fputs:
@@ -2218,20 +2218,20 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2075   001884  EF46  F00C         	goto	u941
   2076   001888  EF48  F00C         	goto	u940
   2077   00188C                     u941:
-  2078   00188C  EF50  F00C         	goto	l1783
+  2078   00188C  EF50  F00C         	goto	l1776
   2079   001890                     u940:
   2080   001890  5006               	movf	fputc@fp^0,w,c
   2081   001892  A4D8               	btfss	status,2,c
   2082   001894  EF4E  F00C         	goto	u951
   2083   001898  EF50  F00C         	goto	u950
   2084   00189C                     u951:
-  2085   00189C  EF55  F00C         	goto	l1785
+  2085   00189C  EF55  F00C         	goto	l1778
   2086   0018A0                     u950:
-  2087   0018A0                     l1783:
+  2087   0018A0                     l1776:
   2088   0018A0  5004               	movf	fputc@c^0,w,c
   2089   0018A2  EC18  F010         	call	_putch
-  2090   0018A6  EF94  F00C         	goto	l1048
-  2091   0018AA                     l1785:
+  2090   0018A6  EF94  F00C         	goto	l1045
+  2091   0018AA                     l1778:
   2092   0018AA  5006               	movf	fputc@fp^0,w,c
   2093   0018AC  6ED9               	movwf	fsr2l,c
   2094   0018AE  6ADA               	clrf	fsr2h,c
@@ -2243,7 +2243,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2100   0018BA  EF61  F00C         	goto	u961
   2101   0018BE  EF63  F00C         	goto	u960
   2102   0018C2                     u961:
-  2103   0018C2  EF7C  F00C         	goto	l1789
+  2103   0018C2  EF7C  F00C         	goto	l1782
   2104   0018C6                     u960:
   2105   0018C6  5006               	movf	fputc@fp^0,w,c
   2106   0018C8  6ED9               	movwf	fsr2l,c
@@ -2267,9 +2267,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2124   0018EC  EF7A  F00C         	goto	u971
   2125   0018F0  EF7C  F00C         	goto	u970
   2126   0018F4                     u971:
-  2127   0018F4  EF94  F00C         	goto	l1048
+  2127   0018F4  EF94  F00C         	goto	l1045
   2128   0018F8                     u970:
-  2129   0018F8                     l1789:
+  2129   0018F8                     l1782:
   2130   0018F8  5006               	movf	fputc@fp^0,w,c
   2131   0018FA  6ED9               	movwf	fsr2l,c
   2132   0018FC  6ADA               	clrf	fsr2h,c
@@ -2293,7 +2293,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2150   001922  2ADE               	incf	postinc2,f,c
   2151   001924  0E00               	movlw	0
   2152   001926  22DD               	addwfc	postdec2,f,c
-  2153   001928                     l1048:
+  2153   001928                     l1045:
   2154   001928  0012               	return		;funcret
   2155   00192A                     __end_of_fputc:
   2156                           	callstack 0
@@ -2386,12 +2386,12 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2233   001E92  EF4D  F00F         	goto	u1151
   2234   001E96  EF4F  F00F         	goto	u1150
   2235   001E9A                     u1151:
-  2236   001E9A  EF55  F00F         	goto	l1033
+  2236   001E9A  EF55  F00F         	goto	l1030
   2237   001E9E                     u1150:
   2238   001E9E  C00A  F00A         	movff	abs@a,?_abs
   2239   001EA2  C00B  F00B         	movff	abs@a+1,?_abs+1
-  2240   001EA6  EF61  F00F         	goto	l1036
-  2241   001EAA                     l1033:
+  2240   001EA6  EF61  F00F         	goto	l1033
+  2241   001EAA                     l1030:
   2242   001EAA  C00A  F00C         	movff	abs@a,??_abs
   2243   001EAE  C00B  F00D         	movff	abs@a+1,??_abs+1
   2244   001EB2  1E0C               	comf	??_abs^0,f,c
@@ -2400,7 +2400,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2247   001EB8  2A0D               	incf	(??_abs+1)^0,f,c
   2248   001EBA  C00C  F00A         	movff	??_abs,?_abs
   2249   001EBE  C00D  F00B         	movff	??_abs+1,?_abs+1
-  2250   001EC2                     l1036:
+  2250   001EC2                     l1033:
   2251   001EC2  0012               	return		;funcret
   2252   001EC4                     __end_of_abs:
   2253                           	callstack 0
@@ -2453,7 +2453,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2295   00167A  EF43  F00B         	goto	u1050
   2296   00167E  EF41  F00B         	goto	u1051
   2297   001682                     u1051:
-  2298   001682  EF49  F00B         	goto	l1859
+  2298   001682  EF49  F00B         	goto	l1852
   2299   001686                     u1050:
   2300   001686  6C04               	negf	___awmod@dividend^0,c
   2301   001688  1E05               	comf	(___awmod@dividend+1)^0,f,c
@@ -2461,42 +2461,42 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2303   00168C  2A05               	incf	(___awmod@dividend+1)^0,f,c
   2304   00168E  0E01               	movlw	1
   2305   001690  6E09               	movwf	___awmod@sign^0,c
-  2306   001692                     l1859:
+  2306   001692                     l1852:
   2307   001692  BE07               	btfsc	(___awmod@divisor+1)^0,7,c
   2308   001694  EF50  F00B         	goto	u1060
   2309   001698  EF4E  F00B         	goto	u1061
   2310   00169C                     u1061:
-  2311   00169C  EF54  F00B         	goto	l1863
+  2311   00169C  EF54  F00B         	goto	l1856
   2312   0016A0                     u1060:
   2313   0016A0  6C06               	negf	___awmod@divisor^0,c
   2314   0016A2  1E07               	comf	(___awmod@divisor+1)^0,f,c
   2315   0016A4  B0D8               	btfsc	status,0,c
   2316   0016A6  2A07               	incf	(___awmod@divisor+1)^0,f,c
-  2317   0016A8                     l1863:
+  2317   0016A8                     l1856:
   2318   0016A8  5006               	movf	___awmod@divisor^0,w,c
   2319   0016AA  1007               	iorwf	(___awmod@divisor+1)^0,w,c
   2320   0016AC  B4D8               	btfsc	status,2,c
   2321   0016AE  EF5B  F00B         	goto	u1071
   2322   0016B2  EF5D  F00B         	goto	u1070
   2323   0016B6                     u1071:
-  2324   0016B6  EF81  F00B         	goto	l1879
+  2324   0016B6  EF81  F00B         	goto	l1872
   2325   0016BA                     u1070:
   2326   0016BA  0E01               	movlw	1
   2327   0016BC  6E08               	movwf	___awmod@counter^0,c
-  2328   0016BE  EF65  F00B         	goto	l1869
-  2329   0016C2                     l1867:
+  2328   0016BE  EF65  F00B         	goto	l1862
+  2329   0016C2                     l1860:
   2330   0016C2  90D8               	bcf	status,0,c
   2331   0016C4  3606               	rlcf	___awmod@divisor^0,f,c
   2332   0016C6  3607               	rlcf	(___awmod@divisor+1)^0,f,c
   2333   0016C8  2A08               	incf	___awmod@counter^0,f,c
-  2334   0016CA                     l1869:
+  2334   0016CA                     l1862:
   2335   0016CA  AE07               	btfss	(___awmod@divisor+1)^0,7,c
   2336   0016CC  EF6A  F00B         	goto	u1081
   2337   0016D0  EF6C  F00B         	goto	u1080
   2338   0016D4                     u1081:
-  2339   0016D4  EF61  F00B         	goto	l1867
+  2339   0016D4  EF61  F00B         	goto	l1860
   2340   0016D8                     u1080:
-  2341   0016D8                     l1871:
+  2341   0016D8                     l1864:
   2342   0016D8  5006               	movf	___awmod@divisor^0,w,c
   2343   0016DA  5C04               	subwf	___awmod@dividend^0,w,c
   2344   0016DC  5007               	movf	(___awmod@divisor+1)^0,w,c
@@ -2505,31 +2505,31 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2347   0016E2  EF75  F00B         	goto	u1091
   2348   0016E6  EF77  F00B         	goto	u1090
   2349   0016EA                     u1091:
-  2350   0016EA  EF7B  F00B         	goto	l1875
+  2350   0016EA  EF7B  F00B         	goto	l1868
   2351   0016EE                     u1090:
   2352   0016EE  5006               	movf	___awmod@divisor^0,w,c
   2353   0016F0  5E04               	subwf	___awmod@dividend^0,f,c
   2354   0016F2  5007               	movf	(___awmod@divisor+1)^0,w,c
   2355   0016F4  5A05               	subwfb	(___awmod@dividend+1)^0,f,c
-  2356   0016F6                     l1875:
+  2356   0016F6                     l1868:
   2357   0016F6  90D8               	bcf	status,0,c
   2358   0016F8  3207               	rrcf	(___awmod@divisor+1)^0,f,c
   2359   0016FA  3206               	rrcf	___awmod@divisor^0,f,c
   2360   0016FC  2E08               	decfsz	___awmod@counter^0,f,c
-  2361   0016FE  EF6C  F00B         	goto	l1871
-  2362   001702                     l1879:
+  2361   0016FE  EF6C  F00B         	goto	l1864
+  2362   001702                     l1872:
   2363   001702  5009               	movf	___awmod@sign^0,w,c
   2364   001704  B4D8               	btfsc	status,2,c
   2365   001706  EF87  F00B         	goto	u1101
   2366   00170A  EF89  F00B         	goto	u1100
   2367   00170E                     u1101:
-  2368   00170E  EF8D  F00B         	goto	l1883
+  2368   00170E  EF8D  F00B         	goto	l1876
   2369   001712                     u1100:
   2370   001712  6C04               	negf	___awmod@dividend^0,c
   2371   001714  1E05               	comf	(___awmod@dividend+1)^0,f,c
   2372   001716  B0D8               	btfsc	status,0,c
   2373   001718  2A05               	incf	(___awmod@dividend+1)^0,f,c
-  2374   00171A                     l1883:
+  2374   00171A                     l1876:
   2375   00171A  C004  F004         	movff	___awmod@dividend,?___awmod
   2376   00171E  C005  F005         	movff	___awmod@dividend+1,?___awmod+1
   2377   001722  0012               	return		;funcret
@@ -2585,7 +2585,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2422   0015B6  EFE1  F00A         	goto	u990
   2423   0015BA  EFDF  F00A         	goto	u991
   2424   0015BE                     u991:
-  2425   0015BE  EFE7  F00A         	goto	l1815
+  2425   0015BE  EFE7  F00A         	goto	l1808
   2426   0015C2                     u990:
   2427   0015C2  6C06               	negf	___awdiv@divisor^0,c
   2428   0015C4  1E07               	comf	(___awdiv@divisor+1)^0,f,c
@@ -2593,12 +2593,12 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2430   0015C8  2A07               	incf	(___awdiv@divisor+1)^0,f,c
   2431   0015CA  0E01               	movlw	1
   2432   0015CC  6E09               	movwf	___awdiv@sign^0,c
-  2433   0015CE                     l1815:
+  2433   0015CE                     l1808:
   2434   0015CE  BE05               	btfsc	(___awdiv@dividend+1)^0,7,c
   2435   0015D0  EFEE  F00A         	goto	u1000
   2436   0015D4  EFEC  F00A         	goto	u1001
   2437   0015D8                     u1001:
-  2438   0015D8  EFF4  F00A         	goto	l1821
+  2438   0015D8  EFF4  F00A         	goto	l1814
   2439   0015DC                     u1000:
   2440   0015DC  6C04               	negf	___awdiv@dividend^0,c
   2441   0015DE  1E05               	comf	(___awdiv@dividend+1)^0,f,c
@@ -2606,7 +2606,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2443   0015E2  2A05               	incf	(___awdiv@dividend+1)^0,f,c
   2444   0015E4  0E01               	movlw	1
   2445   0015E6  1A09               	xorwf	___awdiv@sign^0,f,c
-  2446   0015E8                     l1821:
+  2446   0015E8                     l1814:
   2447   0015E8  0E00               	movlw	0
   2448   0015EA  6E0B               	movwf	(___awdiv@quotient+1)^0,c
   2449   0015EC  0E00               	movlw	0
@@ -2617,24 +2617,24 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2454   0015F6  EFFF  F00A         	goto	u1011
   2455   0015FA  EF01  F00B         	goto	u1010
   2456   0015FE                     u1011:
-  2457   0015FE  EF29  F00B         	goto	l1843
+  2457   0015FE  EF29  F00B         	goto	l1836
   2458   001602                     u1010:
   2459   001602  0E01               	movlw	1
   2460   001604  6E08               	movwf	___awdiv@counter^0,c
-  2461   001606  EF09  F00B         	goto	l1829
-  2462   00160A                     l1827:
+  2461   001606  EF09  F00B         	goto	l1822
+  2462   00160A                     l1820:
   2463   00160A  90D8               	bcf	status,0,c
   2464   00160C  3606               	rlcf	___awdiv@divisor^0,f,c
   2465   00160E  3607               	rlcf	(___awdiv@divisor+1)^0,f,c
   2466   001610  2A08               	incf	___awdiv@counter^0,f,c
-  2467   001612                     l1829:
+  2467   001612                     l1822:
   2468   001612  AE07               	btfss	(___awdiv@divisor+1)^0,7,c
   2469   001614  EF0E  F00B         	goto	u1021
   2470   001618  EF10  F00B         	goto	u1020
   2471   00161C                     u1021:
-  2472   00161C  EF05  F00B         	goto	l1827
+  2472   00161C  EF05  F00B         	goto	l1820
   2473   001620                     u1020:
-  2474   001620                     l1831:
+  2474   001620                     l1824:
   2475   001620  90D8               	bcf	status,0,c
   2476   001622  360A               	rlcf	___awdiv@quotient^0,f,c
   2477   001624  360B               	rlcf	(___awdiv@quotient+1)^0,f,c
@@ -2646,32 +2646,32 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2483   001630  EF1C  F00B         	goto	u1031
   2484   001634  EF1E  F00B         	goto	u1030
   2485   001638                     u1031:
-  2486   001638  EF23  F00B         	goto	l1839
+  2486   001638  EF23  F00B         	goto	l1832
   2487   00163C                     u1030:
   2488   00163C  5006               	movf	___awdiv@divisor^0,w,c
   2489   00163E  5E04               	subwf	___awdiv@dividend^0,f,c
   2490   001640  5007               	movf	(___awdiv@divisor+1)^0,w,c
   2491   001642  5A05               	subwfb	(___awdiv@dividend+1)^0,f,c
   2492   001644  800A               	bsf	___awdiv@quotient^0,0,c
-  2493   001646                     l1839:
+  2493   001646                     l1832:
   2494   001646  90D8               	bcf	status,0,c
   2495   001648  3207               	rrcf	(___awdiv@divisor+1)^0,f,c
   2496   00164A  3206               	rrcf	___awdiv@divisor^0,f,c
   2497   00164C  2E08               	decfsz	___awdiv@counter^0,f,c
-  2498   00164E  EF10  F00B         	goto	l1831
-  2499   001652                     l1843:
+  2498   00164E  EF10  F00B         	goto	l1824
+  2499   001652                     l1836:
   2500   001652  5009               	movf	___awdiv@sign^0,w,c
   2501   001654  B4D8               	btfsc	status,2,c
   2502   001656  EF2F  F00B         	goto	u1041
   2503   00165A  EF31  F00B         	goto	u1040
   2504   00165E                     u1041:
-  2505   00165E  EF35  F00B         	goto	l1847
+  2505   00165E  EF35  F00B         	goto	l1840
   2506   001662                     u1040:
   2507   001662  6C0A               	negf	___awdiv@quotient^0,c
   2508   001664  1E0B               	comf	(___awdiv@quotient+1)^0,f,c
   2509   001666  B0D8               	btfsc	status,0,c
   2510   001668  2A0B               	incf	(___awdiv@quotient+1)^0,f,c
-  2511   00166A                     l1847:
+  2511   00166A                     l1840:
   2512   00166A  C00A  F004         	movff	___awdiv@quotient,?___awdiv
   2513   00166E  C00B  F005         	movff	___awdiv@quotient+1,?___awdiv+1
   2514   001672  0012               	return		;funcret
@@ -2731,13 +2731,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2562   001E28  EF18  F00F         	goto	u1481
   2563   001E2C  EF1A  F00F         	goto	u1480
   2564   001E30                     u1481:
-  2565   001E30  EF1F  F00F         	goto	l2137
+  2565   001E30  EF1F  F00F         	goto	l2130
   2566   001E34                     u1480:
   2567   001E34  0E00               	movlw	0
   2568   001E36  6E05               	movwf	LCD_sendbyte@type^0,c
   2569   001E38  0E80               	movlw	128
   2570   001E3A  ECF3  F00E         	call	_LCD_sendbyte
-  2571   001E3E                     l2137:
+  2571   001E3E                     l2130:
   2572                           
   2573                           ;LCD.c: 111:     if (line == 2) {LCD_sendbyte(0xC0,0);}
   2574   001E3E  0E02               	movlw	2
@@ -2746,13 +2746,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2577   001E44  EF26  F00F         	goto	u1491
   2578   001E48  EF28  F00F         	goto	u1490
   2579   001E4C                     u1491:
-  2580   001E4C  EF2D  F00F         	goto	l267
+  2580   001E4C  EF2D  F00F         	goto	l264
   2581   001E50                     u1490:
   2582   001E50  0E00               	movlw	0
   2583   001E52  6E05               	movwf	LCD_sendbyte@type^0,c
   2584   001E54  0EC0               	movlw	192
   2585   001E56  ECF3  F00E         	call	_LCD_sendbyte
-  2586   001E5A                     l267:
+  2586   001E5A                     l264:
   2587   001E5A  0012               	return		;funcret
   2588   001E5C                     __end_of_LCD_setline:
   2589                           	callstack 0
@@ -2801,8 +2801,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2627   001EC4                     
   2628                           ;LCD.c: 117: void LCD_sendstring(char *string);LCD.c: 118: {;LCD.c: 120:     while(*stri
       +                          ng != 0){
-  2629   001EC4  EF6D  F00F         	goto	l2285
-  2630   001EC8                     l2281:
+  2629   001EC4  EF6D  F00F         	goto	l2278
+  2630   001EC8                     l2274:
   2631                           
   2632                           ;LCD.c: 121:   LCD_sendbyte(*string++,1);
   2633   001EC8  0E01               	movlw	1
@@ -2813,7 +2813,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2638   001ED2  50DF               	movf	indf2,w,c
   2639   001ED4  ECF3  F00E         	call	_LCD_sendbyte
   2640   001ED8  2A09               	incf	LCD_sendstring@string^0,f,c
-  2641   001EDA                     l2285:
+  2641   001EDA                     l2278:
   2642                           
   2643                           ;LCD.c: 120:     while(*string != 0){
   2644   001EDA  5009               	movf	LCD_sendstring@string^0,w,c
@@ -2824,7 +2824,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2649   001EE4  EF76  F00F         	goto	u1541
   2650   001EE8  EF78  F00F         	goto	u1540
   2651   001EEC                     u1541:
-  2652   001EEC  EF64  F00F         	goto	l2281
+  2652   001EEC  EF64  F00F         	goto	l2274
   2653   001EF0                     u1540:
   2654   001EF0  0012               	return		;funcret
   2655   001EF2                     __end_of_LCD_sendstring:
@@ -2880,7 +2880,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2700   001B4A  EFA9  F00D         	goto	u1771
   2701   001B4E  EFAB  F00D         	goto	u1770
   2702   001B52                     u1771:
-  2703   001B52  EFDE  F00D         	goto	l221
+  2703   001B52  EFDE  F00D         	goto	l218
   2704   001B56                     u1770:
   2705   001B56  0E0B               	movlw	11
   2706   001B58  1805               	xorwf	sunSync@day^0,w,c
@@ -2889,7 +2889,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2709   001B5E  EFB3  F00D         	goto	u1781
   2710   001B62  EFB5  F00D         	goto	u1780
   2711   001B66                     u1781:
-  2712   001B66  EFDE  F00D         	goto	l221
+  2712   001B66  EFDE  F00D         	goto	l218
   2713   001B6A                     u1780:
   2714   001B6A  5004               	movf	sunSync@hour^0,w,c
   2715   001B6C  6ED9               	movwf	fsr2l,c
@@ -2903,7 +2903,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2723   001B7C  EFC2  F00D         	goto	u1791
   2724   001B80  EFC4  F00D         	goto	u1790
   2725   001B84                     u1791:
-  2726   001B84  EFDE  F00D         	goto	l221
+  2726   001B84  EFDE  F00D         	goto	l218
   2727   001B88                     u1790:
   2728   001B88  5007               	movf	sunSync@synced^0,w,c
   2729   001B8A  6ED9               	movwf	fsr2l,c
@@ -2914,7 +2914,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2734   001B94  EFCE  F00D         	goto	u1801
   2735   001B98  EFD0  F00D         	goto	u1800
   2736   001B9C                     u1801:
-  2737   001B9C  EFDE  F00D         	goto	l221
+  2737   001B9C  EFDE  F00D         	goto	l218
   2738   001BA0                     u1800:
   2739   001BA0                     
   2740                           ;functions.c: 116:         *hour = 8;
@@ -2934,7 +2934,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   2754   001BB6  6EDE               	movwf	postinc2,c
   2755   001BB8  0E00               	movlw	0
   2756   001BBA  6EDD               	movwf	postdec2,c
-  2757   001BBC                     l221:
+  2757   001BBC                     l218:
   2758   001BBC  0012               	return		;funcret
   2759   001BBE                     __end_of_sunSync:
   2760                           	callstack 0
@@ -3415,13 +3415,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3209   001DEC  EFFA  F00E         	goto	u1431
   3210   001DF0  EFFC  F00E         	goto	u1430
   3211   001DF4                     u1431:
-  3212   001DF4  EFFF  F00E         	goto	l257
+  3212   001DF4  EFFF  F00E         	goto	l254
   3213   001DF8                     u1430:
   3214   001DF8  8C7B               	bsf	123,6,c	;volatile
-  3215   001DFA  EF00  F00F         	goto	l2093
-  3216   001DFE                     l257:
+  3215   001DFA  EF00  F00F         	goto	l2086
+  3216   001DFE                     l254:
   3217   001DFE  9C7B               	bcf	123,6,c	;volatile
-  3218   001E00                     l2093:
+  3218   001E00                     l2086:
   3219                           
   3220                           ;LCD.c: 50:     unsigned char highNibble = (Byte >> 4) ;
   3221   001E00  3808               	swapf	LCD_sendbyte@Byte^0,w,c
@@ -3503,52 +3503,52 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3291   001CA0  EF54  F00E         	goto	u1281
   3292   001CA4  EF56  F00E         	goto	u1280
   3293   001CA8                     u1281:
-  3294   001CA8  EF59  F00E         	goto	l246
+  3294   001CA8  EF59  F00E         	goto	l243
   3295   001CAC                     u1280:
   3296   001CAC  867A               	bsf	122,3,c	;volatile
-  3297   001CAE  EF5A  F00E         	goto	l1981
-  3298   001CB2                     l246:
+  3297   001CAE  EF5A  F00E         	goto	l1974
+  3298   001CB2                     l243:
   3299   001CB2  967A               	bcf	122,3,c	;volatile
-  3300   001CB4                     l1981:
+  3300   001CB4                     l1974:
   3301                           
   3302                           ;LCD.c: 28:     if(number & 0b0010) {LATBbits.LATB2 = 1;} else {LATBbits.LATB2 = 0;}
   3303   001CB4  A204               	btfss	LCD_sendnibble@number^0,1,c
   3304   001CB6  EF5F  F00E         	goto	u1291
   3305   001CBA  EF61  F00E         	goto	u1290
   3306   001CBE                     u1291:
-  3307   001CBE  EF64  F00E         	goto	l248
+  3307   001CBE  EF64  F00E         	goto	l245
   3308   001CC2                     u1290:
   3309   001CC2  847A               	bsf	122,2,c	;volatile
-  3310   001CC4  EF65  F00E         	goto	l1985
-  3311   001CC8                     l248:
+  3310   001CC4  EF65  F00E         	goto	l1978
+  3311   001CC8                     l245:
   3312   001CC8  947A               	bcf	122,2,c	;volatile
-  3313   001CCA                     l1985:
+  3313   001CCA                     l1978:
   3314                           
   3315                           ;LCD.c: 30:     if(number & 0b0100) {LATEbits.LATE3 = 1;} else {LATEbits.LATE3 = 0;}
   3316   001CCA  A404               	btfss	LCD_sendnibble@number^0,2,c
   3317   001CCC  EF6A  F00E         	goto	u1301
   3318   001CD0  EF6C  F00E         	goto	u1300
   3319   001CD4                     u1301:
-  3320   001CD4  EF6F  F00E         	goto	l250
+  3320   001CD4  EF6F  F00E         	goto	l247
   3321   001CD8                     u1300:
   3322   001CD8  867D               	bsf	125,3,c	;volatile
-  3323   001CDA  EF70  F00E         	goto	l1989
-  3324   001CDE                     l250:
+  3323   001CDA  EF70  F00E         	goto	l1982
+  3324   001CDE                     l247:
   3325   001CDE  967D               	bcf	125,3,c	;volatile
-  3326   001CE0                     l1989:
+  3326   001CE0                     l1982:
   3327                           
   3328                           ;LCD.c: 32:     if(number & 0b1000) {LATEbits.LATE1 = 1;} else {LATEbits.LATE1 = 0;}
   3329   001CE0  A604               	btfss	LCD_sendnibble@number^0,3,c
   3330   001CE2  EF75  F00E         	goto	u1311
   3331   001CE6  EF77  F00E         	goto	u1310
   3332   001CEA                     u1311:
-  3333   001CEA  EF7A  F00E         	goto	l252
+  3333   001CEA  EF7A  F00E         	goto	l249
   3334   001CEE                     u1310:
   3335   001CEE  827D               	bsf	125,1,c	;volatile
-  3336   001CF0  EF7B  F00E         	goto	l1993
-  3337   001CF4                     l252:
+  3336   001CF0  EF7B  F00E         	goto	l1986
+  3337   001CF4                     l249:
   3338   001CF4  927D               	bcf	125,1,c	;volatile
-  3339   001CF6                     l1993:
+  3339   001CF6                     l1986:
   3340                           
   3341                           ;LCD.c: 34:     LCD_E_TOG();
   3342   001CF6  EC11  F010         	call	_LCD_E_TOG	;wreg free
@@ -3987,7 +3987,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3745   0017DE  EFF3  F00B         	goto	u1671
   3746   0017E2  EFF5  F00B         	goto	u1670
   3747   0017E6                     u1671:
-  3748   0017E6  EF0D  F00C         	goto	l2365
+  3748   0017E6  EF0D  F00C         	goto	l2358
   3749   0017EA                     u1670:
   3750   0017EA  500A               	movf	hourChangeDST@hour^0,w,c
   3751   0017EC  6ED9               	movwf	fsr2l,c
@@ -3999,7 +3999,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3757   0017F8  EF00  F00C         	goto	u1681
   3758   0017FC  EF02  F00C         	goto	u1680
   3759   001800                     u1681:
-  3760   001800  EF0D  F00C         	goto	l2365
+  3760   001800  EF0D  F00C         	goto	l2358
   3761   001804                     u1680:
   3762   001804                     
   3763                           ;functions.c: 64:         (*hour)++;
@@ -4016,7 +4016,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3774   001814  6ADA               	clrf	fsr2h,c
   3775   001816  6ADE               	clrf	postinc2,c
   3776   001818  6ADD               	clrf	postdec2,c
-  3777   00181A                     l2365:
+  3777   00181A                     l2358:
   3778                           
   3779                           ;functions.c: 68:     if (day == bkwd_daylight_savings_day && *hour == 2 && *backward_zo
       +                          ne == 0) {
@@ -4029,7 +4029,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3786   001826  EF17  F00C         	goto	u1691
   3787   00182A  EF19  F00C         	goto	u1690
   3788   00182E                     u1691:
-  3789   00182E  EF3F  F00C         	goto	l207
+  3789   00182E  EF3F  F00C         	goto	l204
   3790   001832                     u1690:
   3791   001832  500A               	movf	hourChangeDST@hour^0,w,c
   3792   001834  6ED9               	movwf	fsr2l,c
@@ -4041,7 +4041,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3798   001840  EF24  F00C         	goto	u1701
   3799   001844  EF26  F00C         	goto	u1700
   3800   001848                     u1701:
-  3801   001848  EF3F  F00C         	goto	l207
+  3801   001848  EF3F  F00C         	goto	l204
   3802   00184C                     u1700:
   3803   00184C  500B               	movf	hourChangeDST@backward_zone^0,w,c
   3804   00184E  6ED9               	movwf	fsr2l,c
@@ -4052,7 +4052,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3809   001858  EF30  F00C         	goto	u1711
   3810   00185C  EF32  F00C         	goto	u1710
   3811   001860                     u1711:
-  3812   001860  EF3F  F00C         	goto	l207
+  3812   001860  EF3F  F00C         	goto	l204
   3813   001864                     u1710:
   3814   001864                     
   3815                           ;functions.c: 69:         (*hour)--;
@@ -4071,7 +4071,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3828   001878  6EDE               	movwf	postinc2,c
   3829   00187A  0E00               	movlw	0
   3830   00187C  6EDD               	movwf	postdec2,c
-  3831   00187E                     l207:
+  3831   00187E                     l204:
   3832   00187E  0012               	return		;funcret
   3833   001880                     __end_of_hourChangeDST:
   3834                           	callstack 0
@@ -4130,7 +4130,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3882   001C38  EF20  F00E         	goto	u1651
   3883   001C3C  EF22  F00E         	goto	u1650
   3884   001C40                     u1651:
-  3885   001C40  EF4D  F00E         	goto	l211
+  3885   001C40  EF4D  F00E         	goto	l208
   3886   001C44                     u1650:
   3887   001C44  5041               	movf	findDSTdates@hour^0,w,c
   3888   001C46  1042               	iorwf	(findDSTdates@hour+1)^0,w,c
@@ -4138,7 +4138,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3890   001C4A  EF29  F00E         	goto	u1661
   3891   001C4E  EF2B  F00E         	goto	u1660
   3892   001C52                     u1661:
-  3893   001C52  EF4D  F00E         	goto	l211
+  3893   001C52  EF4D  F00E         	goto	l208
   3894   001C56                     u1660:
   3895   001C56                     
   3896                           ;functions.c: 80:         *fwd_daylight_savings_day = lastSunday(year, 3);
@@ -4168,7 +4168,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   3920   001C90  6ADA               	clrf	fsr2h,c
   3921   001C92  C01B  FFDE         	movff	?_lastSunday,postinc2
   3922   001C96  C01C  FFDD         	movff	?_lastSunday+1,postdec2
-  3923   001C9A                     l211:
+  3923   001C9A                     l208:
   3924   001C9A  0012               	return		;funcret
   3925   001C9C                     __end_of_findDSTdates:
   3926                           	callstack 0
@@ -4324,15 +4324,15 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4070   000F0A  6E28               	movwf	(??_lastSunday+9)^0,c
   4071   000F0C  0E01               	movlw	1
   4072   000F0E  2427               	addwf	(??_lastSunday+8)^0,w,c
-  4073   000F10  6E37               	movwf	_lastSunday$2259^0,c
+  4073   000F10  6E37               	movwf	_lastSunday$2254^0,c
   4074   000F12  0E00               	movlw	0
   4075   000F14  2028               	addwfc	(??_lastSunday+9)^0,w,c
-  4076   000F16  6E38               	movwf	(_lastSunday$2259+1)^0,c
+  4076   000F16  6E38               	movwf	(_lastSunday$2254+1)^0,c
   4077   000F18                     
   4078                           ;functions.c: 30:     unsigned int h = (1 + ((13 * (month + 1)) / 5) + (year % 100) + ((
       +                          year % 100) / 4) + ((year / 100) / 4) - 2 * (year / 100)) % 7;
-  4079   000F18  C037  F011         	movff	_lastSunday$2259,___lwmod@dividend
-  4080   000F1C  C038  F012         	movff	_lastSunday$2259+1,___lwmod@dividend+1
+  4079   000F18  C037  F011         	movff	_lastSunday$2254,___lwmod@dividend
+  4080   000F1C  C038  F012         	movff	_lastSunday$2254+1,___lwmod@dividend+1
   4081   000F20  0E00               	movlw	0
   4082   000F22  6E14               	movwf	(___lwmod@divisor+1)^0,c
   4083   000F24  0E07               	movlw	7
@@ -4389,7 +4389,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4134   000F8C  EFCA  F007         	goto	u1501
   4135   000F90  EFCC  F007         	goto	u1500
   4136   000F94                     u1501:
-  4137   000F94  EFF1  F007         	goto	l2237
+  4137   000F94  EFF1  F007         	goto	l2230
   4138   000F98                     u1500:
   4139   000F98                     
   4140                           ;functions.c: 41:     unsigned int daysBeforeMarch = 31 + (leapYear ? 29 : 28);
@@ -4399,24 +4399,24 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4144   000F9E  EFD3  F007         	goto	u1511
   4145   000FA2  EFD5  F007         	goto	u1510
   4146   000FA6                     u1511:
-  4147   000FA6  EFDB  F007         	goto	l2227
+  4147   000FA6  EFDB  F007         	goto	l2220
   4148   000FAA                     u1510:
   4149   000FAA  0E00               	movlw	0
-  4150   000FAC  6E3A               	movwf	(_lastSunday$1189+1)^0,c
+  4150   000FAC  6E3A               	movwf	(_lastSunday$1187+1)^0,c
   4151   000FAE  0E1C               	movlw	28
-  4152   000FB0  6E39               	movwf	_lastSunday$1189^0,c
-  4153   000FB2  EFDF  F007         	goto	l2229
-  4154   000FB6                     l2227:
+  4152   000FB0  6E39               	movwf	_lastSunday$1187^0,c
+  4153   000FB2  EFDF  F007         	goto	l2222
+  4154   000FB6                     l2220:
   4155   000FB6  0E00               	movlw	0
-  4156   000FB8  6E3A               	movwf	(_lastSunday$1189+1)^0,c
+  4156   000FB8  6E3A               	movwf	(_lastSunday$1187+1)^0,c
   4157   000FBA  0E1D               	movlw	29
-  4158   000FBC  6E39               	movwf	_lastSunday$1189^0,c
-  4159   000FBE                     l2229:
+  4158   000FBC  6E39               	movwf	_lastSunday$1187^0,c
+  4159   000FBE                     l2222:
   4160   000FBE  0E1F               	movlw	31
-  4161   000FC0  2439               	addwf	_lastSunday$1189^0,w,c
+  4161   000FC0  2439               	addwf	_lastSunday$1187^0,w,c
   4162   000FC2  6E2F               	movwf	lastSunday@daysBeforeMarch^0,c
   4163   000FC4  0E00               	movlw	0
-  4164   000FC6  203A               	addwfc	(_lastSunday$1189+1)^0,w,c
+  4164   000FC6  203A               	addwfc	(_lastSunday$1187+1)^0,w,c
   4165   000FC8  6E30               	movwf	(lastSunday@daysBeforeMarch+1)^0,c
   4166   000FCA                     
   4167                           ;functions.c: 42:     unsigned int dayOfYearForDSTStart = daysBeforeMarch + lastSundayDa
@@ -4431,8 +4431,8 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4175                           ;functions.c: 43:     return dayOfYearForDSTStart;
   4176   000FD6  C031  F01B         	movff	lastSunday@dayOfYearForDSTStart,?_lastSunday
   4177   000FDA  C032  F01C         	movff	lastSunday@dayOfYearForDSTStart+1,?_lastSunday+1
-  4178   000FDE  EF1E  F008         	goto	l197
-  4179   000FE2                     l2237:
+  4178   000FDE  EF1E  F008         	goto	l194
+  4179   000FE2                     l2230:
   4180                           
   4181                           ;functions.c: 48:     if (month == 10){
   4182   000FE2  0E0A               	movlw	10
@@ -4442,7 +4442,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4186   000FEA  EFF9  F007         	goto	u1521
   4187   000FEE  EFFB  F007         	goto	u1520
   4188   000FF2                     u1521:
-  4189   000FF2  EF1E  F008         	goto	l197
+  4189   000FF2  EF1E  F008         	goto	l194
   4190   000FF6                     u1520:
   4191   000FF6                     
   4192                           ;functions.c: 49:     unsigned int daysBeforeOctober = 31 + (leapYear ? 29 : 28) + 31 + 
@@ -4453,24 +4453,24 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4196   000FFC  EF02  F008         	goto	u1531
   4197   001000  EF04  F008         	goto	u1530
   4198   001004                     u1531:
-  4199   001004  EF0A  F008         	goto	l2243
+  4199   001004  EF0A  F008         	goto	l2236
   4200   001008                     u1530:
   4201   001008  0E00               	movlw	0
-  4202   00100A  6E3C               	movwf	(_lastSunday$1192+1)^0,c
+  4202   00100A  6E3C               	movwf	(_lastSunday$1190+1)^0,c
   4203   00100C  0E1C               	movlw	28
-  4204   00100E  6E3B               	movwf	_lastSunday$1192^0,c
-  4205   001010  EF0E  F008         	goto	l2245
-  4206   001014                     l2243:
+  4204   00100E  6E3B               	movwf	_lastSunday$1190^0,c
+  4205   001010  EF0E  F008         	goto	l2238
+  4206   001014                     l2236:
   4207   001014  0E00               	movlw	0
-  4208   001016  6E3C               	movwf	(_lastSunday$1192+1)^0,c
+  4208   001016  6E3C               	movwf	(_lastSunday$1190+1)^0,c
   4209   001018  0E1D               	movlw	29
-  4210   00101A  6E3B               	movwf	_lastSunday$1192^0,c
-  4211   00101C                     l2245:
+  4210   00101A  6E3B               	movwf	_lastSunday$1190^0,c
+  4211   00101C                     l2238:
   4212   00101C  0EF5               	movlw	245
-  4213   00101E  243B               	addwf	_lastSunday$1192^0,w,c
+  4213   00101E  243B               	addwf	_lastSunday$1190^0,w,c
   4214   001020  6E33               	movwf	lastSunday@daysBeforeOctober^0,c
   4215   001022  0E00               	movlw	0
-  4216   001024  203C               	addwfc	(_lastSunday$1192+1)^0,w,c
+  4216   001024  203C               	addwfc	(_lastSunday$1190+1)^0,w,c
   4217   001026  6E34               	movwf	(lastSunday@daysBeforeOctober+1)^0,c
   4218   001028                     
   4219                           ;functions.c: 51:     unsigned int dayOfYearForDSTEnd = daysBeforeOctober + lastSundayDa
@@ -4485,7 +4485,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4227                           ;functions.c: 53:     return dayOfYearForDSTEnd;
   4228   001034  C035  F01B         	movff	lastSunday@dayOfYearForDSTEnd,?_lastSunday
   4229   001038  C036  F01C         	movff	lastSunday@dayOfYearForDSTEnd+1,?_lastSunday+1
-  4230   00103C                     l197:
+  4230   00103C                     l194:
   4231   00103C  0012               	return		;funcret
   4232   00103E                     __end_of_lastSunday:
   4233                           	callstack 0
@@ -4534,7 +4534,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4271   001ACE                     
   4272                           ;functions.c: 18:     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
   4273   001ACE  0E01               	movlw	1
-  4274   001AD0  6E1A               	movwf	_isLeapYear$1179^0,c
+  4274   001AD0  6E1A               	movwf	_isLeapYear$1177^0,c
   4275   001AD2  0E03               	movlw	3
   4276   001AD4  1416               	andwf	isLeapYear@year^0,w,c
   4277   001AD6  6E18               	movwf	??_isLeapYear^0,c
@@ -4547,7 +4547,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4284   001AE4  EF76  F00D         	goto	u1401
   4285   001AE8  EF78  F00D         	goto	u1400
   4286   001AEC                     u1401:
-  4287   001AEC  EF8B  F00D         	goto	l2075
+  4287   001AEC  EF8B  F00D         	goto	l2068
   4288   001AF0                     u1400:
   4289   001AF0  C016  F011         	movff	isLeapYear@year,___lwmod@dividend
   4290   001AF4  C017  F012         	movff	isLeapYear@year+1,___lwmod@dividend+1
@@ -4562,9 +4562,9 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4299   001B0A  EF89  F00D         	goto	u1411
   4300   001B0E  EF8B  F00D         	goto	u1410
   4301   001B12                     u1411:
-  4302   001B12  EFA0  F00D         	goto	l2079
+  4302   001B12  EFA0  F00D         	goto	l2072
   4303   001B16                     u1410:
-  4304   001B16                     l2075:
+  4304   001B16                     l2068:
   4305   001B16  C016  F011         	movff	isLeapYear@year,___lwmod@dividend
   4306   001B1A  C017  F012         	movff	isLeapYear@year+1,___lwmod@dividend+1
   4307   001B1E  0E01               	movlw	1
@@ -4578,12 +4578,12 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4315   001B30  EF9C  F00D         	goto	u1421
   4316   001B34  EF9E  F00D         	goto	u1420
   4317   001B38                     u1421:
-  4318   001B38  EFA0  F00D         	goto	l2079
+  4318   001B38  EFA0  F00D         	goto	l2072
   4319   001B3C                     u1420:
   4320   001B3C  0E00               	movlw	0
-  4321   001B3E  6E1A               	movwf	_isLeapYear$1179^0,c
-  4322   001B40                     l2079:
-  4323   001B40  C01A  F016         	movff	_isLeapYear$1179,?_isLeapYear
+  4321   001B3E  6E1A               	movwf	_isLeapYear$1177^0,c
+  4322   001B40                     l2072:
+  4323   001B40  C01A  F016         	movff	_isLeapYear$1177,?_isLeapYear
   4324   001B44  6A17               	clrf	(?_isLeapYear+1)^0,c
   4325   001B46  0012               	return		;funcret
   4326   001B48                     __end_of_isLeapYear:
@@ -4637,24 +4637,24 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4369   001D0A  EF89  F00E         	goto	u1321
   4370   001D0E  EF8B  F00E         	goto	u1320
   4371   001D12                     u1321:
-  4372   001D12  EFAF  F00E         	goto	l782
+  4372   001D12  EFAF  F00E         	goto	l779
   4373   001D16                     u1320:
   4374   001D16  0E01               	movlw	1
   4375   001D18  6E15               	movwf	___lwmod@counter^0,c
-  4376   001D1A  EF93  F00E         	goto	l2003
-  4377   001D1E                     l2001:
+  4376   001D1A  EF93  F00E         	goto	l1996
+  4377   001D1E                     l1994:
   4378   001D1E  90D8               	bcf	status,0,c
   4379   001D20  3613               	rlcf	___lwmod@divisor^0,f,c
   4380   001D22  3614               	rlcf	(___lwmod@divisor+1)^0,f,c
   4381   001D24  2A15               	incf	___lwmod@counter^0,f,c
-  4382   001D26                     l2003:
+  4382   001D26                     l1996:
   4383   001D26  AE14               	btfss	(___lwmod@divisor+1)^0,7,c
   4384   001D28  EF98  F00E         	goto	u1331
   4385   001D2C  EF9A  F00E         	goto	u1330
   4386   001D30                     u1331:
-  4387   001D30  EF8F  F00E         	goto	l2001
+  4387   001D30  EF8F  F00E         	goto	l1994
   4388   001D34                     u1330:
-  4389   001D34                     l2005:
+  4389   001D34                     l1998:
   4390   001D34  5013               	movf	___lwmod@divisor^0,w,c
   4391   001D36  5C11               	subwf	___lwmod@dividend^0,w,c
   4392   001D38  5014               	movf	(___lwmod@divisor+1)^0,w,c
@@ -4663,19 +4663,19 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4395   001D3E  EFA3  F00E         	goto	u1341
   4396   001D42  EFA5  F00E         	goto	u1340
   4397   001D46                     u1341:
-  4398   001D46  EFA9  F00E         	goto	l2009
+  4398   001D46  EFA9  F00E         	goto	l2002
   4399   001D4A                     u1340:
   4400   001D4A  5013               	movf	___lwmod@divisor^0,w,c
   4401   001D4C  5E11               	subwf	___lwmod@dividend^0,f,c
   4402   001D4E  5014               	movf	(___lwmod@divisor+1)^0,w,c
   4403   001D50  5A12               	subwfb	(___lwmod@dividend+1)^0,f,c
-  4404   001D52                     l2009:
+  4404   001D52                     l2002:
   4405   001D52  90D8               	bcf	status,0,c
   4406   001D54  3214               	rrcf	(___lwmod@divisor+1)^0,f,c
   4407   001D56  3213               	rrcf	___lwmod@divisor^0,f,c
   4408   001D58  2E15               	decfsz	___lwmod@counter^0,f,c
-  4409   001D5A  EF9A  F00E         	goto	l2005
-  4410   001D5E                     l782:
+  4409   001D5A  EF9A  F00E         	goto	l1998
+  4410   001D5E                     l779:
   4411   001D5E  C011  F011         	movff	___lwmod@dividend,?___lwmod
   4412   001D62  C012  F012         	movff	___lwmod@dividend+1,?___lwmod+1
   4413   001D66  0012               	return		;funcret
@@ -4794,24 +4794,24 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4516   001BCC  EFEA  F00D         	goto	u1441
   4517   001BD0  EFEC  F00D         	goto	u1440
   4518   001BD4                     u1441:
-  4519   001BD4  EF14  F00E         	goto	l772
+  4519   001BD4  EF14  F00E         	goto	l769
   4520   001BD8                     u1440:
   4521   001BD8  0E01               	movlw	1
   4522   001BDA  6E10               	movwf	___lwdiv@counter^0,c
-  4523   001BDC  EFF4  F00D         	goto	l2109
-  4524   001BE0                     l2107:
+  4523   001BDC  EFF4  F00D         	goto	l2102
+  4524   001BE0                     l2100:
   4525   001BE0  90D8               	bcf	status,0,c
   4526   001BE2  360C               	rlcf	___lwdiv@divisor^0,f,c
   4527   001BE4  360D               	rlcf	(___lwdiv@divisor+1)^0,f,c
   4528   001BE6  2A10               	incf	___lwdiv@counter^0,f,c
-  4529   001BE8                     l2109:
+  4529   001BE8                     l2102:
   4530   001BE8  AE0D               	btfss	(___lwdiv@divisor+1)^0,7,c
   4531   001BEA  EFF9  F00D         	goto	u1451
   4532   001BEE  EFFB  F00D         	goto	u1450
   4533   001BF2                     u1451:
-  4534   001BF2  EFF0  F00D         	goto	l2107
+  4534   001BF2  EFF0  F00D         	goto	l2100
   4535   001BF6                     u1450:
-  4536   001BF6                     l2111:
+  4536   001BF6                     l2104:
   4537   001BF6  90D8               	bcf	status,0,c
   4538   001BF8  360E               	rlcf	___lwdiv@quotient^0,f,c
   4539   001BFA  360F               	rlcf	(___lwdiv@quotient+1)^0,f,c
@@ -4823,20 +4823,20 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4545   001C06  EF07  F00E         	goto	u1461
   4546   001C0A  EF09  F00E         	goto	u1460
   4547   001C0E                     u1461:
-  4548   001C0E  EF0E  F00E         	goto	l2119
+  4548   001C0E  EF0E  F00E         	goto	l2112
   4549   001C12                     u1460:
   4550   001C12  500C               	movf	___lwdiv@divisor^0,w,c
   4551   001C14  5E0A               	subwf	___lwdiv@dividend^0,f,c
   4552   001C16  500D               	movf	(___lwdiv@divisor+1)^0,w,c
   4553   001C18  5A0B               	subwfb	(___lwdiv@dividend+1)^0,f,c
   4554   001C1A  800E               	bsf	___lwdiv@quotient^0,0,c
-  4555   001C1C                     l2119:
+  4555   001C1C                     l2112:
   4556   001C1C  90D8               	bcf	status,0,c
   4557   001C1E  320D               	rrcf	(___lwdiv@divisor+1)^0,f,c
   4558   001C20  320C               	rrcf	___lwdiv@divisor^0,f,c
   4559   001C22  2E10               	decfsz	___lwdiv@counter^0,f,c
-  4560   001C24  EFFB  F00D         	goto	l2111
-  4561   001C28                     l772:
+  4560   001C24  EFFB  F00D         	goto	l2104
+  4561   001C28                     l769:
   4562   001C28  C00E  F00A         	movff	___lwdiv@quotient,?___lwdiv
   4563   001C2C  C00F  F00B         	movff	___lwdiv@quotient+1,?___lwdiv+1
   4564   001C30  0012               	return		;funcret
@@ -4903,7 +4903,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4620   00142A  EF19  F00A         	goto	u1721
   4621   00142E  EF1B  F00A         	goto	u1720
   4622   001432                     u1721:
-  4623   001432  EF26  F00A         	goto	l2381
+  4623   001432  EF26  F00A         	goto	l2374
   4624   001436                     u1720:
   4625   001436                     
   4626                           ;functions.c: 93:        *hour = 0;
@@ -4920,7 +4920,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4637   001446  2ADE               	incf	postinc2,f,c
   4638   001448  0E00               	movlw	0
   4639   00144A  22DD               	addwfc	postdec2,f,c
-  4640   00144C                     l2381:
+  4640   00144C                     l2374:
   4641                           
   4642                           ;functions.c: 98:     if (leap == 0 && *day > 365) {
   4643   00144C  5007               	movf	changeHourDayYear@leap^0,w,c
@@ -4929,7 +4929,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4646   001452  EF2D  F00A         	goto	u1731
   4647   001456  EF2F  F00A         	goto	u1730
   4648   00145A                     u1731:
-  4649   00145A  EF4F  F00A         	goto	l2391
+  4649   00145A  EF4F  F00A         	goto	l2384
   4650   00145E                     u1730:
   4651   00145E  5005               	movf	changeHourDayYear@day^0,w,c
   4652   001460  6ED9               	movwf	fsr2l,c
@@ -4942,7 +4942,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4659   00146E  EF3B  F00A         	goto	u1741
   4660   001472  EF3D  F00A         	goto	u1740
   4661   001476                     u1741:
-  4662   001476  EF4F  F00A         	goto	l2391
+  4662   001476  EF4F  F00A         	goto	l2384
   4663   00147A                     u1740:
   4664   00147A                     
   4665                           ;functions.c: 99:         *day = 1;
@@ -4968,7 +4968,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4685   001498  6ADA               	clrf	fsr2h,c
   4686   00149A  6ADE               	clrf	postinc2,c
   4687   00149C  6ADD               	clrf	postdec2,c
-  4688   00149E                     l2391:
+  4688   00149E                     l2384:
   4689                           
   4690                           ;functions.c: 105:     if (leap == 1 && *day > 366) {
   4691   00149E  0407               	decf	changeHourDayYear@leap^0,w,c
@@ -4977,7 +4977,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4694   0014A4  EF56  F00A         	goto	u1751
   4695   0014A8  EF58  F00A         	goto	u1750
   4696   0014AC                     u1751:
-  4697   0014AC  EF73  F00A         	goto	l217
+  4697   0014AC  EF73  F00A         	goto	l214
   4698   0014B0                     u1750:
   4699   0014B0  5005               	movf	changeHourDayYear@day^0,w,c
   4700   0014B2  6ED9               	movwf	fsr2l,c
@@ -4990,7 +4990,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4707   0014C0  EF64  F00A         	goto	u1761
   4708   0014C4  EF66  F00A         	goto	u1760
   4709   0014C8                     u1761:
-  4710   0014C8  EF73  F00A         	goto	l217
+  4710   0014C8  EF73  F00A         	goto	l214
   4711   0014CC                     u1760:
   4712   0014CC                     
   4713                           ;functions.c: 106:         *day = 1;
@@ -5009,7 +5009,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4726   0014E0  2ADE               	incf	postinc2,f,c
   4727   0014E2  0E00               	movlw	0
   4728   0014E4  22DD               	addwfc	postdec2,f,c
-  4729   0014E6                     l217:
+  4729   0014E6                     l214:
   4730   0014E6  0012               	return		;funcret
   4731   0014E8                     __end_of_changeHourDayYear:
   4732                           	callstack 0
@@ -5061,13 +5061,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4772   0014EA  EF79  F00A         	goto	u1551
   4773   0014EE  EF7B  F00A         	goto	u1550
   4774   0014F2                     u1551:
-  4775   0014F2  EF7E  F00A         	goto	l84
+  4775   0014F2  EF7E  F00A         	goto	l81
   4776   0014F6                     u1550:
   4777   0014F6  807F               	bsf	127,0,c	;volatile
-  4778   0014F8  EF7F  F00A         	goto	l85
-  4779   0014FC                     l84:
+  4778   0014F8  EF7F  F00A         	goto	l82
+  4779   0014FC                     l81:
   4780   0014FC  907F               	bcf	127,0,c	;volatile
-  4781   0014FE                     l85:
+  4781   0014FE                     l82:
   4782                           
   4783                           ;LEDarray.c: 37:     if (number & (1 << 1)) {LATGbits.LATG1 = 1;} else {LATGbits.LATG1 =
       +                           0;}
@@ -5075,13 +5075,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4785   001500  EF84  F00A         	goto	u1561
   4786   001504  EF86  F00A         	goto	u1560
   4787   001508                     u1561:
-  4788   001508  EF89  F00A         	goto	l86
+  4788   001508  EF89  F00A         	goto	l83
   4789   00150C                     u1560:
   4790   00150C  827F               	bsf	127,1,c	;volatile
-  4791   00150E  EF8A  F00A         	goto	l87
-  4792   001512                     l86:
+  4791   00150E  EF8A  F00A         	goto	l84
+  4792   001512                     l83:
   4793   001512  927F               	bcf	127,1,c	;volatile
-  4794   001514                     l87:
+  4794   001514                     l84:
   4795                           
   4796                           ;LEDarray.c: 38:     if (number & (1 << 2)) {LATAbits.LATA2 = 1;} else {LATAbits.LATA2 =
       +                           0;}
@@ -5089,13 +5089,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4798   001516  EF8F  F00A         	goto	u1571
   4799   00151A  EF91  F00A         	goto	u1570
   4800   00151E                     u1571:
-  4801   00151E  EF94  F00A         	goto	l88
+  4801   00151E  EF94  F00A         	goto	l85
   4802   001522                     u1570:
   4803   001522  8479               	bsf	121,2,c	;volatile
-  4804   001524  EF95  F00A         	goto	l89
-  4805   001528                     l88:
+  4804   001524  EF95  F00A         	goto	l86
+  4805   001528                     l85:
   4806   001528  9479               	bcf	121,2,c	;volatile
-  4807   00152A                     l89:
+  4807   00152A                     l86:
   4808                           
   4809                           ;LEDarray.c: 39:     if (number & (1 << 3)) {LATFbits.LATF6 = 1;} else {LATFbits.LATF6 =
       +                           0;}
@@ -5103,13 +5103,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4811   00152C  EF9A  F00A         	goto	u1581
   4812   001530  EF9C  F00A         	goto	u1580
   4813   001534                     u1581:
-  4814   001534  EF9F  F00A         	goto	l90
+  4814   001534  EF9F  F00A         	goto	l87
   4815   001538                     u1580:
   4816   001538  8C7E               	bsf	126,6,c	;volatile
-  4817   00153A  EFA0  F00A         	goto	l91
-  4818   00153E                     l90:
+  4817   00153A  EFA0  F00A         	goto	l88
+  4818   00153E                     l87:
   4819   00153E  9C7E               	bcf	126,6,c	;volatile
-  4820   001540                     l91:
+  4820   001540                     l88:
   4821                           
   4822                           ;LEDarray.c: 40:     if (number & (1 << 4)) {LATAbits.LATA4 = 1;} else {LATAbits.LATA4 =
       +                           0;}
@@ -5117,13 +5117,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4824   001542  EFA5  F00A         	goto	u1591
   4825   001546  EFA7  F00A         	goto	u1590
   4826   00154A                     u1591:
-  4827   00154A  EFAA  F00A         	goto	l92
+  4827   00154A  EFAA  F00A         	goto	l89
   4828   00154E                     u1590:
   4829   00154E  8879               	bsf	121,4,c	;volatile
-  4830   001550  EFAB  F00A         	goto	l93
-  4831   001554                     l92:
+  4830   001550  EFAB  F00A         	goto	l90
+  4831   001554                     l89:
   4832   001554  9879               	bcf	121,4,c	;volatile
-  4833   001556                     l93:
+  4833   001556                     l90:
   4834                           
   4835                           ;LEDarray.c: 41:     if (number & (1 << 5)) {LATAbits.LATA5 = 1;} else {LATAbits.LATA5 =
       +                           0;}
@@ -5131,13 +5131,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4837   001558  EFB0  F00A         	goto	u1601
   4838   00155C  EFB2  F00A         	goto	u1600
   4839   001560                     u1601:
-  4840   001560  EFB5  F00A         	goto	l94
+  4840   001560  EFB5  F00A         	goto	l91
   4841   001564                     u1600:
   4842   001564  8A79               	bsf	121,5,c	;volatile
-  4843   001566  EFB6  F00A         	goto	l95
-  4844   00156A                     l94:
+  4843   001566  EFB6  F00A         	goto	l92
+  4844   00156A                     l91:
   4845   00156A  9A79               	bcf	121,5,c	;volatile
-  4846   00156C                     l95:
+  4846   00156C                     l92:
   4847                           
   4848                           ;LEDarray.c: 42:     if (number & (1 << 6)) {LATFbits.LATF0 = 1;} else {LATFbits.LATF0 =
       +                           0;}
@@ -5145,13 +5145,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4850   00156E  EFBB  F00A         	goto	u1611
   4851   001572  EFBD  F00A         	goto	u1610
   4852   001576                     u1611:
-  4853   001576  EFC0  F00A         	goto	l96
+  4853   001576  EFC0  F00A         	goto	l93
   4854   00157A                     u1610:
   4855   00157A  807E               	bsf	126,0,c	;volatile
-  4856   00157C  EFC1  F00A         	goto	l97
-  4857   001580                     l96:
+  4856   00157C  EFC1  F00A         	goto	l94
+  4857   001580                     l93:
   4858   001580  907E               	bcf	126,0,c	;volatile
-  4859   001582                     l97:
+  4859   001582                     l94:
   4860                           
   4861                           ;LEDarray.c: 43:     if (number & (1 << 7)) {LATBbits.LATB0 = 1;} else {LATBbits.LATB0 =
       +                           0;}
@@ -5159,13 +5159,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4863   001584  EFC6  F00A         	goto	u1621
   4864   001588  EFC8  F00A         	goto	u1620
   4865   00158C                     u1621:
-  4866   00158C  EFCB  F00A         	goto	l98
+  4866   00158C  EFCB  F00A         	goto	l95
   4867   001590                     u1620:
   4868   001590  807A               	bsf	122,0,c	;volatile
-  4869   001592  EFCC  F00A         	goto	l99
-  4870   001596                     l98:
+  4869   001592  EFCC  F00A         	goto	l96
+  4870   001596                     l95:
   4871   001596  907A               	bcf	122,0,c	;volatile
-  4872   001598                     l99:
+  4872   001598                     l96:
   4873                           
   4874                           ;LEDarray.c: 44:     if (number & (1 << 8)) {LATBbits.LATB1 = 1;} else {LATBbits.LATB1 =
       +                           0;}
@@ -5173,13 +5173,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4876   00159A  EFD1  F00A         	goto	u1631
   4877   00159E  EFD3  F00A         	goto	u1630
   4878   0015A2                     u1631:
-  4879   0015A2  EFD6  F00A         	goto	l100
+  4879   0015A2  EFD6  F00A         	goto	l97
   4880   0015A6                     u1630:
   4881   0015A6  827A               	bsf	122,1,c	;volatile
-  4882   0015A8  EFD7  F00A         	goto	l102
-  4883   0015AC                     l100:
+  4882   0015A8  EFD7  F00A         	goto	l99
+  4883   0015AC                     l97:
   4884   0015AC  927A               	bcf	122,1,c	;volatile
-  4885   0015AE                     l102:
+  4885   0015AE                     l99:
   4886   0015AE  0012               	return		;funcret
   4887   0015B0                     __end_of_LEDarray_disp_bin:
   4888                           	callstack 0
@@ -5236,7 +5236,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4934   00002A  EF19  F000         	goto	i1u181_21
   4935   00002E  EF1B  F000         	goto	i1u181_20
   4936   000032                     i1u181_21:
-  4937   000032  EF44  F000         	goto	i1l132
+  4937   000032  EF44  F000         	goto	i1l129
   4938   000036                     i1u181_20:
   4939   000036                     
   4940                           ; BSR set to: 14
@@ -5263,7 +5263,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4961   00004A  EF29  F000         	goto	i1u182_21
   4962   00004E  EF2B  F000         	goto	i1u182_20
   4963   000052                     i1u182_21:
-  4964   000052  EF37  F000         	goto	i1l2443
+  4964   000052  EF37  F000         	goto	i1l2436
   4965   000056                     i1u182_20:
   4966   000056                     
   4967                           ; BSR set to: 0
@@ -5275,13 +5275,13 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4973   000060  EF34  F000         	goto	i1u183_21
   4974   000064  EF36  F000         	goto	i1u183_20
   4975   000068                     i1u183_21:
-  4976   000068  EF37  F000         	goto	i1l2443
+  4976   000068  EF37  F000         	goto	i1l2436
   4977   00006C                     i1u183_20:
   4978   00006C                     
   4979                           ; BSR set to: 0
   4980                           ;interrupts.c: 58:          LATHbits.LATH3 = 0;
   4981   00006C  9680               	bcf	128,3,c	;volatile
-  4982   00006E                     i1l2443:
+  4982   00006E                     i1l2436:
   4983                           
   4984                           ; BSR set to: 0
   4985                           ;interrupts.c: 60:      if (hour == 6){
@@ -5292,19 +5292,19 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   4990   000076  EF3F  F000         	goto	i1u184_21
   4991   00007A  EF41  F000         	goto	i1u184_20
   4992   00007E                     i1u184_21:
-  4993   00007E  EF42  F000         	goto	i1l134
+  4993   00007E  EF42  F000         	goto	i1l131
   4994   000082                     i1u184_20:
   4995   000082                     
   4996                           ; BSR set to: 0
   4997                           ;interrupts.c: 61:          LATHbits.LATH3 = 1;
   4998   000082  8680               	bsf	128,3,c	;volatile
-  4999   000084                     i1l134:
+  4999   000084                     i1l131:
   5000                           
   5001                           ; BSR set to: 0
   5002                           ;interrupts.c: 64:      PIR0bits.TMR0IF = 0;
   5003   000084  010E               	movlb	14	; () banked
   5004   000086  9B33               	bcf	51,5,b	;volatile
-  5005   000088                     i1l132:
+  5005   000088                     i1l129:
   5006                           
   5007                           ; BSR set to: 14
   5008                           ;interrupts.c: 68:     if (PIR2bits.C1IF == 1) {
@@ -5312,7 +5312,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   5010   00008A  EF49  F000         	goto	i1u185_21
   5011   00008E  EF4B  F000         	goto	i1u185_20
   5012   000092                     i1u185_21:
-  5013   000092  EF4D  F000         	goto	i1l135
+  5013   000092  EF4D  F000         	goto	i1l132
   5014   000096                     i1u185_20:
   5015   000096                     
   5016                           ; BSR set to: 14
@@ -5321,7 +5321,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   5019                           
   5020                           ;interrupts.c: 72:         PIR2bits.C1IF = 0;
   5021   000098  9135               	bcf	53,0,b	;volatile
-  5022   00009A                     i1l135:
+  5022   00009A                     i1l132:
   5023                           
   5024                           ; BSR set to: 14
   5025                           ;interrupts.c: 75:     if (PIR2bits.C2IF == 1) {
@@ -5329,7 +5329,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   5027   00009C  EF52  F000         	goto	i1u186_21
   5028   0000A0  EF54  F000         	goto	i1u186_20
   5029   0000A4                     i1u186_21:
-  5030   0000A4  EF56  F000         	goto	i1l137
+  5030   0000A4  EF56  F000         	goto	i1l134
   5031   0000A8                     i1u186_20:
   5032   0000A8                     
   5033                           ; BSR set to: 14
@@ -5338,7 +5338,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   5036                           
   5037                           ;interrupts.c: 77:             PIR2bits.C2IF = 0;
   5038   0000AA  9335               	bcf	53,1,b	;volatile
-  5039   0000AC                     i1l137:
+  5039   0000AC                     i1l134:
   5040                           
   5041                           ; BSR set to: 14
   5042   0000AC  C003  FFE0         	movff	??_LowISR+2,bsr
@@ -5523,9 +5523,9 @@ Pointer List with Targets:
     read_prec_or_width@fmt	PTR PTR const unsigned char  size(1) Largest target is 1
 		 -> vfprintf@cfmt(COMRAM[1]), 
 
-    S1903$buffer	PTR unsigned char  size(2) Largest target is 0
+    S1901$buffer	PTR unsigned char  size(2) Largest target is 0
 
-    S1903$source	PTR const unsigned char  size(2) Largest target is 0
+    S1901$source	PTR const unsigned char  size(2) Largest target is 0
 
     sprintf@ap	PTR void [1] size(1) Largest target is 2
 		 -> ?_sprintf(COMRAM[2]), 
@@ -5998,206 +5998,206 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.45 build 20230818022343 
-Symbol Table                                                                                   Fri Feb 09 11:34:41 2024
+Symbol Table                                                                                   Fri Feb 09 11:39:41 2024
 
-                                    l47 1F1E                                      l81 1F4A  
-                                    l90 153E                                      l91 1540  
-                                    l92 1554                                      l84 14FC  
-                                    l93 1556                                      l85 14FE  
-                                    l94 156A                                      l86 1512  
-                                    l95 156C                                      l87 1514  
-                                    l96 1580                                      l88 1528  
-                                    l97 1582                                      l89 152A  
-                                    l98 1596                                      l99 1598  
+                                    l47 1F1E                                      l81 14FC  
+                                    l90 1556                                      l82 14FE  
+                                    l91 156A                                      l83 1512  
+                                    l92 156C                                      l84 1514  
+                                    l93 1580                                      l85 1528  
+                                    l94 1582                                      l86 152A  
+                                    l78 1F4A                                      l95 1596  
+                                    l87 153E                                      l96 1598  
+                                    l88 1540                                      l97 15AC  
+                                    l89 1554                                      l99 15AE  
                           ___awdiv@sign 0009                                      bsr 0FE0  
                    ___wmul@multiplicand 0006                       ??_Interrupts_init 0004  
-                                   l100 15AC                                     l102 15AE  
-                                   l211 1C9A                                     l221 1BBC  
-                                   l207 187E                                     l127 200C  
-                                   l224 1FF2                                     l217 14E6  
-                                   l162 2020                                     l250 1CDE  
-                                   l243 202E                                     l252 1CF4  
-                                   l165 1F94                                     l254 1D02  
-                                   l246 1CB2                                     l262 1ACC  
-                                   l168 1FB8                                     l248 1CC8  
-                                   l512 1672                                     l281 1F70  
-                                   l257 1DFE                                     l273 1EF0  
-                                   l259 1E20                                     l267 1E5A  
-                                   l189 1B46                                     l197 103C  
-                                   l525 1722                                     l278 19BC  
-                                   l772 1C28                                     l782 1D5E  
-                                   l779 1C30                                     l789 1D66  
-                                   l982 1A2C                                     l959 1E8E  
-                                   l984 1A46                                     l979 19EE  
-                                   l987 121E                                     u940 1890  
-                                   u941 188C                                     u950 18A0  
-                                   u951 189C                                     u960 18C6  
-                                   u961 18C2                                     u970 18F8  
-                                   u971 18F4                                     u980 1DE4  
-                                   u981 1DE0                                     u990 15C2  
-                                   u991 15BE                                     _abs 1E90  
-                                   _pad 19BE                            ___awmod@sign 0009  
-                                   wreg 0FE8                       main@backward_zone 0086  
-                                  l1000 1326                                    l1004 17C8  
-                                  l1023 11BE                                    l1008 17D0  
-                                  l2001 1D1E                                    l1033 1EAA  
-                                  l2011 1D58                                    l2003 1D26  
-                                  ?_abs 000A                                    l1036 1EC2  
-                                  l2101 1BBE                                    l2005 1D34  
-                                  l2021 107C                                    l2013 103E  
-                                  l1029 1DA8                                    l2111 1BF6  
-                                  l2103 1BC6                                    l2007 1D4A  
-                                  l2031 109A                                    l2023 1084  
-                                  l2015 1064                                    l1048 1928  
-                                  l1056 1DE4                                    l2121 1C22  
-                                  l2113 1BFC                                    l2105 1BD8  
-                                  l2009 1D52                                    l2201 1FAC  
-                                  l2041 110C                                    l2025 1086  
-                                  l2033 10D0                                    l2017 106C  
-                                  l2115 1C12                                    l2107 1BE0  
-                                  l2211 0E3A                                    l2203 1FAE  
-                                  l1059 2030                                    l2051 1178  
-                                  l2043 1116                                    l2035 10E0  
-                                  l2027 1092                                    l2019 1078  
-                                  l2123 1D68                                    l2117 1C1A  
-                                  l2109 1BE8                                    l2221 0F84  
-                                  l2213 0F18                                    l2205 1FB0  
-                                  l2141 1EF2                                    l2301 1FDE  
-                                  l2133 1E24                                    l2045 1136  
-                                  l2037 10F4                                    l2125 1D70  
-                                  l2311 14E8                                    l2119 1C1C  
-                                  l2071 1AD2                                    l2231 0FCA  
-                                  l2223 0F98                                    l2215 0F34  
-                                  l2207 1FB4                                    l2151 1F0C  
-                                  l2143 1EFA                                    l2303 1FE2  
-                                  l2135 1E34                                    l2055 118C  
-                                  l2047 1156                                    l2039 1102  
-                                  l2127 1D80                                    l2321 154E  
-                                  l2313 14F6                                    l2073 1AF0  
-                                  l2241 1008                                    l2233 0FD6  
-                                  l2225 0FAA                                    l2217 0F54  
-                                  l2209 0E26                                    l2161 1F20  
-                                  l2153 1F0E                                    l2145 1F04  
-                                  l2305 1FE6                                    l2401 1B56  
-                                  l2137 1E3E                                    l2049 116E  
-                                  l2129 1DA0                                    l2323 1564  
-                                  l2315 150C                                    l2075 1B16  
-                                  l2243 1014                                    l2227 0FB6  
-                                  l2219 0F74                                    l2083 200E  
-                                  l2091 1DF8                                    l2171 1F3C  
-                                  l2163 1F28                                    l2155 1F10  
-                                  l2147 1F06                                    l2307 1FEA  
-                                  l2403 1B6A                                    l2139 1E50  
-                                  l2059 1198                                    l2331 192A  
-                                  l2411 134A                                    l2325 157A  
-                                  l2317 1522                                    l2077 1B3C  
-                                  l2069 1ACE                                    l2245 101C  
-                                  l2229 0FBE                                    l2237 0FE2  
-                                  l2085 2014                                    l2181 1F72  
-                                  l2093 1E00                                    l2261 1A76  
-                                  l2253 1A48                                    l2173 1F42  
-                                  l2165 1F2A                                    l2157 1F12  
-                                  l2149 1F0A                                    l2309 1FEE  
-                                  l2405 1B88                                    l2341 196C  
-                                  l2333 1930                                    l2421 139C  
-                                  l2413 134E                                    l2327 1590  
-                                  l2319 1538                                    l2079 1B40  
-                                  l2247 1028                                    l2239 0FF6  
-                                  l2351 1C32                                    l2087 201E  
-                                  l2191 1F8C                                    l2183 1F74  
-                                  l2095 1E06                                    l2271 1AA0  
-                                  l2263 1A7C                                    l2255 1A60  
-                                  l2175 1F44                                    l2167 1F30  
-                                  l2159 1F1C                                    l2407 1BA0  
-                                  l2343 1980                                    l2335 194C  
-                                  l2423 13C0                                    l2415 1362  
-                                  l2329 15A6                                    l1801 1F4C  
-                                  l2249 1034                                    l2353 1C44  
-                                  l2361 1804                                    l2193 1F90  
-                                  l2185 1F86                                    l2097 1E0C  
-                                  l2089 1DE8                                    l2273 1AAA  
-                                  l2265 1A86                                    l2257 1A66  
-                                  l2177 1F46                                    l2169 1F3A  
-                                  l2281 1EC8                                    l2345 198C  
-                                  l2337 1954                                    l2425 13E4  
-                                  l2417 136E                                    l2409 1328  
-                                  l1803 1F68                                    l2355 1C56  
-                                  l2371 1864                                    l2363 1810  
-                                  l2195 1F96                                    l2187 1F88  
-                                  l2179 1FF4                                    l2099 1E18  
-                                  l2275 1AB8                                    l2267 1A8E  
-                                  l2259 1A6C                                    l2283 1ED8  
-                                  l1811 15C2                                    l2291 1E6C  
-                                  l2339 195A                                    l2427 1400  
-                                  l2419 1374                                    l2381 144C  
-                                  l2373 1870                                    l2365 181A  
-                                  l2357 17D2                                    l2197 1F98  
-                                  l2189 1F8A                                    l2277 1AC2  
-                                  l2269 1A98                                    l2285 1EDA  
-                                  l1821 15E8                                    l1813 15CA  
-                                  l1901 1A3A                                    l2293 1E74  
-                                  l2349 19A4                                    l2383 145E  
-                                  l2391 149E                                    l2375 141C  
-                                  l2367 1832                                    l2359 17EA  
-                                  l2199 1FAA                                    l1911 202C  
-                                  l2279 1EC4                                    l1831 1620  
-                                  l1823 15F0                                    l1815 15CE  
-                                  l1807 15B0                                    l1903 1E90  
-                                  l2471 10C2                                    l2295 1E84  
-                                  l2287 1E5C                                    l2393 14B0  
-                                  l2385 147A                                    l2377 1436  
-                                  l2369 184C                                    l1841 164C  
-                                  l1833 1626                                    l1825 1602  
-                                  l1817 15DC                                    l1809 15B4  
-                                  l1905 1E9E                                    l1921 11F0  
-                                  l1913 11C0                                    l2289 1E64  
-                                  l2395 14CC                                    l2387 1488  
-                                  l2379 1440                                    l1907 2022  
-                                  l2299 1FDA                                    l1835 163C  
-                                  l1827 160A                                    l1843 1652  
-                                  l1819 15E4                                    l1851 1674  
-                                  l1931 1226                                    l1923 11F6  
-                                  l1915 11C4                                    l2397 14DA  
-                                  l2389 1494                                    l1909 2024  
-                                  l1845 1662                                    l1837 1644  
-                                  l1829 1612                                    l1861 16A0  
-                                  l1853 1678                                    l1781 1890  
-                                  l1941 126E                                    l1933 1230  
-                                  l1925 1206                                    l1917 11D8  
-                                  l2399 1B48                                    l1847 166A  
-                                  l1839 1646                                    l1871 16D8  
-                                  l1863 16A8                                    l1855 1686  
-                                  l1783 18A0                                    l1951 12E0  
-                                  l1935 1236                                    l1943 128A  
-                                  l1927 1212                                    l1919 11E0  
-                                  l1881 1712                                    l1873 16EE  
-                                  l1865 16BA                                    l1857 168E  
-                                  l1785 18AA                                    l1793 1DAA  
-                                  l1945 12A4                                    l1953 12EE  
-                                  l1937 1264                                    l1929 121A  
-                                  l1883 171A                                    l1875 16F6  
-                                  l1867 16C2                                    l1859 1692  
-                                  l1787 18C6                                    l1779 1880  
-                                  l1795 1DB6                                    l1891 19D8  
-                                  l1955 12FE                                    l1947 12B6  
-                                  l1939 1268                                    l1971 1776  
-                                  l1963 1724                                    l1981 1CB4  
-                                  l1877 16FC                                    l1869 16CA  
-                                  l1789 18F8                                    l1797 1DC4  
-                                  l1893 19E6                                    l1957 1304  
-                                  l1949 12C6                                    l1973 1796  
-                                  l1965 172C                                    ?_pad 0011  
-                                  l1991 1CEE                                    l1983 1CC2  
-                                  l1879 1702                                    l1799 1DC8  
-                                  l1895 19FA                                    l1887 19BE  
-                                  l1959 1310                                    l1967 1752  
-                                  l1975 179E                                    l1993 1CF6  
-                                  l1985 1CCA                                    l1977 1C9E  
-                                  l1897 1A0A                                    l1889 19CC  
-                                  l1969 175A                                    l1995 1CFA  
-                                  l1987 1CD8                                    l1979 1CAC  
-                                  l1899 1A0E                                    l1997 1D04  
-                                  l1989 1CE0                                    l1999 1D16  
+                                   l204 187E                                     l124 200C  
+                                   l221 1FF2                                     l214 14E6  
+                                   l208 1C9A                                     l240 202E  
+                                   l162 1F94                                     l218 1BBC  
+                                   l251 1D02                                     l243 1CB2  
+                                   l165 1FB8                                     l245 1CC8  
+                                   l254 1DFE                                     l270 1EF0  
+                                   l159 2020                                     l247 1CDE  
+                                   l256 1E20                                     l264 1E5A  
+                                   l249 1CF4                                     l186 1B46  
+                                   l194 103C                                     l522 1722  
+                                   l259 1ACC                                     l275 19BC  
+                                   l509 1672                                     l278 1F70  
+                                   l776 1C30                                     l769 1C28  
+                                   l786 1D66                                     l779 1D5E  
+                                   l956 1E8E                                     l981 1A46  
+                                   l976 19EE                                     l984 121E  
+                                   l979 1A2C                                     l997 1326  
+                                   u940 1890                                     u941 188C  
+                                   u950 18A0                                     u951 189C  
+                                   u960 18C6                                     u961 18C2  
+                                   u970 18F8                                     u971 18F4  
+                                   u980 1DE4                                     u981 1DE0  
+                                   u990 15C2                                     u991 15BE  
+                                   _abs 1E90                                     _pad 19BE  
+                          ___awmod@sign 0009                                     wreg 0FE8  
+                     main@backward_zone 0086                                    l1001 17C8  
+                                  l1020 11BE                                    l1005 17D0  
+                                  l1030 1EAA                                    l2000 1D4A  
+                                  l1033 1EC2                                    l2002 1D52  
+                                  l2010 106C                                    l1026 1DA8  
+                                  ?_abs 000A                                    l2100 1BE0  
+                                  l2004 1D58                                    l2020 1092  
+                                  l2012 1078                                    l1045 1928  
+                                  l1053 1DE4                                    l2110 1C1A  
+                                  l2102 1BE8                                    l2030 10F4  
+                                  l2014 107C                                    l2006 103E  
+                                  l2112 1C1C                                    l2104 1BF6  
+                                  l2200 1FB4                                    l1056 2030  
+                                  l2040 1156                                    l2032 1102  
+                                  l2024 109A                                    l2016 1084  
+                                  l2008 1064                                    l2120 1D80  
+                                  l2114 1C22                                    l2106 1BFC  
+                                  l2210 0F54                                    l2202 0E26  
+                                  l2130 1E3E                                    l2042 116E  
+                                  l2034 110C                                    l2018 1086  
+                                  l2026 10D0                                    l2122 1DA0  
+                                  l2108 1C12                                    l2220 0FB6  
+                                  l2212 0F74                                    l2204 0E3A  
+                                  l2140 1F06                                    l2300 1FEA  
+                                  l2132 1E50                                    l2044 1178  
+                                  l2036 1116                                    l2028 10E0  
+                                  l2052 1198                                    l2116 1D68  
+                                  l2310 1522                                    l2070 1B3C  
+                                  l2062 1ACE                                    l2222 0FBE  
+                                  l2230 0FE2                                    l2214 0F84  
+                                  l2206 0F18                                    l2150 1F12  
+                                  l2142 1F0A                                    l2134 1EF2  
+                                  l2302 1FEE                                    l2126 1E24  
+                                  l2038 1136                                    l2118 1D70  
+                                  l2320 1590                                    l2312 1538  
+                                  l2304 14E8                                    l2072 1B40  
+                                  l2064 1AD2                                    l2240 1028  
+                                  l2232 0FF6                                    l2224 0FCA  
+                                  l2216 0F98                                    l2208 0F34  
+                                  l2080 201E                                    l2160 1F30  
+                                  l2152 1F1C                                    l2144 1F0C  
+                                  l2136 1EFA                                    l2400 1BA0  
+                                  l2128 1E34                                    l2048 118C  
+                                  l2322 15A6                                    l2314 154E  
+                                  l2306 14F6                                    l2066 1AF0  
+                                  l2242 1034                                    l2234 1008  
+                                  l2226 0FD6                                    l2218 0FAA  
+                                  l2090 1E0C                                    l2082 1DE8  
+                                  l2250 1A66                                    l2170 1F46  
+                                  l2162 1F3A                                    l2154 1F20  
+                                  l2146 1F0E                                    l2138 1F04  
+                                  l2330 1954                                    l2410 136E  
+                                  l2402 1328                                    l2316 1564  
+                                  l2308 150C                                    l2068 1B16  
+                                  l2236 1014                                    l2076 200E  
+                                  l2180 1F88                                    l2172 1FF4  
+                                  l2092 1E18                                    l2084 1DF8  
+                                  l2260 1A8E                                    l2252 1A6C  
+                                  l2164 1F3C                                    l2156 1F28  
+                                  l2148 1F10                                    l2332 195A  
+                                  l2324 192A                                    l2420 1400  
+                                  l2412 1374                                    l2404 134A  
+                                  l2318 157A                                    l2094 1BBE  
+                                  l2238 101C                                    l2350 17D2  
+                                  l2078 2014                                    l2190 1F98  
+                                  l2182 1F8A                                    l2174 1F72  
+                                  l2086 1E00                                    l2270 1AC2  
+                                  l2262 1A98                                    l2254 1A76  
+                                  l2246 1A48                                    l2166 1F42  
+                                  l2158 1F2A                                    l2342 19A4  
+                                  l2334 196C                                    l2326 1930  
+                                  l2414 139C                                    l2406 134E  
+                                  l2096 1BC6                                    l2344 1C32  
+                                  l2360 1832                                    l2352 17EA  
+                                  l2192 1FAA                                    l2184 1F8C  
+                                  l2176 1F74                                    l2088 1E06  
+                                  l2264 1AA0                                    l2256 1A7C  
+                                  l2248 1A60                                    l2168 1F44  
+                                  l2272 1EC4                                    l1800 15B0  
+                                  l2280 1E5C                                    l2336 1980  
+                                  l2328 194C                                    l2416 13C0  
+                                  l2408 1362                                    l2370 1436  
+                                  l2098 1BD8                                    l2346 1C44  
+                                  l2362 184C                                    l2354 1804  
+                                  l2194 1FAC                                    l2186 1F90  
+                                  l2178 1F86                                    l2266 1AAA  
+                                  l2258 1A86                                    l2274 1EC8  
+                                  l1810 15DC                                    l1802 15B4  
+                                  l2282 1E64                                    l2338 198C  
+                                  l2418 13E4                                    l2380 1488  
+                                  l2372 1440                                    l2348 1C56  
+                                  l2364 1864                                    l2356 1810  
+                                  l2196 1FAE                                    l2188 1F96  
+                                  l1900 2022                                    l2268 1AB8  
+                                  l2292 1FDA                                    l2276 1ED8  
+                                  l1820 160A                                    l1812 15E4  
+                                  l1804 15C2                                    l2284 1E6C  
+                                  l2390 14DA                                    l2382 1494  
+                                  l2374 144C                                    l2366 1870  
+                                  l2358 181A                                    l2198 1FB0  
+                                  l1902 2024                                    l2294 1FDE  
+                                  l2278 1EDA                                    l1830 1644  
+                                  l1822 1612                                    l1814 15E8  
+                                  l1806 15CA                                    l1910 11D8  
+                                  l2286 1E74                                    l2376 145E  
+                                  l2384 149E                                    l2368 141C  
+                                  l1904 202C                                    l2296 1FE2  
+                                  l2392 1B48                                    l1840 166A  
+                                  l1832 1646                                    l1824 1620  
+                                  l1816 15F0                                    l1808 15CE  
+                                  l1920 1212                                    l1912 11E0  
+                                  l2464 10C2                                    l2288 1E84  
+                                  l2386 14B0                                    l2378 147A  
+                                  l2298 1FE6                                    l2394 1B56  
+                                  l1834 164C                                    l1826 1626  
+                                  l1818 1602                                    l1850 168E  
+                                  l1930 1264                                    l1922 121A  
+                                  l1914 11F0                                    l1906 11C0  
+                                  l2388 14CC                                    l2396 1B6A  
+                                  l1828 163C                                    l1836 1652  
+                                  l1860 16C2                                    l1852 1692  
+                                  l1844 1674                                    l1780 18C6  
+                                  l1772 1880                                    l1940 12B6  
+                                  l1932 1268                                    l1924 1226  
+                                  l1916 11F6                                    l1908 11C4  
+                                  l2398 1B88                                    l1838 1662  
+                                  l1870 16FC                                    l1862 16CA  
+                                  l1854 16A0                                    l1846 1678  
+                                  l1782 18F8                                    l1774 1890  
+                                  l1790 1DC4                                    l1950 1304  
+                                  l1942 12C6                                    l1934 126E  
+                                  l1926 1230                                    l1918 1206  
+                                  l1864 16D8                                    l1872 1702  
+                                  l1856 16A8                                    l1848 1686  
+                                  l1776 18A0                                    l1792 1DC8  
+                                  l1880 19BE                                    l1952 1310  
+                                  l1944 12E0                                    l1928 1236  
+                                  l1936 128A                                    l1960 1752  
+                                  l1794 1F4C                                    l1970 1C9E  
+                                  l1874 1712                                    l1866 16EE  
+                                  l1858 16BA                                    l1778 18AA  
+                                  l1786 1DAA                                    l1890 1A0A  
+                                  l1882 19CC                                    l1938 12A4  
+                                  l1946 12EE                                    l1962 175A  
+                                  l1796 1F68                                    l1980 1CD8  
+                                  l1972 1CAC                                    l1876 171A  
+                                  l1868 16F6                                    l1788 1DB6  
+                                  l1892 1A0E                                    l1884 19D8  
+                                  l1948 12FE                                    l1964 1776  
+                                  l1956 1724                                    l1990 1D04  
+                                  l1982 1CE0                                    l1974 1CB4  
+                                  l1894 1A3A                                    l1886 19E6  
+                                  l1966 1796                                    l1958 172C  
+                                  ?_pad 0011                                    l1992 1D16  
+                                  l1984 1CEE                                    l1976 1CC2  
+                                  l1896 1E90                                    l1888 19FA  
+                                  l1968 179E                                    l1994 1D1E  
+                                  l1986 1CF6                                    l1978 1CCA  
+                                  l1898 1E9E                                    l1996 1D26  
+                                  l1988 1CFA                                    l1998 1D34  
           lastSunday@dayOfWeekMonth31st 002D                                    STR_1 0E01  
                                   STR_2 0E1B                                    STR_3 0E0F  
                                   u1000 15DC                                    u1001 15D8  
@@ -6302,9 +6302,9 @@ Symbol Table                                                                    
                                  ?_main 0001                                   ?_dtoa 0018  
                        __end_of___awdiv 1674                         __end_of___awmod 1724  
                    ??_changeHourDayYear 000A                         ___awdiv@divisor 0006  
-                       __end_of___lwdiv 1C32                                   i1l132 0088  
-                                 i1l134 0084                                   i1l135 009A  
-                                 i1l137 00AC                         __end_of___lwmod 1D68  
+                       __end_of___lwdiv 1C32                                   i1l131 0084  
+                                 i1l132 009A                                   i1l134 00AC  
+                                 i1l129 0088                         __end_of___lwmod 1D68  
                        ___awdiv@counter 0008                            vfpfcnvrt@fmt 0024  
                                  _TMR0H 0FD4                                   _TMR0L 0FD3  
                                  _TRISA 0F81                                   _TRISB 0F82  
@@ -6332,12 +6332,12 @@ Symbol Table                                                                    
                                 ?_fputs 000C                          ??_LCD_sendbyte 0006  
                       ___awdiv@dividend 0004                                  ?_putch 0001  
                  changeHourDayYear@leap 0007                   changeHourDayYear@hour 0004  
-                                i1l2431 0036                                  i1l2441 006C  
-                                i1l2433 003C                                  i1l2443 006E  
-                                i1l2435 0040                                  i1l2445 0082  
-                                i1l2437 0044                                  i1l2429 0026  
-                                i1l2447 0096                                  i1l2439 0056  
-                                i1l2449 00A8                   changeHourDayYear@year 0006  
+                                i1l2430 0044                                  i1l2422 0026  
+                                i1l2440 0096                                  i1l2432 0056  
+                                i1l2424 0036                                  i1l2442 00A8  
+                                i1l2434 006C                                  i1l2426 003C  
+                                i1l2436 006E                                  i1l2428 0040  
+                                i1l2438 0082                   changeHourDayYear@year 0006  
                          vfpfcnvrt@done 002C                       _LEDarray_disp_bin 14E8  
                                 _LowISR 0018                      ?_LEDarray_disp_bin 0004  
                          ??_Timer0_init 0004                            vfprintf@cfmt 0031  
@@ -6376,7 +6376,7 @@ Symbol Table                                                                    
                 __end_of_LCD_sendstring 1EF2                          ?_hourChangeDST 0004  
                                __Hparam 0000                                 __Lparam 0000  
                            _Timer0_init 1EF2                              _lastSunday 0E26  
-                       _isLeapYear$1179 001A                                 ___awdiv 15B0  
+                       _isLeapYear$1177 001A                                 ___awdiv 15B0  
                                ___awmod 1674                                 ___lwdiv 1BBE  
                                ___lwmod 1D04                               ?_vfprintf 002E  
                           __psmallconst 0E00                                 __pcinit 1FBA  
@@ -6420,7 +6420,7 @@ Symbol Table                                                                    
                            __pbssCOMRAM 0050                             ??_LCD_E_TOG 0004  
                          __pcstackBANK0 0060                         findDSTdates@day 0043  
                         ?_Comp1_init_fe 0001                          ?_Comp1_init_re 0001  
-                      ___lwdiv@dividend 000A                               _dtoa$1982 001B  
+                      ___lwdiv@dividend 000A                               _dtoa$1980 001B  
                           ?_Timer0_init 0001                                ?___awdiv 0004  
                               ?___awmod 0004                     __end_of_LCD_setline 1E5C  
                               ?___lwdiv 000A                                ?___lwmod 0011  
@@ -6457,8 +6457,8 @@ Symbol Table                                                                    
                             vfprintf@ap 0030                                __Lrparam 0000  
                             vfprintf@fp 002E                              sunSync@day 0005  
                             ?_vfpfcnvrt 0023                            ??_initialise 000A  
-                       _lastSunday$1192 003B                              _ANSELFbits 0EB4  
-                       _lastSunday$1189 0039                         _lastSunday$2259 0037  
+                       _lastSunday$1190 003B                              _ANSELFbits 0EB4  
+                       _lastSunday$1187 0039                         _lastSunday$2254 0037  
                             sprintf@fmt 0033                              _T0CON0bits 0FD5  
                             _T0CON1bits 0FD6                         ___lwdiv@divisor 000C  
                        ___lwdiv@counter 0010                                __ptext10 2030  

@@ -24379,21 +24379,28 @@ void LCD_sendstring(char *string)
 
 
 
+
+
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
+
 
     LCD_setline(1);
     sprintf(buf,"H:%02d D:%03d",h,day);
     LCD_sendstring(buf);
 
+
     LCD_setline(2);
+
     if (leap == 1){
         sprintf(buf,"Y:%d Leap",year);
         LCD_sendstring(buf);
     }
+
     else {
         sprintf(buf,"Y:%d Normal",year);
         LCD_sendstring(buf);
     }
+
 
     _delay((unsigned long)((200)*(64000000/4000.0)));
 }

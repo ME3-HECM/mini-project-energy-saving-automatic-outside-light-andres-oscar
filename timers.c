@@ -31,14 +31,3 @@ void Timer0_init(void)
 
 
 
-/************************************
- * Function to return the full 16bit timer value
- * Note TMR0L and TMR0H must be read in the correct order, or TMR0H will not contain the correct value
-************************************/
-unsigned int get16bitTMR0val(void)
-{
-    unsigned int combined_value;
-    combined_value = TMR0L | (TMR0H << 8);
-    return combined_value;
-}
-

@@ -7,11 +7,10 @@ Linker command line:
   -cn \
   -h+dist/default/production\mini-project-energy-saving-automatic-outside-light-andres-oscar.X.production.sym \
   --cmf=dist/default/production\mini-project-energy-saving-automatic-outside-light-andres-oscar.X.production.cmf \
-  -z -Q18F67K40 \
-  -oC:\Users\ablan\AppData\Local\Temp\xcAs165c.\driver_tmp_3.o \
+  -z -Q18F67K40 -oC:\Users\ablan\AppData\Local\Temp\xcAs588.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/production/mini-project-energy-saving-automatic-outside-light-andres-oscar.X.production.map \
-  --md=C:\Users\ablan\AppData\Local\Temp\xcAs165c.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\ablan\AppData\Local\Temp\xcAs588.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-01FFFFh -ACONST=00h-01FFFFh \
   -ASMALLCONST=0E00h-0EFFhx498 -AMEDIUMCONST=0E00h-0FFFFh,010E00h-01FFFFh \
   -ACOMRAM=01h-05Fh -AABS1=00h-0DE9h -ABIGRAM=01h-0DE9h \
@@ -31,7 +30,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\ablan\AppData\Local\Temp\xcAs165c.\driver_tmp_14.o \
+  C:\Users\ablan\AppData\Local\Temp\xcAs588.\driver_tmp_14.o \
   dist/default/production\mini-project-energy-saving-automatic-outside-light-andres-oscar.X.production.o 
 
 Object code version is 3.11
@@ -41,7 +40,7 @@ Machine type is 18F67K40
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ablan\AppData\Local\Temp\xcAs165c.\driver_tmp_14.o
+C:\Users\ablan\AppData\Local\Temp\xcAs588.\driver_tmp_14.o
                 config                           300000   300000        6        0       4
                 init                                 BC       BC        4        C       0
                 reset_vec                             0        0        4        0       0
@@ -675,7 +674,7 @@ _abs                                    text11       001E90
 _changeHourDayYear                      text35       00141C
 _dbuf                                   bssBANK0     00008E
 _dtoa                                   text6        0011C0
-_dtoa$1982                              cstackCOMRAM 00001B
+_dtoa$1980                              cstackCOMRAM 00001B
 _findDSTdates                           text29       001C32
 _flags                                  bssCOMRAM    000054
 _fputc                                  text9        001880
@@ -684,11 +683,11 @@ _hour                                   bssBANK0     0000AE
 _hourChangeDST                          text28       0017D2
 _initialise                             text17       001FDA
 _isLeapYear                             text31       001ACE
-_isLeapYear$1179                        cstackCOMRAM 00001A
+_isLeapYear$1177                        cstackCOMRAM 00001A
 _lastSunday                             text30       000E26
-_lastSunday$1189                        cstackCOMRAM 000039
-_lastSunday$1192                        cstackCOMRAM 00003B
-_lastSunday$2259                        cstackCOMRAM 000037
+_lastSunday$1187                        cstackCOMRAM 000039
+_lastSunday$1190                        cstackCOMRAM 00003B
+_lastSunday$2254                        cstackCOMRAM 000037
 _main                                   text0        001328
 _pad                                    text7        0019BE
 _prec                                   bssCOMRAM    000052

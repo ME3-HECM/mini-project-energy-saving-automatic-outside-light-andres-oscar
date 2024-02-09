@@ -123,22 +123,29 @@ void LCD_sendstring(char *string)
 }
 
 
-//Update
+/************************************
+ * Function to send time information to the LCD screen
+************************************/
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
     
+    //printing hour and day on the first line
     LCD_setline(1);
-    sprintf(buf,"H:%02d D:%03d",h,day); //stores hour in buf    
-    LCD_sendstring(buf);
+    sprintf(buf,"H:%02d D:%03d",h,day); //stores hour and day in buf    
+    LCD_sendstring(buf); //prints buf
     
+    //printing Year and whether its Leap or normal on the second line
     LCD_setline(2);
+    //If Leap is true it prints the year with Leap next to it
     if (leap == 1){
         sprintf(buf,"Y:%d Leap",year);
         LCD_sendstring(buf);
     }
+    //If leap is false it prints the year with normal next to it
     else {
         sprintf(buf,"Y:%d Normal",year);
         LCD_sendstring(buf);
     }
     
+    //In built delay in the function to slow down the refresh rate on the screen
     __delay_ms(200); 
 }

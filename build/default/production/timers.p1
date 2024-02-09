@@ -2120,25 +2120,3 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;timers.c: 30: }
 [e :UE 2015 ]
 }
-"38
-[; ;timers.c: 38: unsigned int get16bitTMR0val(void)
-[v _get16bitTMR0val `(ui ~T0 @X0 1 ef ]
-"39
-[; ;timers.c: 39: {
-{
-[e :U _get16bitTMR0val ]
-[f ]
-"40
-[; ;timers.c: 40:     unsigned int combined_value;
-[v _combined_value `ui ~T0 @X0 1 a ]
-"41
-[; ;timers.c: 41:     combined_value = TMR0L | (TMR0H << 8);
-[e = _combined_value -> | -> _TMR0L `i << -> _TMR0H `i -> 8 `i `ui ]
-"42
-[; ;timers.c: 42:     return combined_value;
-[e ) _combined_value ]
-[e $UE 2016  ]
-"43
-[; ;timers.c: 43: }
-[e :UE 2016 ]
-}

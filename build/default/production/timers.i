@@ -24129,16 +24129,3 @@ void Timer0_init(void)
 
 
 }
-
-
-
-
-
-
-
-unsigned int get16bitTMR0val(void)
-{
-    unsigned int combined_value;
-    combined_value = TMR0L | (TMR0H << 8);
-    return combined_value;
-}
