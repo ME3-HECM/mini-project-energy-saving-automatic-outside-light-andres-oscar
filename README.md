@@ -3,6 +3,10 @@ This detailed overview provides insights into the code structure and functionali
  
 ## Usage and Maintenance
 - Initial Configuration: Upon the first setup, users need to manually input the current day and time to initialize the system accurately.
+- Input Variables: Hour, Day, Year, Synced, backwards_zone.
+- - Input current hour, day, and year.
+  - Input backwards_zone is 1 between the last Sunday of March and the last Sunday of October.
+  - Input synced is 0 by default.
 - Automatic Operation: Post-initialization, the system requires no user intervention, automatically adjusting lighting based on time and ambient light levels.
 
 ## Code Structure and Key Components
