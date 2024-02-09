@@ -1,10 +1,10 @@
 # Energy Saving Automatic Outside Light Project
-This detailed overview provides insights into the code structure and functionalities of the Energy Saving Automatic Outside Light project. The system is designed around a microcontroller-based architecture, utilizing various peripherals, interrupts, and algorithms to achieve its goals.
+This detailed overview provides insights into the code structure and functionalities of the Energy Saving Automatic Outside Light project. We utilized various peripherals, interrupts, and functions to achieve the goals of the project.
 
 ## Code Structure and Key Components
 ### Main Loop (main function)
-- Variables Initialization: The main loop starts with initializing variables relevant to timekeeping (such as day, year, and flags for daylight savings adjustments) and configuring the initial state of the system (e.g., LED states).
-System Initialization: Calls an initialise() function to set up peripherals, configure interrupts, and prepare the system for operation.
+- Variables Initialization: The main loop starts with initializing variables relevant to timekeeping (such as day, year, and flags for daylight savings adjustments) and configuring the initial state of the system (e.g., LED states). 
+System Initialization: Calls an initialize () function to set up peripherals, configure interrupts, and prepare the system for operation.
 - Infinite Loop: The core of the program runs in an endless loop, continuously checking light levels, updating the time display, and adjusting lighting based on the current time and ambient light conditions.
 Interrupts and Timer Configuration
 - Interrupt Initialization: The Interrupts_init() function configures global and peripheral interrupts for the system, enabling specific sources such as comparators and timers, which are crucial for timekeeping and event detection.
