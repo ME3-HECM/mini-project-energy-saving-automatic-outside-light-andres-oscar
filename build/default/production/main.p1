@@ -3,6 +3,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14 ./functions.h
 [; ;./functions.h: 14: void initialise(void);
 [v _initialise `(v ~T0 @X0 0 ef ]
+"9
+[; ;./functions.h: 9: unsigned int isLeapYear(unsigned int year);
+[v _isLeapYear `(ui ~T0 @X0 0 ef1`ui ]
 "10 ./LEDarray.h
 [; ;./LEDarray.h: 10: void LEDarray_disp_bin(unsigned int number);
 [v _LEDarray_disp_bin `(v ~T0 @X0 0 ef1`ui ]
@@ -10,8 +13,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LCD.h: 21: void LCD_setline (char line);
 [v _LCD_setline `(v ~T0 @X0 0 ef1`uc ]
 "26
-[; ;./LCD.h: 26: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
-[v _time2String `(v ~T0 @X0 0 ef4`*uc`ui`ui`ui ]
+[; ;./LCD.h: 26: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
+[v _time2String `(v ~T0 @X0 0 ef5`*uc`ui`ui`ui`ui ]
 "12 ./functions.h
 [; ;./functions.h: 12: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
 [v _findDSTdates `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
@@ -19,8 +22,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./functions.h: 11: void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
 [v _increaseHour `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
 "13
-[; ;./functions.h: 13: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year);
-[v _changeHourDayYear `(v ~T0 @X0 0 ef3`*ui`*ui`*ui ]
+[; ;./functions.h: 13: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced);
+[v _changeHourDayYear `(v ~T0 @X0 0 ef5`*ui`*ui`*ui`ui`*ui ]
+"15
+[; ;./functions.h: 15: void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced);
+[v _sunSync `(v ~T0 @X0 0 ef3`*ui`ui`*ui ]
 "2 main.c
 [; ;main.c: 2: 
 [p x FEXTOSC  =  HS      ]
@@ -2013,65 +2019,75 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _main ]
 [f ]
 "22
-[; ;main.c: 22:     unsigned int daylight_savings = 0;
+[; ;main.c: 22:     unsigned int synced = 0;
+[v _synced `ui ~T0 @X0 1 a ]
+[e = _synced -> -> 0 `i `ui ]
+"23
+[; ;main.c: 23:     unsigned int daylight_savings = 0;
 [v _daylight_savings `ui ~T0 @X0 1 a ]
 [e = _daylight_savings -> -> 0 `i `ui ]
-"23
-[; ;main.c: 23:     unsigned int day = 364;
-[v _day `ui ~T0 @X0 1 a ]
-[e = _day -> -> 364 `i `ui ]
 "24
-[; ;main.c: 24:     unsigned int year = 2024;
+[; ;main.c: 24:     unsigned int day = 11;
+[v _day `ui ~T0 @X0 1 a ]
+[e = _day -> -> 11 `i `ui ]
+"25
+[; ;main.c: 25:     unsigned int year = 2024;
 [v _year `ui ~T0 @X0 1 a ]
 [e = _year -> -> 2024 `i `ui ]
-"25
-[; ;main.c: 25:     unsigned int leap;
-[v _leap `ui ~T0 @X0 1 a ]
 "26
-[; ;main.c: 26:     unsigned int fwd_daylight_savings_day;
-[v _fwd_daylight_savings_day `ui ~T0 @X0 1 a ]
+[; ;main.c: 26:     unsigned int leap;
+[v _leap `ui ~T0 @X0 1 a ]
 "27
-[; ;main.c: 27:     unsigned int bkwd_daylight_savings_day;
-[v _bkwd_daylight_savings_day `ui ~T0 @X0 1 a ]
+[; ;main.c: 27:     unsigned int fwd_daylight_savings_day;
+[v _fwd_daylight_savings_day `ui ~T0 @X0 1 a ]
 "28
-[; ;main.c: 28:     unsigned int backward_zone = 0;
+[; ;main.c: 28:     unsigned int bkwd_daylight_savings_day;
+[v _bkwd_daylight_savings_day `ui ~T0 @X0 1 a ]
+"29
+[; ;main.c: 29:     unsigned int backward_zone = 0;
 [v _backward_zone `ui ~T0 @X0 1 a ]
 [e = _backward_zone -> -> 0 `i `ui ]
-"29
-[; ;main.c: 29:     char buf[32];
+"30
+[; ;main.c: 30:     char buf[32];
 [v _buf `uc ~T0 @X0 -> 32 `i a ]
-"31
-[; ;main.c: 31:     initialise();
+"32
+[; ;main.c: 32:     initialise();
 [e ( _initialise ..  ]
-"33
-[; ;main.c: 33:     while (1) {
+"34
+[; ;main.c: 34:     while (1) {
 [e :U 2017 ]
 {
 "35
-[; ;main.c: 35:         LEDarray_disp_bin(hour);
-[e ( _LEDarray_disp_bin (1 _hour ]
+[; ;main.c: 35:         leap = isLeapYear(year);
+[e = _leap ( _isLeapYear (1 _year ]
 "37
-[; ;main.c: 37:         LCD_setline(1);
-[e ( _LCD_setline (1 -> -> 1 `i `uc ]
+[; ;main.c: 37:         LEDarray_disp_bin(hour);
+[e ( _LEDarray_disp_bin (1 _hour ]
 "39
-[; ;main.c: 39:         time2String(buf,hour,day,year);
-[e ( _time2String (4 , , , &U _buf _hour _day _year ]
+[; ;main.c: 39:         LCD_setline(1);
+[e ( _LCD_setline (1 -> -> 1 `i `uc ]
 "41
-[; ;main.c: 41:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
-[e ( _findDSTdates (4 , , , , _hour _day _year &U _fwd_daylight_savings_day &U _bkwd_daylight_savings_day ]
+[; ;main.c: 41:         time2String(buf,hour,day,year,leap);
+[e ( _time2String (4 , , , , &U _buf _hour _day _year _leap ]
 "43
-[; ;main.c: 43:         increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
-[e ( _increaseHour (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
+[; ;main.c: 43:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
+[e ( _findDSTdates (4 , , , , _hour _day _year &U _fwd_daylight_savings_day &U _bkwd_daylight_savings_day ]
 "45
-[; ;main.c: 45:         changeHourDayYear(&hour, &day, &year);
-[e ( _changeHourDayYear (3 , , &U _hour &U _day &U _year ]
-"49
-[; ;main.c: 49:    }
+[; ;main.c: 45:         increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+[e ( _increaseHour (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
+"47
+[; ;main.c: 47:         changeHourDayYear(&hour, &day, &year, leap, &synced);
+[e ( _changeHourDayYear (4 , , , , &U _hour &U _day &U _year _leap &U _synced ]
+"50
+[; ;main.c: 50:         sunSync(&hour, day, &synced);
+[e ( _sunSync (3 , , &U _hour _day &U _synced ]
+"53
+[; ;main.c: 53:    }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"50
-[; ;main.c: 50: }
+"54
+[; ;main.c: 54: }
 [e :UE 2015 ]
 }

@@ -24166,8 +24166,9 @@ unsigned int isLeapYear(unsigned int year);
 unsigned int lastSunday(unsigned int year, unsigned int month);
 void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
-void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year);
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced);
 void initialise(void);
+void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced);
 # 15 "main.c" 2
 
 # 1 "./LCD.h" 1
@@ -24181,7 +24182,7 @@ void LCD_sendstring(char *string);
 void LCD_scroll(void);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 16 "main.c" 2
 
 # 1 "./global_variables.h" 1
@@ -24200,8 +24201,9 @@ unsigned int hour;
 
 void main(void) {
 
+    unsigned int synced = 0;
     unsigned int daylight_savings = 0;
-    unsigned int day = 364;
+    unsigned int day = 11;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
@@ -24212,19 +24214,22 @@ void main(void) {
     initialise();
 
     while (1) {
+        leap = isLeapYear(year);
 
         LEDarray_disp_bin(hour);
 
         LCD_setline(1);
 
-        time2String(buf,hour,day,year);
+        time2String(buf,hour,day,year,leap);
 
         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
 
         increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
 
-        changeHourDayYear(&hour, &day, &year);
+        changeHourDayYear(&hour, &day, &year, leap, &synced);
 
+
+        sunSync(&hour, day, &synced);
 
 
    }

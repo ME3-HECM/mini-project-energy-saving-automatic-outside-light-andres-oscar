@@ -23,6 +23,6 @@ void LCD_sendstring(char *string);
 void LCD_scroll(void);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 
 #endif

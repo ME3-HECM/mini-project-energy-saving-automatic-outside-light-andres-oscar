@@ -149,11 +149,22 @@ void ADC2String(char *buf, unsigned int ADC_val){
 
 }
 
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year){
-    if (h<=9){
-        sprintf(buf,"h=0%d %d %d",h,day,year); //stores hour in buf
-    }
-    else {sprintf(buf,"h=%d %d %d",h,day,year);} //stores hour in buf}
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
+    
+    LCD_setline(1);
+    sprintf(buf,"H:%02d D:%03d",h,day); //stores hour in buf    
     LCD_sendstring(buf);
+    
+    LCD_setline(2);
+    if (leap == 1){
+        sprintf(buf,"Y:%d Leap",year);
+        LCD_sendstring(buf);
+    }
+    else {
+        sprintf(buf,"Y:%d Normal",year);
+        LCD_sendstring(buf);
+    }
+    
     __delay_ms(200);
+    
 }

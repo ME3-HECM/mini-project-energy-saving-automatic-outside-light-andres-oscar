@@ -24125,7 +24125,7 @@ void LCD_sendstring(char *string);
 void LCD_scroll(void);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 6 "interrupts.c" 2
 
 
@@ -24159,21 +24159,24 @@ void Interrupts_init(void) {
 
     INTCONbits.GIE = 1;
 }
-# 49 "interrupts.c"
+# 48 "interrupts.c"
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
 
     if (PIR0bits.TMR0IF == 1) {
 
 
-        hour++;
-        TMR0H=00001011;
-        TMR0L=110011011;
-        if (hour >= 1 && hour <= 5){
-            LATHbits.LATH3 = 0;
-        }
-        PIR0bits.TMR0IF = 0;
+     hour++;
+     TMR0H=00001011;
+     TMR0L=110011011;
+     if (hour >= 1 && hour < 5){
+         LATHbits.LATH3 = 0;
+     }
+     if (hour == 6){
+         LATHbits.LATH3 = 1;
+     }
 
+     PIR0bits.TMR0IF = 0;
     }
 
 

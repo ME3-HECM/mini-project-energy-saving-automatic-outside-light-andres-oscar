@@ -1,4 +1,35 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"28912 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28912:     struct {
+[s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1361 . LATH0 LATH1 LATH2 LATH3 ]
+"28918
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28918:     struct {
+[s S1362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1362 . LH0 LH1 LH2 LH3 ]
+"28924
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28924:     struct {
+[s S1363 :4 `uc 1 :1 `uc 1 ]
+[n S1363 . . LH4 ]
+"28928
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28928:     struct {
+[s S1364 :5 `uc 1 :1 `uc 1 ]
+[n S1364 . . LH5 ]
+"28932
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28932:     struct {
+[s S1365 :6 `uc 1 :1 `uc 1 ]
+[n S1365 . . LH6 ]
+"28936
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28936:     struct {
+[s S1366 :7 `uc 1 :1 `uc 1 ]
+[n S1366 . . LH7 ]
+"28911
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28911: typedef union {
+[u S1360 `S1361 1 `S1362 1 `S1363 1 `S1364 1 `S1365 1 `S1366 1 ]
+[n S1360 . . . . . . . ]
+"28941
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 28941: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
+[v _LATHbits `VS1360 ~T0 @X0 0 e@3968 ]
 "8 ./interrupts.h
 [; ;./interrupts.h: 8: void Interrupts_init(void);
 [v _Interrupts_init `(v ~T0 @X0 0 ef ]
@@ -2154,97 +2185,117 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2024 ]
 }
 "73
-[; ;functions.c: 73: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year){
-[v _changeHourDayYear `(v ~T0 @X0 1 ef3`*ui`*ui`*ui ]
+[; ;functions.c: 73: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
+[v _changeHourDayYear `(v ~T0 @X0 1 ef5`*ui`*ui`*ui`ui`*ui ]
 {
 [e :U _changeHourDayYear ]
 [v _hour `*ui ~T0 @X0 1 r1 ]
 [v _day `*ui ~T0 @X0 1 r2 ]
 [v _year `*ui ~T0 @X0 1 r3 ]
+[v _leap `ui ~T0 @X0 1 r4 ]
+[v _synced `*ui ~T0 @X0 1 r5 ]
 [f ]
-"74
-[; ;functions.c: 74:         if (*hour == 24) {
+"75
+[; ;functions.c: 75:     if (*hour == 24) {
 [e $ ! == *U _hour -> -> 24 `i `ui 2027  ]
 {
-"75
-[; ;functions.c: 75:            *hour = 0;
-[e = *U _hour -> -> 0 `i `ui ]
 "76
-[; ;functions.c: 76:            (*day)++;
-[e ++ *U _day -> -> 1 `i `ui ]
+[; ;functions.c: 76:        *hour = 0;
+[e = *U _hour -> -> 0 `i `ui ]
 "77
-[; ;functions.c: 77:               }
+[; ;functions.c: 77:        (*day)++;
+[e ++ *U _day -> -> 1 `i `ui ]
+"78
+[; ;functions.c: 78:     }
 }
 [e :U 2027 ]
-"78
-[; ;functions.c: 78:         if (*day == 365){
-[e $ ! == *U _day -> -> 365 `i `ui 2028  ]
-{
-"79
-[; ;functions.c: 79:             unsigned int leap = isLeapYear(year);
-[v _leap `ui ~T0 @X0 1 a ]
-[e = _leap ( _isLeapYear (1 -> _year `ui ]
-"80
-[; ;functions.c: 80:             if (leap == 0){
-[e $ ! == _leap -> -> 0 `i `ui 2029  ]
-{
 "81
-[; ;functions.c: 81:                 *day=1;
-[e = *U _day -> -> 1 `i `ui ]
+[; ;functions.c: 81:     if (leap == 0 && *day > 365) {
+[e $ ! && == _leap -> -> 0 `i `ui > *U _day -> -> 365 `i `ui 2028  ]
+{
 "82
-[; ;functions.c: 82:                 (*year)++;
-[e ++ *U _year -> -> 1 `i `ui ]
+[; ;functions.c: 82:         *day = 1;
+[e = *U _day -> -> 1 `i `ui ]
 "83
-[; ;functions.c: 83:             }
-}
-[e :U 2029 ]
+[; ;functions.c: 83:         (*year)++;
+[e ++ *U _year -> -> 1 `i `ui ]
+"84
+[; ;functions.c: 84:         *synced = 0;
+[e = *U _synced -> -> 0 `i `ui ]
 "85
-[; ;functions.c: 85:         }
+[; ;functions.c: 85:     }
 }
 [e :U 2028 ]
-"86
-[; ;functions.c: 86:         if (*day == 366){
-[e $ ! == *U _day -> -> 366 `i `ui 2030  ]
-{
-"87
-[; ;functions.c: 87:             *day = 1;
-[e = *U _day -> -> 1 `i `ui ]
 "88
-[; ;functions.c: 88:             (*year)++;
-[e ++ *U _year -> -> 1 `i `ui ]
+[; ;functions.c: 88:     if (leap == 1 && *day > 366) {
+[e $ ! && == _leap -> -> 1 `i `ui > *U _day -> -> 366 `i `ui 2029  ]
+{
 "89
-[; ;functions.c: 89:         }
-}
-[e :U 2030 ]
+[; ;functions.c: 89:         *day = 1;
+[e = *U _day -> -> 1 `i `ui ]
 "90
-[; ;functions.c: 90: }
+[; ;functions.c: 90:         (*year)++;
+[e ++ *U _year -> -> 1 `i `ui ]
+"91
+[; ;functions.c: 91:     }
+}
+[e :U 2029 ]
+"92
+[; ;functions.c: 92: }
 [e :UE 2026 ]
 }
-"92
-[; ;functions.c: 92: void initialise(void){
+"94
+[; ;functions.c: 94: void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
+[v _sunSync `(v ~T0 @X0 1 ef3`*ui`ui`*ui ]
+{
+[e :U _sunSync ]
+[v _hour `*ui ~T0 @X0 1 r1 ]
+[v _day `ui ~T0 @X0 1 r2 ]
+[v _synced `*ui ~T0 @X0 1 r3 ]
+[f ]
+"95
+[; ;functions.c: 95:     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
+[e $ ! && && && == -> . . _LATHbits 0 3 `i -> 0 `i == _day -> -> 11 `i `ui >= *U _hour -> -> 6 `i `ui == *U _synced -> -> 0 `i `ui 2031  ]
+{
+"96
+[; ;functions.c: 96:         *hour = 8;
+[e = *U _hour -> -> 8 `i `ui ]
+"97
+[; ;functions.c: 97:         *synced = 1;
+[e = *U _synced -> -> 1 `i `ui ]
+"98
+[; ;functions.c: 98:     }
+}
+[e :U 2031 ]
+"99
+[; ;functions.c: 99: }
+[e :UE 2030 ]
+}
+"102
+[; ;functions.c: 102: void initialise(void){
 [v _initialise `(v ~T0 @X0 1 ef ]
 {
 [e :U _initialise ]
 [f ]
-"94
-[; ;functions.c: 94:     Interrupts_init();
+"104
+[; ;functions.c: 104:     Interrupts_init();
 [e ( _Interrupts_init ..  ]
-"95
-[; ;functions.c: 95:     Comp1_init_re();
+"105
+[; ;functions.c: 105:     Comp1_init_re();
 [e ( _Comp1_init_re ..  ]
-"96
-[; ;functions.c: 96:     Comp1_init_fe();
+"106
+[; ;functions.c: 106:     Comp1_init_fe();
 [e ( _Comp1_init_fe ..  ]
-"97
-[; ;functions.c: 97:     Timer0_init();
+"107
+[; ;functions.c: 107:     Timer0_init();
 [e ( _Timer0_init ..  ]
-"98
-[; ;functions.c: 98:     LEDarray_init();
+"108
+[; ;functions.c: 108:     LEDarray_init();
 [e ( _LEDarray_init ..  ]
-"99
-[; ;functions.c: 99:     LCD_init();
+"109
+[; ;functions.c: 109:     LCD_init();
 [e ( _LCD_init ..  ]
-"100
-[; ;functions.c: 100: }
-[e :UE 2031 ]
+"111
+[; ;functions.c: 111: }
+[e :UE 2032 ]
 }

@@ -70,24 +70,34 @@ void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsign
 
 }
 
-void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year){
-        if (*hour == 24) {
-           *hour = 0;
-           (*day)++;
-              }//resets hours once it reaches 24hours
-        if (*day == 365){
-            unsigned int leap = isLeapYear(year);
-            if (leap == 0){
-                *day=1;
-                (*year)++;
-            }
-            
-        }
-        if (*day == 366){
-            *day = 1;
-            (*year)++;
-        }      
+void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
+    // Resets hours once it reaches 24 hours
+    if (*hour == 24) {
+       *hour = 0;
+       (*day)++;
+    }
+
+    // For a non-leap year
+    if (leap == 0 && *day > 365) {
+        *day = 1;
+        (*year)++;
+        *synced = 0;
+    }
+    
+    // For a leap year
+    if (leap == 1 && *day > 366) {
+        *day = 1;
+        (*year)++;
+    }
 }
+
+void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
+    if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
+        *hour = 8;
+        *synced = 1;
+    }
+}
+
 
 void initialise(void){
     //initialising necessary components
@@ -97,6 +107,7 @@ void initialise(void){
     Timer0_init();
     LEDarray_init();
     LCD_init();
+    
 }
 
 

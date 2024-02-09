@@ -2156,74 +2156,85 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2015 ]
 }
 [v $root$_LowISR `(v ~T0 @X0 0 e ]
-"49
-[; ;interrupts.c: 49: void __attribute__((picinterrupt(("low_priority")))) LowISR()
+"48
+[; ;interrupts.c: 48: void __attribute__((picinterrupt(("low_priority")))) LowISR()
 [v _LowISR `(v ~T2 @X0 1 ef ]
-"50
-[; ;interrupts.c: 50: {
+"49
+[; ;interrupts.c: 49: {
 {
 [e :U _LowISR ]
 [f ]
-"52
-[; ;interrupts.c: 52:     if (PIR0bits.TMR0IF == 1) {
+"51
+[; ;interrupts.c: 51:     if (PIR0bits.TMR0IF == 1) {
 [e $ ! == -> . . _PIR0bits 0 5 `i -> 1 `i 2017  ]
 {
-"55
-[; ;interrupts.c: 55:         hour++;
+"54
+[; ;interrupts.c: 54:      hour++;
 [e ++ _hour -> -> 1 `i `ui ]
-"56
-[; ;interrupts.c: 56:         TMR0H=00001011;
+"55
+[; ;interrupts.c: 55:      TMR0H=00001011;
 [e = _TMR0H -> -> 521 `i `uc ]
-"57
-[; ;interrupts.c: 57:         TMR0L=110011011;
+"56
+[; ;interrupts.c: 56:      TMR0L=110011011;
 [e = _TMR0L -> -> 110011011 `l `uc ]
-"58
-[; ;interrupts.c: 58:         if (hour >= 1 && hour <= 5){
-[e $ ! && >= _hour -> -> 1 `i `ui <= _hour -> -> 5 `i `ui 2018  ]
+"57
+[; ;interrupts.c: 57:      if (hour >= 1 && hour < 5){
+[e $ ! && >= _hour -> -> 1 `i `ui < _hour -> -> 5 `i `ui 2018  ]
 {
-"59
-[; ;interrupts.c: 59:             LATHbits.LATH3 = 0;
+"58
+[; ;interrupts.c: 58:          LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"60
-[; ;interrupts.c: 60:         }
+"59
+[; ;interrupts.c: 59:      }
 }
 [e :U 2018 ]
-"61
-[; ;interrupts.c: 61:         PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
-"63
-[; ;interrupts.c: 63:     }
-}
-[e :U 2017 ]
-"66
-[; ;interrupts.c: 66:     if (PIR2bits.C1IF == 1) {
-[e $ ! == -> . . _PIR2bits 0 0 `i -> 1 `i 2019  ]
+"60
+[; ;interrupts.c: 60:      if (hour == 6){
+[e $ ! == _hour -> -> 6 `i `ui 2019  ]
 {
-"68
-[; ;interrupts.c: 68:         LATHbits.LATH3 = 1;
+"61
+[; ;interrupts.c: 61:          LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"70
-[; ;interrupts.c: 70:         PIR2bits.C1IF = 0;
-[e = . . _PIR2bits 0 0 -> -> 0 `i `uc ]
-"71
-[; ;interrupts.c: 71:     }
+"62
+[; ;interrupts.c: 62:      }
 }
 [e :U 2019 ]
-"73
-[; ;interrupts.c: 73:     if (PIR2bits.C2IF == 1) {
-[e $ ! == -> . . _PIR2bits 0 1 `i -> 1 `i 2020  ]
+"64
+[; ;interrupts.c: 64:      PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+"65
+[; ;interrupts.c: 65:     }
+}
+[e :U 2017 ]
+"68
+[; ;interrupts.c: 68:     if (PIR2bits.C1IF == 1) {
+[e $ ! == -> . . _PIR2bits 0 0 `i -> 1 `i 2020  ]
 {
-"74
-[; ;interrupts.c: 74:             LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"75
-[; ;interrupts.c: 75:             PIR2bits.C2IF = 0;
-[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
-"76
-[; ;interrupts.c: 76:         }
+"70
+[; ;interrupts.c: 70:         LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"72
+[; ;interrupts.c: 72:         PIR2bits.C1IF = 0;
+[e = . . _PIR2bits 0 0 -> -> 0 `i `uc ]
+"73
+[; ;interrupts.c: 73:     }
 }
 [e :U 2020 ]
+"75
+[; ;interrupts.c: 75:     if (PIR2bits.C2IF == 1) {
+[e $ ! == -> . . _PIR2bits 0 1 `i -> 1 `i 2021  ]
+{
+"76
+[; ;interrupts.c: 76:             LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"77
+[; ;interrupts.c: 77:             PIR2bits.C2IF = 0;
+[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
 "78
-[; ;interrupts.c: 78: }
+[; ;interrupts.c: 78:         }
+}
+[e :U 2021 ]
+"80
+[; ;interrupts.c: 80: }
 [e :UE 2016 ]
 }

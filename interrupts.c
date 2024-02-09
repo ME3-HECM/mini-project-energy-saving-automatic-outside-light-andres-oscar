@@ -44,29 +44,31 @@ void Interrupts_init(void) {
 
 
 
-
 //low priority interrupt setup for timer overflow
 void __interrupt(low_priority) LowISR()
 {   
  
     if (PIR0bits.TMR0IF == 1) { // check interrupt flag
 
-        
-        hour++;
-        TMR0H=00001011;            //write High reg first, update happens when low reg is written to
-        TMR0L=110011011;
-        if (hour >= 1 && hour <= 5){
-            LATHbits.LATH3 = 0;
-        }
-        PIR0bits.TMR0IF = 0; // clear interrupt flag
 
+     hour++;
+     TMR0H=00001011;            //write High reg first, update happens when low reg is written to
+     TMR0L=110011011;
+     if (hour >= 1 && hour < 5){
+         LATHbits.LATH3 = 0;
+     }
+     if (hour == 6){
+         LATHbits.LATH3 = 1;
+     }        
+
+     PIR0bits.TMR0IF = 0; // clear interrupt flag
     }
     
     
     if (PIR2bits.C1IF == 1) {
 
         LATHbits.LATH3 = 1;//change value for the H3 LED 
-        
+
         PIR2bits.C1IF = 0;
     }
     
@@ -74,7 +76,7 @@ void __interrupt(low_priority) LowISR()
             LATHbits.LATH3 = 0;//change value for the H3 LED 
             PIR2bits.C2IF = 0;
         }
-
+    
 }
 
 
