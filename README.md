@@ -52,7 +52,8 @@ The LCD is programmed to display the current time in a human-readable format, pr
 ## Conclusion
 The code for the Energy Saving Automatic Outside Light project is designed to be efficient, modular, and adaptable. Through careful organization and the use of microcontroller peripherals and interrupts, the project achieves its goal of providing an automated, energy-efficient outdoor lighting solution. This overview provides a foundation for understanding the system's operation, aiding in maintenance, adaptation, or further development of similar projects.
 
-
+# Suplementary Video
+https://imperiallondon-my.sharepoint.com/personal/ol421_ic_ac_uk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fol421%5Fic%5Fac%5Fuk%2FDocuments%2FAttachments%2FIMG%5F2118%2EMOV&ct=1707479567823&or=OWA%2DNT&cid=bde8a153%2D2773%2Ddd8b%2D5446%2D5d274b0948c1&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/hkDdx-pz)
 # Mini project - Energy saving automatic outside light
 
