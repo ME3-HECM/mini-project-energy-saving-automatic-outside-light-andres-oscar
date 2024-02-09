@@ -29,7 +29,7 @@ void main(void) {
     char buf[32];
 
     initialise();
-
+          
     while (1) {
        
         LEDarray_disp_bin(hour);//displaying hour of the day on LED display
@@ -44,6 +44,7 @@ void main(void) {
         
         changeHourDayYear(&hour, &day, &year);       
         
-        // if the tikme is between 1 and 5 am, keep LED as off
-    }
+
+ // if the time is between 1 and 5 am, keep LED as off
+   }
 }

@@ -24142,6 +24142,11 @@ void Interrupts_init(void) {
     IPR2bits.C2IP = 0;
 
 
+    PIE2bits.C3IE = 1;
+    IPR2bits.C3IP = 1;
+
+
+
     PIE0bits.TMR0IE = 1;
     IPR0bits.TMR0IP = 0;
 
@@ -24154,24 +24159,7 @@ void Interrupts_init(void) {
 
     INTCONbits.GIE = 1;
 }
-
-
-
-
-
-
-
-void __attribute__((picinterrupt(("high_priority")))) HighISR()
-{
-    if (PIR2bits.C3IF == 1) {
-        LATHbits.LATH3 = 0;
-        PIR2bits.C3IF = 0;
-    }
-}
-
-
-
-
+# 49 "interrupts.c"
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
 
@@ -24181,13 +24169,18 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
         hour++;
         TMR0H=00001011;
         TMR0L=110011011;
+        if (hour >= 1 && hour <= 5){
+            LATHbits.LATH3 = 0;
+        }
         PIR0bits.TMR0IF = 0;
 
     }
 
 
     if (PIR2bits.C1IF == 1) {
+
         LATHbits.LATH3 = 1;
+
         PIR2bits.C1IF = 0;
     }
 
@@ -24195,4 +24188,5 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR()
             LATHbits.LATH3 = 0;
             PIR2bits.C2IF = 0;
         }
+
 }

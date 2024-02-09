@@ -29,6 +29,8 @@ void Timer0_init(void)
     
 }
 
+
+
 /************************************
  * Function to return the full 16bit timer value
  * Note TMR0L and TMR0H must be read in the correct order, or TMR0H will not contain the correct value
