@@ -24099,7 +24099,7 @@ void LCD_sendstring(char *string);
 void LCD_scroll(void);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 2 "LCD.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.45\\pic\\include\\c99\\stdio.h" 1 3
@@ -24404,11 +24404,21 @@ void ADC2String(char *buf, unsigned int ADC_val){
 
 }
 
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year){
-    if (h<=9){
-        sprintf(buf,"h=0%d %d %d",h,day,year);
-    }
-    else {sprintf(buf,"h=%d %d %d",h,day,year);}
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
+
+    LCD_setline(1);
+    sprintf(buf,"H:%02d D:%03d",h,day);
     LCD_sendstring(buf);
+
+    LCD_setline(2);
+    if (leap == 1){
+        sprintf(buf,"Y:%d Leap",year);
+        LCD_sendstring(buf);
+    }
+    else {
+        sprintf(buf,"Y:%d Normal",year);
+        LCD_sendstring(buf);
+    }
+
     _delay((unsigned long)((200)*(64000000/4000.0)));
 }

@@ -24134,6 +24134,9 @@ void Comp1_init_re(void)
 
 }
 
+
+
+
 void Comp1_init_fe(void)
 {
     TRISFbits.TRISF7=1;

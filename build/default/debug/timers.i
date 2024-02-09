@@ -24109,10 +24109,10 @@ unsigned int getHour(void);
 
 void Timer0_init(void)
 {
-    T0CON1bits.T0CS=0b010;
-    T0CON1bits.T0ASYNC=1;
-    T0CON1bits.T0CKPS=0b1000;
-    T0CON0bits.T016BIT=1;
+    T0CON1bits.T0CS = 0b010;
+    T0CON1bits.T0ASYNC = 1;
+    T0CON1bits.T0CKPS = 0b1000;
+    T0CON0bits.T016BIT = 1;
 
     PIE0bits.TMR0IE = 1;
     PIR0bits.TMR0IF = 0;
@@ -24129,6 +24129,8 @@ void Timer0_init(void)
 
 
 }
+
+
 
 
 

@@ -2384,44 +2384,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2039 ]
 }
 "152
-[; ;LCD.c: 152: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year){
-[v _time2String `(v ~T0 @X0 1 ef4`*uc`ui`ui`ui ]
+[; ;LCD.c: 152: void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
+[v _time2String `(v ~T0 @X0 1 ef5`*uc`ui`ui`ui`ui ]
 {
 [e :U _time2String ]
 [v _buf `*uc ~T0 @X0 1 r1 ]
 [v _h `ui ~T0 @X0 1 r2 ]
 [v _day `ui ~T0 @X0 1 r3 ]
 [v _year `ui ~T0 @X0 1 r4 ]
+[v _leap `ui ~T0 @X0 1 r5 ]
 [f ]
-"153
-[; ;LCD.c: 153:     if (h<=9){
-[e $ ! <= _h -> -> 9 `i `ui 2041  ]
-{
 "154
-[; ;LCD.c: 154:         sprintf(buf,"h=0%d %d %d",h,day,year);
-[e ( _sprintf (1 , , , (. , _buf :s 2C _h _day _year ]
+[; ;LCD.c: 154:     LCD_setline(1);
+[e ( _LCD_setline (1 -> -> 1 `i `uc ]
 "155
-[; ;LCD.c: 155:     }
-}
-[e $U 2042  ]
+[; ;LCD.c: 155:     sprintf(buf,"H:%02d D:%03d",h,day);
+[e ( _sprintf (1 , , (. , _buf :s 2C _h _day ]
 "156
-[; ;LCD.c: 156:     else {sprintf(buf,"h=%d %d %d",h,day,year);}
-[e :U 2041 ]
-{
-[e ( _sprintf (1 , , , (. , _buf :s 3C _h _day _year ]
-}
-[e :U 2042 ]
-"157
-[; ;LCD.c: 157:     LCD_sendstring(buf);
+[; ;LCD.c: 156:     LCD_sendstring(buf);
 [e ( _LCD_sendstring (1 _buf ]
 "158
-[; ;LCD.c: 158:     _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 158:     LCD_setline(2);
+[e ( _LCD_setline (1 -> -> 2 `i `uc ]
 "159
-[; ;LCD.c: 159: }
+[; ;LCD.c: 159:     if (leap == 1){
+[e $ ! == _leap -> -> 1 `i `ui 2041  ]
+{
+"160
+[; ;LCD.c: 160:         sprintf(buf,"Y:%d Leap",year);
+[e ( _sprintf (1 , (. , _buf :s 3C _year ]
+"161
+[; ;LCD.c: 161:         LCD_sendstring(buf);
+[e ( _LCD_sendstring (1 _buf ]
+"162
+[; ;LCD.c: 162:     }
+}
+[e $U 2042  ]
+"163
+[; ;LCD.c: 163:     else {
+[e :U 2041 ]
+{
+"164
+[; ;LCD.c: 164:         sprintf(buf,"Y:%d Normal",year);
+[e ( _sprintf (1 , (. , _buf :s 4C _year ]
+"165
+[; ;LCD.c: 165:         LCD_sendstring(buf);
+[e ( _LCD_sendstring (1 _buf ]
+"166
+[; ;LCD.c: 166:     }
+}
+[e :U 2042 ]
+"168
+[; ;LCD.c: 168:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"169
+[; ;LCD.c: 169: }
 [e :UE 2040 ]
 }
 [p f _sprintf 8421508 ]
+[a 3C 89 58 37 100 32 76 101 97 112 0 ]
+[a 4C 89 58 37 100 32 78 111 114 109 97 108 0 ]
+[a 2C 72 58 37 48 50 100 32 68 58 37 48 51 100 0 ]
 [a 1C 86 111 108 116 97 103 101 32 61 32 37 100 46 37 48 50 100 0 ]
-[a 3C 104 61 37 100 32 37 100 32 37 100 0 ]
-[a 2C 104 61 48 37 100 32 37 100 32 37 100 0 ]

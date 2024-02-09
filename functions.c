@@ -10,11 +10,18 @@
 #include <stdio.h>
 
 
-// Function to check if a year is a leap year
+
+/************************************
+ * Function to check if its a leap year
+************************************/
 unsigned int isLeapYear(unsigned int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
-
+/************************************
+ * Function to check when the last Sunday for any month
+ * Uses Zellers Congruence to get the day of the week at the first of the month
+ * Takes into account leap years
+************************************/
 unsigned int lastSunday(unsigned int year, unsigned int month){
     unsigned int leapYear = isLeapYear(year);
     
@@ -47,8 +54,11 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
     }
     
 }
-
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
+/************************************
+ * Function to change the hour when DST arrives
+ * includes a backwards zone variable to avoid being in an endless loop when moving time back
+************************************/
+void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
     // If it's daylight savings, move hour forward at 2 am
     if (day == fwd_daylight_savings_day && *hour == 2) {
         (*hour)++;
@@ -60,7 +70,10 @@ void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsig
         *backward_zone = 1;
     }
 }
-
+/************************************
+ * Function to find the daylight savings day
+ * Uses the last sunday for the month, with inputs of march for the forward DST, and october for the backwards DST
+************************************/
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
         //Calculate the dates for the daylight savings changes
     if (day==1 && hour == 0){
@@ -69,7 +82,11 @@ void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsign
     }
 
 }
-
+/************************************
+ * Function to change the hour, day and year 
+ * When hour is 24, latter turns to 0 and the day increases
+ * When day is 365 or 366 (depending on leap year), latter turns to 0 and year increases
+************************************/
 void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
     // Resets hours once it reaches 24 hours
     if (*hour == 24) {
@@ -90,7 +107,10 @@ void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year
         (*year)++;
     }
 }
-
+/************************************
+ * Function to sync timer with the sun
+ * Every 11th of January, when light turns off after 6, the hour will sync back to exactly 8
+************************************/
 void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
         *hour = 8;
@@ -98,7 +118,9 @@ void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
     }
 }
 
-
+/************************************
+ * Function to initialise everything relevant
+************************************/
 void initialise(void){
     //initialising necessary components
     Interrupts_init();

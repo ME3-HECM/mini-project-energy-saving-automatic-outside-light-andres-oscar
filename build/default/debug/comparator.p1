@@ -112,6 +112,74 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13923
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13923: extern volatile CM1CON1bits_t CM1CON1bits __attribute__((address(0xED1)));
 [v _CM1CON1bits `VS644 ~T0 @X0 0 e@3793 ]
+"13714
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13714:     struct {
+[s S634 :3 `uc 1 ]
+[n S634 . NCH ]
+"13717
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13717:     struct {
+[s S635 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S635 . NCH0 NCH1 NCH2 ]
+"13722
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13722:     struct {
+[s S636 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S636 . C2NCH0 C2NCH1 C2NCH2 ]
+"13713
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13713: typedef union {
+[u S633 `S634 1 `S635 1 `S636 1 ]
+[n S633 . . . . ]
+"13728
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13728: extern volatile CM2NCHbits_t CM2NCHbits __attribute__((address(0xECE)));
+[v _CM2NCHbits `VS633 ~T0 @X0 0 e@3790 ]
+"13774
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13774:     struct {
+[s S638 :3 `uc 1 ]
+[n S638 . PCH ]
+"13777
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13777:     struct {
+[s S639 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S639 . PCH0 PCH1 PCH2 ]
+"13782
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13782:     struct {
+[s S640 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S640 . C2PCH0 C2PCH1 C2PCH2 ]
+"13773
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13773: typedef union {
+[u S637 `S638 1 `S639 1 `S640 1 ]
+[n S637 . . . . ]
+"13788
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13788: extern volatile CM2PCHbits_t CM2PCHbits __attribute__((address(0xECF)));
+[v _CM2PCHbits `VS637 ~T0 @X0 0 e@3791 ]
+"13594
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13594:     struct {
+[s S628 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S628 . SYNC HYS . POL . OUT EN ]
+"13603
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13603:     struct {
+[s S629 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S629 . C2SYNC C2HYS . C2POL . C2OUT C2EN ]
+"13593
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13593: typedef union {
+[u S627 `S628 1 `S629 1 ]
+[n S627 . . . ]
+"13613
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13613: extern volatile CM2CON0bits_t CM2CON0bits __attribute__((address(0xECC)));
+[v _CM2CON0bits `VS627 ~T0 @X0 0 e@3788 ]
+"13674
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13674:     struct {
+[s S631 :1 `uc 1 :1 `uc 1 ]
+[n S631 . INTN INTP ]
+"13678
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13678:     struct {
+[s S632 :1 `uc 1 :1 `uc 1 ]
+[n S632 . C2INTN C2INTP ]
+"13673
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13673: typedef union {
+[u S630 `S631 1 `S632 1 ]
+[n S630 . . . ]
+"13683
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 13683: extern volatile CM2CON1bits_t CM2CON1bits __attribute__((address(0xECD)));
+[v _CM2CON1bits `VS630 ~T0 @X0 0 e@3789 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2146,39 +2214,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;comparator.c: 34: }
 [e :UE 2016 ]
 }
-"36
-[; ;comparator.c: 36: void Comp1_init_fe(void)
+"39
+[; ;comparator.c: 39: void Comp1_init_fe(void)
 [v _Comp1_init_fe `(v ~T0 @X0 1 ef ]
-"37
-[; ;comparator.c: 37: {
+"40
+[; ;comparator.c: 40: {
 {
 [e :U _Comp1_init_fe ]
 [f ]
-"38
-[; ;comparator.c: 38:     TRISFbits.TRISF7=1;
-[e = . . _TRISFbits 0 7 -> -> 1 `i `uc ]
-"39
-[; ;comparator.c: 39:     CM1NCHbits.NCH=0b011;
-[e = . . _CM1NCHbits 0 0 -> -> 3 `i `uc ]
-"40
-[; ;comparator.c: 40:     CM1PCHbits.PCH=0b101;
-[e = . . _CM1PCHbits 0 0 -> -> 5 `i `uc ]
 "41
-[; ;comparator.c: 41:     CM1CON0bits.HYS=1;
-[e = . . _CM1CON0bits 0 1 -> -> 1 `i `uc ]
+[; ;comparator.c: 41:     TRISFbits.TRISF7=1;
+[e = . . _TRISFbits 0 7 -> -> 1 `i `uc ]
 "42
-[; ;comparator.c: 42:     CM1CON0bits.POL=1;
-[e = . . _CM1CON0bits 0 3 -> -> 1 `i `uc ]
+[; ;comparator.c: 42:     CM2NCHbits.NCH=0b011;
+[e = . . _CM2NCHbits 0 0 -> -> 3 `i `uc ]
 "43
-[; ;comparator.c: 43:     CM1CON1bits.INTN=1;
-[e = . . _CM1CON1bits 0 0 -> -> 1 `i `uc ]
+[; ;comparator.c: 43:     CM2PCHbits.PCH=0b101;
+[e = . . _CM2PCHbits 0 0 -> -> 5 `i `uc ]
 "44
-[; ;comparator.c: 44:     DAC_init();
-[e ( _DAC_init ..  ]
+[; ;comparator.c: 44:     CM2CON0bits.HYS=1;
+[e = . . _CM2CON0bits 0 1 -> -> 1 `i `uc ]
 "45
-[; ;comparator.c: 45:     CM1CON0bits.EN=1;
-[e = . . _CM1CON0bits 0 6 -> -> 1 `i `uc ]
+[; ;comparator.c: 45:     CM2CON0bits.POL=1;
+[e = . . _CM2CON0bits 0 3 -> -> 1 `i `uc ]
 "46
-[; ;comparator.c: 46: }
+[; ;comparator.c: 46:     CM2CON1bits.INTN=1;
+[e = . . _CM2CON1bits 0 0 -> -> 1 `i `uc ]
+"47
+[; ;comparator.c: 47:     DAC_init();
+[e ( _DAC_init ..  ]
+"48
+[; ;comparator.c: 48:     CM2CON0bits.EN=1;
+[e = . . _CM2CON0bits 0 6 -> -> 1 `i `uc ]
+"49
+[; ;comparator.c: 49: }
 [e :UE 2017 ]
 }

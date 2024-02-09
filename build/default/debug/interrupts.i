@@ -24125,43 +24125,71 @@ void LCD_sendstring(char *string);
 void LCD_scroll(void);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
-void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year);
+void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap);
 # 6 "interrupts.c" 2
 
 
 
 
 
-void Interrupts_init(void)
-{
+void Interrupts_init(void) {
+
+    PIE2bits.C1IE = 1;
+    IPR2bits.C1IP = 0;
 
 
-    PIE2bits.C1IE=1;
-    PIE0bits.TMR0IE=1;
-    IPR2bits.C1IP = 1;
+    PIE2bits.C2IE = 1;
+    IPR2bits.C2IP = 0;
+
+
+    PIE2bits.C3IE = 1;
+    IPR2bits.C3IP = 1;
+
+
+
+    PIE0bits.TMR0IE = 1;
     IPR0bits.TMR0IP = 0;
-    INTCONbits.IPEN=1;
-    INTCONbits.PEIE=1;
-    INTCONbits.GIE=1;
 
+
+    INTCONbits.IPEN = 1;
+
+
+    INTCONbits.PEIE = 1;
+
+
+    INTCONbits.GIE = 1;
 }
-# 36 "interrupts.c"
+# 48 "interrupts.c"
 void __attribute__((picinterrupt(("low_priority")))) LowISR()
 {
 
     if (PIR0bits.TMR0IF == 1) {
 
 
-        hour++;
-        TMR0H=00001011;
-        TMR0L=110011011;
-        PIR0bits.TMR0IF = 0;
+     hour++;
+     TMR0H=00001011;
+     TMR0L=110011011;
+     if (hour >= 1 && hour < 5){
+         LATHbits.LATH3 = 0;
+     }
+     if (hour == 6){
+         LATHbits.LATH3 = 1;
+     }
 
+     PIR0bits.TMR0IF = 0;
     }
 
 
     if (PIR2bits.C1IF == 1) {
-        LATHbits.LATH3 = !LATHbits.LATH3;
+
+        LATHbits.LATH3 = 1;
+
         PIR2bits.C1IF = 0;
     }
+
+    if (PIR2bits.C2IF == 1) {
+            LATHbits.LATH3 = 0;
+            PIR2bits.C2IF = 0;
+        }
+
 }

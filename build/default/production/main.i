@@ -24164,7 +24164,7 @@ unsigned int getHour(void);
 
 unsigned int isLeapYear(unsigned int year);
 unsigned int lastSunday(unsigned int year, unsigned int month);
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
 void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced);
 void initialise(void);
@@ -24203,7 +24203,7 @@ void main(void) {
 
     unsigned int synced = 0;
     unsigned int daylight_savings = 0;
-    unsigned int day = 11;
+    unsigned int day = 1;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
@@ -24224,13 +24224,13 @@ void main(void) {
 
         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
 
-        increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+
+
+
+        hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
 
         changeHourDayYear(&hour, &day, &year, leap, &synced);
 
-
         sunSync(&hour, day, &synced);
-
-
    }
 }

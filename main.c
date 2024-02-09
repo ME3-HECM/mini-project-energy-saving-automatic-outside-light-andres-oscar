@@ -21,7 +21,7 @@ void main(void) {
     //call the variables
     unsigned int synced = 0;
     unsigned int daylight_savings = 0;
-    unsigned int day = 11;
+    unsigned int day = 1;
     unsigned int year = 2024;
     unsigned int leap;
     unsigned int fwd_daylight_savings_day;
@@ -34,21 +34,21 @@ void main(void) {
     while (1) {
         leap = isLeapYear(year);
                 
-        LEDarray_disp_bin(hour);//displaying hour of the day on LED display
+        LEDarray_disp_bin(hour); //displaying hour of the day on LED display
        
         LCD_setline(1);
         
         time2String(buf,hour,day,year,leap);
        
         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
-
-        increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);                   
+        
+        //day = 301; //change to check that daylight savings changed
+        //hour = 2;
+        
+        hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);                   
         
         changeHourDayYear(&hour, &day, &year, leap, &synced);       
-        
-        
+               
         sunSync(&hour, day, &synced);
-
- // if the time is between 1 and 5 am, keep LED as off
    }
 }

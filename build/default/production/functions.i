@@ -24099,7 +24099,7 @@ unsigned char __t3rd16on(void);
 
 unsigned int isLeapYear(unsigned int year);
 unsigned int lastSunday(unsigned int year, unsigned int month);
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
 void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced);
 void initialise(void);
@@ -24345,9 +24345,16 @@ char *tempnam(const char *, const char *);
 
 
 
+
+
+
 unsigned int isLeapYear(unsigned int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
+
+
+
 
 unsigned int lastSunday(unsigned int year, unsigned int month){
     unsigned int leapYear = isLeapYear(year);
@@ -24382,7 +24389,10 @@ unsigned int lastSunday(unsigned int year, unsigned int month){
 
 }
 
-void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
+
+
+
+void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone) {
 
     if (day == fwd_daylight_savings_day && *hour == 2) {
         (*hour)++;
@@ -24395,6 +24405,9 @@ void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsig
     }
 }
 
+
+
+
 void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day){
 
     if (day==1 && hour == 0){
@@ -24403,6 +24416,10 @@ void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsign
     }
 
 }
+
+
+
+
 
 void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced){
 
@@ -24425,12 +24442,17 @@ void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year
     }
 }
 
+
+
+
 void sunSync(unsigned int *hour, unsigned int day, unsigned int *synced){
     if (LATHbits.LATH3 == 0 && day==11 && *hour>=6 && *synced == 0){
         *hour = 8;
         *synced = 1;
     }
 }
+
+
 
 
 void initialise(void){

@@ -2078,16 +2078,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _Timer0_init ]
 [f ]
 "11
-[; ;timers.c: 11:     T0CON1bits.T0CS=0b010;
+[; ;timers.c: 11:     T0CON1bits.T0CS = 0b010;
 [e = . . _T0CON1bits 0 2 -> -> 2 `i `uc ]
 "12
-[; ;timers.c: 12:     T0CON1bits.T0ASYNC=1;
+[; ;timers.c: 12:     T0CON1bits.T0ASYNC = 1;
 [e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
 "13
-[; ;timers.c: 13:     T0CON1bits.T0CKPS=0b1000;
+[; ;timers.c: 13:     T0CON1bits.T0CKPS = 0b1000;
 [e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
 "14
-[; ;timers.c: 14:     T0CON0bits.T016BIT=1;
+[; ;timers.c: 14:     T0CON0bits.T016BIT = 1;
 [e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
 "16
 [; ;timers.c: 16:     PIE0bits.TMR0IE = 1;
@@ -2120,25 +2120,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;timers.c: 30: }
 [e :UE 2015 ]
 }
-"36
-[; ;timers.c: 36: unsigned int get16bitTMR0val(void)
+"38
+[; ;timers.c: 38: unsigned int get16bitTMR0val(void)
 [v _get16bitTMR0val `(ui ~T0 @X0 1 ef ]
-"37
-[; ;timers.c: 37: {
+"39
+[; ;timers.c: 39: {
 {
 [e :U _get16bitTMR0val ]
 [f ]
-"38
-[; ;timers.c: 38:     unsigned int combined_value;
-[v _combined_value `ui ~T0 @X0 1 a ]
-"39
-[; ;timers.c: 39:     combined_value = TMR0L | (TMR0H << 8);
-[e = _combined_value -> | -> _TMR0L `i << -> _TMR0H `i -> 8 `i `ui ]
 "40
-[; ;timers.c: 40:     return combined_value;
+[; ;timers.c: 40:     unsigned int combined_value;
+[v _combined_value `ui ~T0 @X0 1 a ]
+"41
+[; ;timers.c: 41:     combined_value = TMR0L | (TMR0H << 8);
+[e = _combined_value -> | -> _TMR0L `i << -> _TMR0H `i -> 8 `i `ui ]
+"42
+[; ;timers.c: 42:     return combined_value;
 [e ) _combined_value ]
 [e $UE 2016  ]
-"41
-[; ;timers.c: 41: }
+"43
+[; ;timers.c: 43: }
 [e :UE 2016 ]
 }

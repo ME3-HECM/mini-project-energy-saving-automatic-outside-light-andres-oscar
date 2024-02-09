@@ -2214,39 +2214,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;comparator.c: 34: }
 [e :UE 2016 ]
 }
-"36
-[; ;comparator.c: 36: void Comp1_init_fe(void)
+"39
+[; ;comparator.c: 39: void Comp1_init_fe(void)
 [v _Comp1_init_fe `(v ~T0 @X0 1 ef ]
-"37
-[; ;comparator.c: 37: {
+"40
+[; ;comparator.c: 40: {
 {
 [e :U _Comp1_init_fe ]
 [f ]
-"38
-[; ;comparator.c: 38:     TRISFbits.TRISF7=1;
-[e = . . _TRISFbits 0 7 -> -> 1 `i `uc ]
-"39
-[; ;comparator.c: 39:     CM2NCHbits.NCH=0b011;
-[e = . . _CM2NCHbits 0 0 -> -> 3 `i `uc ]
-"40
-[; ;comparator.c: 40:     CM2PCHbits.PCH=0b101;
-[e = . . _CM2PCHbits 0 0 -> -> 5 `i `uc ]
 "41
-[; ;comparator.c: 41:     CM2CON0bits.HYS=1;
-[e = . . _CM2CON0bits 0 1 -> -> 1 `i `uc ]
+[; ;comparator.c: 41:     TRISFbits.TRISF7=1;
+[e = . . _TRISFbits 0 7 -> -> 1 `i `uc ]
 "42
-[; ;comparator.c: 42:     CM2CON0bits.POL=1;
-[e = . . _CM2CON0bits 0 3 -> -> 1 `i `uc ]
+[; ;comparator.c: 42:     CM2NCHbits.NCH=0b011;
+[e = . . _CM2NCHbits 0 0 -> -> 3 `i `uc ]
 "43
-[; ;comparator.c: 43:     CM2CON1bits.INTN=1;
-[e = . . _CM2CON1bits 0 0 -> -> 1 `i `uc ]
+[; ;comparator.c: 43:     CM2PCHbits.PCH=0b101;
+[e = . . _CM2PCHbits 0 0 -> -> 5 `i `uc ]
 "44
-[; ;comparator.c: 44:     DAC_init();
-[e ( _DAC_init ..  ]
+[; ;comparator.c: 44:     CM2CON0bits.HYS=1;
+[e = . . _CM2CON0bits 0 1 -> -> 1 `i `uc ]
 "45
-[; ;comparator.c: 45:     CM2CON0bits.EN=1;
-[e = . . _CM2CON0bits 0 6 -> -> 1 `i `uc ]
+[; ;comparator.c: 45:     CM2CON0bits.POL=1;
+[e = . . _CM2CON0bits 0 3 -> -> 1 `i `uc ]
 "46
-[; ;comparator.c: 46: }
+[; ;comparator.c: 46:     CM2CON1bits.INTN=1;
+[e = . . _CM2CON1bits 0 0 -> -> 1 `i `uc ]
+"47
+[; ;comparator.c: 47:     DAC_init();
+[e ( _DAC_init ..  ]
+"48
+[; ;comparator.c: 48:     CM2CON0bits.EN=1;
+[e = . . _CM2CON0bits 0 6 -> -> 1 `i `uc ]
+"49
+[; ;comparator.c: 49: }
 [e :UE 2017 ]
 }

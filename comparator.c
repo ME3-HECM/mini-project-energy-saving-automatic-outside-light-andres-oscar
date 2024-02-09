@@ -32,7 +32,10 @@ void Comp1_init_re(void) //detects rising edge
     CM1CON0bits.EN=1;
     
 }
-
+/************************************
+ * Function to set up second comparator to compare RF7 to the DAC output voltage
+ * Similar to the above, except uses negative edge 
+************************************/
 void Comp1_init_fe(void) //detects falling edge
 {
     TRISFbits.TRISF7=1;		// set pin RF7 as input

@@ -19,8 +19,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./functions.h: 12: void findDSTdates(unsigned int hour, unsigned int day, unsigned int year, unsigned int *fwd_daylight_savings_day, unsigned int *bkwd_daylight_savings_day);
 [v _findDSTdates `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
 "11
-[; ;./functions.h: 11: void increaseHour(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
-[v _increaseHour `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
+[; ;./functions.h: 11: void hourChangeDST(unsigned int day, unsigned int fwd_daylight_savings_day, unsigned int bkwd_daylight_savings_day, unsigned int *hour, unsigned int *backward_zone);
+[v _hourChangeDST `(v ~T0 @X0 0 ef5`ui`ui`ui`*ui`*ui ]
 "13
 [; ;./functions.h: 13: void changeHourDayYear(unsigned int *hour, unsigned int *day, unsigned int *year, unsigned int leap, unsigned int *synced);
 [v _changeHourDayYear `(v ~T0 @X0 0 ef5`*ui`*ui`*ui`ui`*ui ]
@@ -2027,9 +2027,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _daylight_savings `ui ~T0 @X0 1 a ]
 [e = _daylight_savings -> -> 0 `i `ui ]
 "24
-[; ;main.c: 24:     unsigned int day = 11;
+[; ;main.c: 24:     unsigned int day = 1;
 [v _day `ui ~T0 @X0 1 a ]
-[e = _day -> -> 11 `i `ui ]
+[e = _day -> -> 1 `i `ui ]
 "25
 [; ;main.c: 25:     unsigned int year = 2024;
 [v _year `ui ~T0 @X0 1 a ]
@@ -2072,14 +2072,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "43
 [; ;main.c: 43:         findDSTdates(hour, day, year,&fwd_daylight_savings_day, &bkwd_daylight_savings_day);
 [e ( _findDSTdates (4 , , , , _hour _day _year &U _fwd_daylight_savings_day &U _bkwd_daylight_savings_day ]
-"45
-[; ;main.c: 45:         increaseHour(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
-[e ( _increaseHour (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
-"47
-[; ;main.c: 47:         changeHourDayYear(&hour, &day, &year, leap, &synced);
-[e ( _changeHourDayYear (4 , , , , &U _hour &U _day &U _year _leap &U _synced ]
+"48
+[; ;main.c: 48:         hourChangeDST(day, fwd_daylight_savings_day, bkwd_daylight_savings_day, &hour, &backward_zone);
+[e ( _hourChangeDST (4 , , , , _day _fwd_daylight_savings_day _bkwd_daylight_savings_day &U _hour &U _backward_zone ]
 "50
-[; ;main.c: 50:         sunSync(&hour, day, &synced);
+[; ;main.c: 50:         changeHourDayYear(&hour, &day, &year, leap, &synced);
+[e ( _changeHourDayYear (4 , , , , &U _hour &U _day &U _year _leap &U _synced ]
+"52
+[; ;main.c: 52:         sunSync(&hour, day, &synced);
 [e ( _sunSync (3 , , &U _hour _day &U _synced ]
 "53
 [; ;main.c: 53:    }

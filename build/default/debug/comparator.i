@@ -24134,14 +24134,17 @@ void Comp1_init_re(void)
 
 }
 
+
+
+
 void Comp1_init_fe(void)
 {
     TRISFbits.TRISF7=1;
-    CM1NCHbits.NCH=0b011;
-    CM1PCHbits.PCH=0b101;
-    CM1CON0bits.HYS=1;
-    CM1CON0bits.POL=1;
-    CM1CON1bits.INTN=1;
+    CM2NCHbits.NCH=0b011;
+    CM2PCHbits.PCH=0b101;
+    CM2CON0bits.HYS=1;
+    CM2CON0bits.POL=1;
+    CM2CON1bits.INTN=1;
     DAC_init();
-    CM1CON0bits.EN=1;
+    CM2CON0bits.EN=1;
 }

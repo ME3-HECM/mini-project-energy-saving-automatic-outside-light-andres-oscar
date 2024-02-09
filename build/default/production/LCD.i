@@ -24379,31 +24379,6 @@ void LCD_sendstring(char *string)
 
 
 
-
-void LCD_scroll(void)
-{
-
-
-    LCD_sendbyte(0b00011000, 0);
-}
-
-
-
-
-
-
-void ADC2String(char *buf, unsigned int ADC_val){
-
-
-
-    unsigned int int_part=ADC_val/77;
-
-    unsigned int frac_part=(ADC_val*100)/77 - int_part*100;
-
-    sprintf(buf,"Voltage = %d.%02d",int_part,frac_part);
-
-}
-
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
 
     LCD_setline(1);
@@ -24421,5 +24396,4 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year,
     }
 
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }

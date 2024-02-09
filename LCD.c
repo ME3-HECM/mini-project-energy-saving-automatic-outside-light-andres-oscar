@@ -2,7 +2,7 @@
 #include "LCD.h"
 #include <stdio.h>
 
-/************************************
+/*************************************
  * Function to toggle LCD enable bit on then off
  * when this function is called the LCD screen reads the data lines
 ************************************/
@@ -122,33 +122,8 @@ void LCD_sendstring(char *string)
 	}
 }
 
-/************************************
- * Function to send string to LCD screen
-************************************/
-void LCD_scroll(void)
-{
-	//code here to scroll the text on the LCD screen
-    //sends correct byte to cause a leftwards shift in the LCD screen
-    LCD_sendbyte(0b00011000, 0);
-}
 
-/************************************
- * Function takes a ADC value and works out the voltage to 2 dp
- * the result is stored in buf as ascii text ready for display on LCD
- * Note result is stored in a buffer using pointers, it is not sent to the LCD
-************************************/
-void ADC2String(char *buf, unsigned int ADC_val){
-	//code to calculate the integer and fractions part of a ADC value
-	// and format as a string using sprintf (see GitHub readme)
-    
-    unsigned int int_part=ADC_val/77; // i.e. 255 / 3.3V = 77 
-
-    unsigned int frac_part=(ADC_val*100)/77 - int_part*100; //calculates fractional part
-    
-    sprintf(buf,"Voltage = %d.%02d",int_part,frac_part); //stores both separate parts in buf
-
-}
-
+//Update
 void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year, unsigned int leap){
     
     LCD_setline(1);
@@ -165,6 +140,5 @@ void time2String(char *buf, unsigned int h, unsigned int day, unsigned int year,
         LCD_sendstring(buf);
     }
     
-    __delay_ms(200);
-    
+    __delay_ms(200); 
 }
